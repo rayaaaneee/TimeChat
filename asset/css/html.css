@@ -1,10 +1,19 @@
+html {
+    --body-background: #f5f5f5;
+}
+
+@font-face {
+    font-family: 'Raleway-VariableFont_wght';
+    src: url(../font/Raleway/Raleway-VariableFont_wght.ttf);
+}
+
 body *, body {
     margin: 0;
     padding: 0;
     box-sizing: content-box;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Raleway-VariableFont_wght', sans-serif;
 }
 
 body {
-    background-color: #f5f5f5;
+    background-color: var(--body-background);
 }

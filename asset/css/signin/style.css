@@ -1,0 +1,62 @@
+html {
+    --border-sides: 10px;
+    --width-sides: 50%;
+}
+
+.signin-container {
+    width: 950px;
+    height: 550px;
+    padding: 15px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 0;
+}
+
+
+.signin-container .carousel-container {
+    background: #d490908d;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: var(--border-sides) 0 0 var(--border-sides);
+    box-shadow: 0 10px 10px rgb(0 0 0 / 5%);
+    position: relative;
+}
+
+.signin-container .signin-form-container {
+    background: #fff;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0 var(--border-sides) var(--border-sides) 0;
+    box-shadow: 0 10px 10px rgb(0 0 0 / 5%);
+}
+
+.signin-container .signin-form-container form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 15px;
+    row-gap: 15px;
+}
+
+.signin-container .carousel-container:before {
+    content: "";
+    border-color: var(--body-background) #c67f7f8d transparent transparent;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-style: solid;
+    border-width: 50px 50px 0px 0px;
+    border-radius: 0 0 10px 0;
+    height: 0px;
+    width: 0px;
+    display: block;
+}

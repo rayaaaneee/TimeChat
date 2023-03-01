@@ -1,4 +1,4 @@
 <head>
-    <title>TimeMessage</title>
+    <title>TimeChat</title>
 </head>
-<h1>TimeMessage</h1>
+<h1>TimeChat</h1>

@@ -11,10 +11,9 @@ $webSocket = new WebSocket();
 
 $page = null;
 if (isset($_GET['page'])) {
-    if (is_file(PATH_CONTROLLERS . 'c_' . $_GET['page'] . '.php')) {
+    $page = $_GET['page'];
+    if (!is_file(PATH_CONTROLLERS . $page . '.php')) {
         header('Location: ./');
-    } else {
-        $page = '404';
     }
 } else {
     $page = 'home';
