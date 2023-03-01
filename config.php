@@ -21,4 +21,4 @@ const DB_PASS = 'root';
 const DB_HOST = 'localhost';
 const DB_NAME = 'time_message';
 const DB_PORT = '3306';
-const DB_CHARSET = 'utf8';
+const DB_CHARSET = 'utf8mb4';
