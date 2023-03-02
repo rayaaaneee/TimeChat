@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.2
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Hôte : localhost:3306
--- Généré le : mar. 28 fév. 2023 à 19:28
--- Version du serveur : 5.7.24
--- Version de PHP : 8.0.1
+-- Hôte : 127.0.0.1:3306
+-- Généré le : jeu. 02 mars 2023 à 18:26
+-- Version du serveur : 8.0.31
+-- Version de PHP : 8.1.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -27,11 +27,14 @@ SET time_zone = "+00:00";
 -- Structure de la table `friends`
 --
 
-CREATE TABLE `friends` (
-  `id` int(11) NOT NULL,
-  `id_user_1` int(11) NOT NULL,
-  `id_user_2` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `friends`;
+CREATE TABLE IF NOT EXISTS `friends` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `id_user_1` int NOT NULL,
+  `id_user_2` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_user_1` (`id_user_1`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
 
@@ -39,13 +42,17 @@ CREATE TABLE `friends` (
 -- Structure de la table `friend_request`
 --
 
-CREATE TABLE `friend_request` (
-  `id` int(11) NOT NULL,
-  `id_user_sender` int(11) NOT NULL,
-  `id_user_receiver` int(11) NOT NULL,
+DROP TABLE IF EXISTS `friend_request`;
+CREATE TABLE IF NOT EXISTS `friend_request` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `id_user_sender` int NOT NULL,
+  `id_user_receiver` int NOT NULL,
   `accepted` tinyint(1) NOT NULL,
-  `datetime` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `datetime` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_user_receiver` (`id_user_receiver`),
+  KEY `id_user_sender` (`id_user_sender`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
 
@@ -53,14 +60,17 @@ CREATE TABLE `friend_request` (
 -- Structure de la table `message`
 --
 
-CREATE TABLE `message` (
-  `id` int(11) NOT NULL,
-  `id_user` int(11) NOT NULL,
-  `content` int(11) NOT NULL,
+DROP TABLE IF EXISTS `message`;
+CREATE TABLE IF NOT EXISTS `message` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `id_user` int NOT NULL,
+  `content` int NOT NULL,
   `viewed` tinyint(1) NOT NULL,
   `liked` tinyint(1) NOT NULL,
-  `datetime` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `datetime` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_user` (`id_user`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
 
@@ -68,77 +78,19 @@ CREATE TABLE `message` (
 -- Structure de la table `user`
 --
 
-CREATE TABLE `user` (
-  `id` int(11) NOT NULL,
-  `e_mail` varchar(50) NOT NULL,
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE IF NOT EXISTS `user` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `username` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   `password` text NOT NULL,
-  `pseudo` varchar(30) NOT NULL,
   `description` varchar(300) NOT NULL,
-  `singup_at` date NOT NULL,
-  `connected` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Index pour les tables déchargées
---
-
---
--- Index pour la table `friends`
---
-ALTER TABLE `friends`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_user_1` (`id_user_1`);
-
---
--- Index pour la table `friend_request`
---
-ALTER TABLE `friend_request`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_user_receiver` (`id_user_receiver`),
-  ADD KEY `id_user_sender` (`id_user_sender`);
-
---
--- Index pour la table `message`
---
-ALTER TABLE `message`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_user` (`id_user`);
-
---
--- Index pour la table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `e_mail` (`e_mail`),
-  ADD UNIQUE KEY `pseudo` (`pseudo`);
-
---
--- AUTO_INCREMENT pour les tables déchargées
---
-
---
--- AUTO_INCREMENT pour la table `friends`
---
-ALTER TABLE `friends`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `friend_request`
---
-ALTER TABLE `friend_request`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `message`
---
-ALTER TABLE `message`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `user`
---
-ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  `profile_picture_path` text CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `signup_at` date NOT NULL,
+  `is_public` tinyint(1) NOT NULL,
+  `is_connected` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `pseudo` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Contraintes pour les tables déchargées
