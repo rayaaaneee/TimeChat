@@ -1,22 +1,57 @@
 <head>
     <title>Sign Up</title>
     <link rel="stylesheet" href="<?= PATH_CSS; ?>signup/style.css">
+    <script src="<?= PATH_JS; ?>signup/script.js" defer></script>
 </head>
 <main>
-    <div class="carousel-container">
-
-    </div>
-    <div class="signup-container">
-        <div class="signup-form">
-            <h1>Sign Up</h1>
-            <form action="./?page=signup" method="post">
-                <input type="text" name="firstname" placeholder="First Name" required>
-                <input type="text" name="lastname" placeholder="Last Name" required>
-                <input type="email" name="email" placeholder="Email" required>
-                <input type="password" name="password" placeholder="Password" required>
-                <input type="password" name="password_confirm" placeholder="Confirm Password" required>
-                <input type="submit" name="signup" value="Sign Up">
-            </form>
-        </div>
+    <div class="signup-form">
+        <h1>Sign Up</h1>
+        <form action="./?page=signup" method="post">
+            <div class="input-container">
+                <div class="precise-text">
+                    <p>Username</p>
+                    <p class="point required">*</p>
+                </div>
+                <input type="text" name="username" placeholder="Username">
+            </div>
+            <div class="input-container">
+                <div class="precise-text">
+                    <p>Password</p>
+                    <p class="point required">*</p>
+                </div>
+                <input type="password" name="password" placeholder="Mot de passe">
+            </div>
+            <div class="input-container">
+                <div class="precise-text">
+                    <p>Confirm password</p>
+                    <p class="point required">*</p>
+                </div>
+                <input type="password" name="password2" placeholder="Confirm password">
+            </div>
+            <div class="input-container">
+                <div class="precise-text">
+                    <p>Description</p>
+                    <p class="point notrequired">*</p>
+                </div>
+                <input type="text" name="description" placeholder="Description">
+            </div>
+            <div class="input-container">
+                <div class="precise-text">
+                    <p>Picture</p>
+                    <p class="point notrequired">*</p>
+                </div>
+                <div class="choose-img-container">
+                    <p onclick="openFile()">Choose a picture</p>
+                    <img src="<?= PATH_PROFILE_PICTURES; ?>default.png" alt="profile-picture" draggable="false">
+                </div>
+                <input type="file" name="file" display="none" accept="image/*" placeholder="Picture" hidden>
+            </div>
+            <div class="checkbox-container">
+                <input type="checkbox" name="public" id="public">
+                <label for="public">Share my profile only to friends</label>
+            </div>
+            <input type="submit" name="signup" class="validate-form-signup" value="Create account">
+        </form>
+        <p class="signin-text">Already have an account? <a href="./?page=signin">Sign In</a></p>
     </div>
 </main>

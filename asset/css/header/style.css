@@ -1,8 +1,9 @@
 .menu-container {
     width: 100%;
     height: fit-content;
-    position: sticky;
+    position: fixed;
     top: 0;
+    z-index: 100;
 }
 
 .menu-container ul {
@@ -163,10 +164,6 @@ html {
     margin-left: 20px;
 }
 
-.menu-part-three li:last-child {
-    margin-right: 20px;
-}
-
 .view-signin, .view-signout {
     display: flex;
     flex-direction: row;
@@ -195,7 +192,11 @@ html {
     list-style: none;
     text-decoration: none;
     color: #000000;
+}
+
+.menu-part-three .view-signin {
     border-bottom: 3px solid #f4f4f4;
+    width: fit-content;
 }
 
 .view-signout, .view-signin {
@@ -240,3 +241,44 @@ html {
     justify-content: center;
 }
 
+/* Styliser l'icone du profil */
+
+.menu-part-three .view-profile {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.menu-part-three .view-profile img {
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+/* Styliser l'icone déconnexion */
+.menu-part-three li:last-child {
+    margin-right: 25px;
+    margin-left: 10px;
+    height: 53px;
+}
+
+.menu-part-three .view-signout {
+    padding: 0 10px;
+    border-bottom: 3px solid #f4f4f4;
+}
+
+.menu-part-three li:last-child:hover {
+    background-color: #f4f4f4;
+    border-radius: 10px 10px 0 0;
+}
+
+.menu-part-three .view-signout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}

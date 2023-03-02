@@ -1,15 +1,25 @@
 <?php
 
+
+require_once(PATH_APPS . 'goHomeIfConnected.php');
+
 $result = null;
 if (isset($_POST['signin'])) {
-    $user = new User($_POST['username'], $_POST['password']);
+    $username = htmlspecialchars($_POST['username']);
+    $password = htmlspecialchars($_POST['password']);
+    $rememberMe = isset($_POST['remember']);
+    $user = new User($username, $password);
     $result = $user->signin();
 
     if ($result) {
+        if ($rememberMe) {
+            /* setcookie('username', $username, time() + 365 * 24 * 3600, null, null, false, true);
+            setcookie('password', $password, time() + 365 * 24 * 3600, null, null, false, true); */
+        }
         $_SESSION['user'] = $result;
         Header('Location: ./');
     } else {
-        $error = 'Wrong email or password';
+        Header('Location: ./?page=signin&error=1');
     }
 }
 

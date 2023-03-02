@@ -13,7 +13,13 @@ require_once(PATH_CLASSES . 'User.php');
 require_once(PATH_DAO . 'UserDAO.php');
 require_once(PATH_DTO . 'UserDTO.php');
 
-User::signedOut();
+$user = null;
+if (isset($_SESSION['user'])) {
+    $userTab = $_SESSION['user'];
+    $user = new User($userTab['username'], $userTab['password'], $userTab['description'], $userTab['profile_picture_path'], $userTab['is_public'], $userTab['id']);
+    // Si l'utilisateur s'est déconnecté, on le déconnecte
+    User::signedOut($user);
+}
 
 $webSocket = new WebSocket();
 

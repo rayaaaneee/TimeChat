@@ -40,7 +40,7 @@
                         </a>
                     </li>
                     <li data-title="Notifications">
-                        <a href="./?page=notification" class="view-notifications menu-view">
+                        <a href="./?page=notifications" class="view-notifications menu-view">
                             <img src="<?= PATH_IMG; ?>icon/notification.png" alt="notification">
                         </a>
                     </li>
@@ -54,7 +54,7 @@
                     <?php if (isset($_SESSION['user'])) : ?>
                         <li data-title="Profile">
                             <a href="./?page=myprofile" class="view-profile menu-view">
-                                <img src="<?= PATH_IMG; ?>icon/default.png" alt="profile">
+                                <img src="<?= PATH_PROFILE_PICTURES . $user->getProfilePicture(); ?>" alt="profile">
                             </a>
                         </li>
                         <li data-title="Account">
@@ -68,7 +68,7 @@
                             </a>
                         </li>
                         <li data-title="Sign Out">
-                            <form action="./" method="post" class="view-signout">
+                            <form action="./?page=signin" method="post" class="view-signout">
                                 <button type="submit" name="signout" class="signout-btn">
                                     <img src="<?= PATH_IMG; ?>icon/signout.png" alt="signout">
                                 </button>

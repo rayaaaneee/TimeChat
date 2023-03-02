@@ -16,23 +16,8 @@ class UserDAO extends DAO
         return null;
     }
 
-    public function signup(User $user): bool
-    {
-        $sql = 'INSERT INTO user (username, password) VALUES (:username, :password)';
-        $stmt = $this->getPDO()->prepare($sql);
-        $stmt->bindValue(':email', $user->getUsername());
-        $stmt->bindValue(':password', $user->getPassword());
-        $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($result) {
-            $_SESSION['user'] = $result;
-            return true;
-        }
-        return false;
-    }
-
     public function signout(): void
     {
-        session_destroy();
+        unset($_SESSION['user']);
     }
 }

@@ -4,6 +4,7 @@ define('PATH_VIEWS', './view/v_');
 define('PATH_MODELS', './model/');
 define('PATH_CONTROLLERS', './controller/c_');
 define('PATH_ASSETS', './asset/');
+define('PATH_APPS', './app/');
 
 define('PATH_CLASSES', PATH_MODELS . 'class/');
 define('PATH_DATABASE', PATH_MODELS . 'database/');
@@ -14,6 +15,7 @@ define('PATH_CSS', PATH_ASSETS . 'css/');
 define('PATH_MEDIA', PATH_ASSETS . 'media/');
 define('PATH_JS', PATH_ASSETS . 'js/');
 define('PATH_IMG', PATH_ASSETS . 'img/');
+define('PATH_PROFILE_PICTURES', PATH_IMG . 'profilePicture/');
 define('PATH_FONTS', PATH_ASSETS . 'fonts/');
 
 const DB_USER = 'root';

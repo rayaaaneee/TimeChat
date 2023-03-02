@@ -3,7 +3,7 @@
 class DTO
 {
 
-    private static PDO $db;
+    private PDO $db;
 
     public function __construct()
     {
