@@ -6,3 +6,7 @@
 // R : <?php
 // $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
 SW
+
+## Modifier app/verifyPassword.php et changer la valeur de minLength en 8
+
+## Carousel Accueil : Animation du logo clock du temps qui passe

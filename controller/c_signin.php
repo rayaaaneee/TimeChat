@@ -19,7 +19,17 @@ if (isset($_POST['signin'])) {
         $_SESSION['user'] = $result;
         Header('Location: ./');
     } else {
-        Header('Location: ./?page=signin&error=1');
+        Header('Location: ./?page=signin&error');
+    }
+}
+
+$error = null;
+$success = null;
+if (isset($_GET['success'])) {
+    $success = 'You have successfully signed up';
+} else {
+    if (isset($_GET['error'])) {
+        $error = 'Wrong username or password';
     }
 }
 

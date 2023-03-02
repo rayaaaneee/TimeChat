@@ -10,6 +10,8 @@ class Connection
         $connect = 'mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';port=' . DB_PORT . ';charset=' . DB_CHARSET;
         $this->PDO = new PDO($connect, DB_USER, DB_PASS);
         $this->PDO->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $this->PDO->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+        $this->PDO->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
     }
 
     public static function getInstance(): Connection

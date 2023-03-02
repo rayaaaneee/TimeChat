@@ -17,3 +17,8 @@ body *, body {
 body {
     background-color: var(--body-background);
 }
+
+*::selection {
+    background-color: #d0313189;
+    color: #ffffff;
+}

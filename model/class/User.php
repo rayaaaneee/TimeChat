@@ -1,4 +1,6 @@
 <?php
+
+require_once(PATH_APPS . 'saveImage.php');
 class User
 {
 
@@ -11,7 +13,7 @@ class User
     private UserDAO $userDAO;
     private UserDTO $userDTO;
 
-    public function __construct(string $username, string $password, string $description = null,  bool $isPublic = null, string $profilePicture = "default.png", int $id = null)
+    public function __construct(string $username, string $password, string $description = null,  string $profilePicture = "default.png", bool $isPublic = null, int $id = null)
     {
         $this->username = $username;
         $this->password = $password;
@@ -43,9 +45,21 @@ class User
         return $this->userDAO->signin($this);
     }
 
-    public function signup(): bool
+    public function signup(): string
     {
-        return $this->userDTO->signup($this);
+        $message = $this->userDTO->signup($this);
+        if ($message == 'success') {
+            if ($this->profilePicture != "default.png") {
+                if ($errorFile = saveImage($_FILES['file'], $this->username)) {
+                    if ($errorFile[0] == 1) {
+                        $this->profilePicture = $this->username . "." . strtolower(pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION));
+                    } else {
+                        return $errorFile;
+                    }
+                }
+            }
+        }
+        return $message;
     }
 
     public function signout(): void

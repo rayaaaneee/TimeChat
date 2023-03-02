@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : jeu. 02 mars 2023 à 18:26
+-- Généré le : jeu. 02 mars 2023 à 19:32
 -- Version du serveur : 8.0.31
 -- Version de PHP : 8.1.13
 
@@ -90,7 +90,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `is_connected` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `pseudo` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Contraintes pour les tables déchargées

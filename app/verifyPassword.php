@@ -1,10 +1,14 @@
 <?php
 
-function verifyPassword($password, $password2)
+function verifyPassword($password, $password2): string
 {
-    if ($password === $password2) {
-        return true;
+    $minLength = 4;
+    if ($password == $password2) {
+        if (strlen($password) < $minLength) {
+            return "length";
+        }
+        return "success";
     } else {
-        return false;
+        return "notsames";
     }
 }

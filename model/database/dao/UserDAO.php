@@ -4,14 +4,24 @@ class UserDAO extends DAO
 {
     public function signin(User $user): ?array
     {
-        $sql = 'SELECT * FROM user WHERE username = :username AND password = :password';
+        $sql = 'SELECT password from user WHERE username = :username';
         $stmt = $this->getPDO()->prepare($sql);
         $stmt->bindValue(':username', $user->getUsername());
-        $stmt->bindValue(':password', password_hash($user->getPassword(), PASSWORD_DEFAULT));
         $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($result) {
-            return $result;
+        $hashPassword = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($hashPassword) {
+            if (password_verify($user->getPassword(), $hashPassword['password'])) {
+                $sql = 'SELECT * FROM user WHERE username = :username';
+                $stmt = $this->getPDO()->prepare($sql);
+                $stmt->bindValue(':username', $user->getUsername());
+                try {
+                    $stmt->execute();
+                } catch (PDOException $e) {
+                    echo $e->getMessage();
+                }
+                $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                return $result;
+            }
         }
         return null;
     }

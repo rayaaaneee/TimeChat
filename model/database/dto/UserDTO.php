@@ -2,14 +2,12 @@
 
 class UserDTO extends DTO
 {
-    public function signup(User $user): bool
+    public function signup(User $user): string
     {
-        $this->insertUser($user);
-        return true;
-        return false;
+        return $this->insertUser($user);
     }
 
-    private function insertUser($user)
+    private function insertUser($user): string
     {
         $sql = 'INSERT INTO user (username, password, description, profile_picture_path, signup_at, is_public) VALUES (:username, :password, :description, :profile_picture_path, NOW(), :is_public)';
         $stmt = $this->getPDO()->prepare($sql);
@@ -18,6 +16,23 @@ class UserDTO extends DTO
         $stmt->bindValue(':description', $user->getDescription());
         $stmt->bindValue(':profile_picture_path', $user->getProfilePicture());
         $stmt->bindValue(':is_public', $user->isPublic());
-        $stmt->execute();
+
+        try {
+            $stmt->execute();
+        } catch (PDOException $e) {
+            // Récuperer les erreurs de la base de données MySQL
+            $errorInfo = $stmt->errorInfo();
+            // Récuperer le code d'erreur
+            $errorCode = $errorInfo[1];
+            // Récuperer le message d'erreur
+            $errorMessage = $errorInfo[2];
+            // Si le code d'erreur est 1062, c'est que l'utilisateur existe déjà
+            if ($errorCode === 1062) {
+                return 'username';
+            } else {
+                return 'unknown';
+            }
+        }
+        return 'success';
     }
 }
