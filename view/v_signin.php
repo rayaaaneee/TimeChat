@@ -9,10 +9,10 @@
         </div>
         <div class="signin-form-container">
             <h1>Sign In to TimeChat</h1>
-            <form action="./?page=home" method="post">
-                <input type="text" name="alias" placeholder="Your alias" required>
+            <form action="./?page=signin" method="post" class="signin-form">
+                <input type="text" name="username" placeholder="Your username" required>
                 <input type="password" name="password" placeholder="Password" required>
-                <input type="submit" name="signup" value="Sign In">
+                <input type="submit" name="signin" value="Sign In">
             </form>
         </div>
     </div>

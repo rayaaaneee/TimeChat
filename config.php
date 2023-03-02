@@ -5,7 +5,7 @@ define('PATH_MODELS', './model/');
 define('PATH_CONTROLLERS', './controller/c_');
 define('PATH_ASSETS', './asset/');
 
-define('PATH_CLASSES', PATH_MODELS . 'classes/');
+define('PATH_CLASSES', PATH_MODELS . 'class/');
 define('PATH_DATABASE', PATH_MODELS . 'database/');
 define('PATH_DAO', PATH_DATABASE . 'dao/');
 define('PATH_DTO', PATH_DATABASE . 'dto/');

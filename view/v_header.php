@@ -22,7 +22,7 @@
                     </li>
                     <form action="./" class="search-user" method="get">
                         <input type="hidden" name="page" value="search">
-                        <input type="text" name="search" class="search-input" placeholder="Rechercher un utilisateur...">
+                        <input type="text" name="search" class="search-input" placeholder="Search an user ...">
                         <div class="vertical-red-bar"></div>
                         <button type="submit">
                             <img src="<?= PATH_IMG; ?>icon/search.png" alt="search">
@@ -52,20 +52,27 @@
                 </div>
                 <div class="menu-part-three">
                     <?php if (isset($_SESSION['user'])) : ?>
-                        <li>
+                        <li data-title="Profile">
                             <a href="./?page=myprofile" class="view-profile menu-view">
                                 <img src="<?= PATH_IMG; ?>icon/default.png" alt="profile">
                             </a>
                         </li>
-                        <li>
+                        <li data-title="Account">
                             <a href="./?page=myaccount" class="view-account menu-view">
                                 <img src="<?= PATH_IMG; ?>icon/myaccount.png" alt="setting">
                             </a>
                         </li>
-                        <li>
+                        <li data-title="Settings">
                             <a href="./?page=settings" class="view-settings menu-view">
                                 <img src="<?= PATH_IMG; ?>icon/setting.png" alt="setting">
                             </a>
+                        </li>
+                        <li data-title="Sign Out">
+                            <form action="./" method="post" class="view-signout">
+                                <button type="submit" name="signout" class="signout-btn">
+                                    <img src="<?= PATH_IMG; ?>icon/signout.png" alt="signout">
+                                </button>
+                            </form>
                         </li>
                     <?php else : ?>
                         <li>

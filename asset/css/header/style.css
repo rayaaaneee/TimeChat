@@ -101,7 +101,7 @@ html {
 }
 
 .search-user > input[type="text"]::placeholder {
-    color: #aeadad;
+    color: #000000;
 }
 
 .search-user > .vertical-red-bar {
@@ -117,10 +117,16 @@ html {
 .search-user > input[type="text"]:focus {
     border: 2px solid #b74747;
     background-image: url(../../img/icon/at-hover.png);
+    transition: 0.3s;
 }
 
 .search-user > input[type="text"]:focus ~ .vertical-red-bar{
     height: 60%;
+    transition: 0.3s;
+}
+
+.search-user > input[type="text"]:focus::placeholder {
+    opacity: 0;
     transition: 0.3s;
 }
 

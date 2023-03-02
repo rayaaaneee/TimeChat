@@ -12,7 +12,7 @@ class Connection
         $this->PDO->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
-    public static function getInstance()
+    public static function getInstance(): Connection
     {
         if (self::$instance === null) {
             self::$instance = new Connection();
@@ -20,7 +20,7 @@ class Connection
         return self::$instance;
     }
 
-    public function getPDO()
+    public function getPDO(): PDO
     {
         return $this->PDO;
     }
