@@ -282,3 +282,8 @@ html {
     justify-content: center;
     cursor: pointer;
 }
+
+.menu-part-three .signout-btn {
+    width: 100%;
+    height: 100%;
+}

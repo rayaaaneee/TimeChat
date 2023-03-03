@@ -47,18 +47,16 @@ class User
 
     public function signup(): string
     {
-        $message = $this->userDTO->signup($this);
-        if ($message == 'success') {
-            if ($this->profilePicture != "default.png") {
-                if ($errorFile = saveImage($_FILES['file'], $this->username)) {
-                    if ($errorFile[0] == 1) {
-                        $this->profilePicture = $this->username . "." . strtolower(pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION));
-                    } else {
-                        return $errorFile;
-                    }
-                }
+        if ($this->profilePicture != "default.png") {
+            $errorFile = saveImage($this->username, PATH_PROFILE_PICTURES);
+            if ($errorFile[0] == 1) {
+                $this->profilePicture = $errorFile[2];
+            } else {
+                Header("Location: ?page=signup&upload=" . $errorFile[1]);
+                exit();
             }
         }
+        $message = $this->userDTO->signup($this);
         return $message;
     }
 
@@ -77,6 +75,15 @@ class User
     public function getProfilePicture(): string
     {
         return $this->profilePicture;
+    }
+
+    public function getProfilePicturePath(): string
+    {
+        if ($this->profilePicture == "default.png") {
+            return PATH_PROFILE_PICTURES . "default/" . $this->profilePicture;
+        } else {
+            return PATH_PROFILE_PICTURES . $this->profilePicture;
+        }
     }
 
     public function getDescription(): ?string

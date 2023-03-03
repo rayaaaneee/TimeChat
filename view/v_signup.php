@@ -6,7 +6,7 @@
 <main>
     <div class="signup-form">
         <h1>Sign Up</h1>
-        <form action="./?page=signup" method="post">
+        <form action="./?page=signup" method="post" enctype="multipart/form-data">
             <div class="left-form">
                 <div class="input-container">
                     <div class="precise-text">
@@ -50,9 +50,9 @@
                     </div>
                     <div class="choose-img-container">
                         <p onclick="openFile()">Choose a picture</p>
-                        <img src="<?= PATH_PROFILE_PICTURES; ?>default.png" alt="profile-picture" draggable="false">
+                        <img src="<?= PATH_PROFILE_PICTURES; ?>default/default.png" alt="profile-picture" draggable="false">
                     </div>
-                    <input type="file" name="file" display="none" accept="image/*" placeholder="Picture" hidden>
+                    <input type="file" name="file" accept="image/*" hidden>
                 </div>
                 <div class="checkbox-container">
                     <input type="checkbox" name="public" id="public">

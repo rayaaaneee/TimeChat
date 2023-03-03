@@ -54,7 +54,7 @@
                     <?php if (isset($_SESSION['user'])) : ?>
                         <li data-title="Profile">
                             <a href="./?page=myprofile" class="view-profile menu-view">
-                                <img src="<?= PATH_PROFILE_PICTURES . $user->getProfilePicture(); ?>" alt="profile">
+                                <img src="<?= $user->getProfilePicturePath(); ?>" alt="profile">
                             </a>
                         </li>
                         <li data-title="Account">
