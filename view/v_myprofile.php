@@ -9,14 +9,16 @@
             <div class="profile-picture">
                 <img src="<?= $user->getProfilePicturePath(); ?>" alt="Profile picture" draggable="false" class="<?php if ($user->isDefaultProfilePicture()) echo 'no-borders'; ?>">
             </div>
-        </div>
-        <div class="right-profile">
-            <div class="profile-username">
-                <div class="for-flex">
-                    <h1 class="at-character">@</h1>
-                    <h1><?= $user->getUsername(); ?></h1>
+            <div class="info-profile-container">
+                <div class="profile-username">
+                    <div class="for-flex">
+                        <h1 class="at-character">@</h1>
+                        <h1><?= $user->getUsername(); ?></h1>
+                    </div>
                 </div>
             </div>
+        </div>
+        <div class="right-profile">
             <div class="middle-container">
                 <div class="profile-description">
                     <div class="for-flex-title">

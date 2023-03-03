@@ -1,0 +1,123 @@
+.manage-account-container {
+    width: 950px;
+    height: 550px;
+    padding: 15px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 3.5fr 7fr;
+    grid-gap: 0;
+}
+
+.manage-account-menu-container {
+    background: #d490908d;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: var(--border-sides) 0 0 var(--border-sides);
+    box-shadow: 0 10px 10px rgb(0 0 0 / 5%);
+    position: relative;
+    z-index: 0;
+}
+
+.manage-account-menu-container::before {
+    content: "";
+    border-color: var(--body-background) #c67f7f8d transparent transparent;
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    top: 0;
+    border-style: solid;
+    border-width: 50px 50px 0px 0px;
+    border-radius: 0 0 10px 0;
+    height: 0px;
+    width: 0px;
+    display: block;
+}
+
+.content-container {
+    background: #fff;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 25px;
+    border-radius: 0 var(--border-sides) var(--border-sides) 0;
+    box-shadow: 0 10px 10px rgb(0 0 0 / 5%);
+}
+
+.buttons-container {
+    margin-top: 30px;
+    width: 100%;
+    height: calc(100% - 70px);
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    row-gap: 0;
+}
+
+.redirect-button {
+    width: 100%;
+    height: 55px;
+    padding: 0 15px;
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    grid-gap: 0;
+    align-items: center;
+    justify-items: center;
+    text-decoration: none;
+    transition: 0.2s ease-in-out;
+    position: relative;
+}
+
+.redirect-button:hover {
+    background: #c67f7f8d;
+    cursor: pointer;
+    transition: 0.1s ease-in-out;
+}
+
+.redirect-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background: #ffffff;
+    transition: 0.25s ease-in-out;
+    border-radius: 0 3px 3px 0;
+    opacity: 0;
+    align-self: center;
+    justify-self: center;
+}
+
+.redirect-button:hover::before {
+    transition: 0.1s ease-in-out;
+    opacity: 1;
+}
+
+.redirect-button img {
+    width: 30px;
+    height: fit-content;
+    margin-right: 5px;
+}
+
+.redirect-button span {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #ffffff;
+    align-self: center;
+    justify-self: center;
+    letter-spacing: 1px;
+}
+
+.separator-bar {
+    width: 80%;
+    height: 3px;
+    background: #ffffff;
+    border-radius: 10px;
+    align-self: end;
+}
