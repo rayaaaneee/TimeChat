@@ -88,7 +88,6 @@
     height: 100%;
     background: #ffffff;
     transition: 0.25s ease-in-out;
-    border-radius: 0 3px 3px 0;
     opacity: 0;
     align-self: center;
     justify-self: center;

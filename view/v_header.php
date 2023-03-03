@@ -37,6 +37,12 @@
                         <a href="./?page=message" class="view-messages menu-view">
                             <img src="<?= PATH_IMG; ?>icon/message.png" alt="home">
                         </a>
+                    </li>
+                    <li data-title="Groups">
+                        <a href="./?page=groups" class="view-groups menu-view">
+                            <img src="<?= PATH_IMG; ?>icon/group.png" alt="group">
+                        </a>
+                    </li>
                     <li data-title="Friends">
                         <a href="./?page=friends" class="view-account menu-view">
                             <img src="<?= PATH_IMG; ?>icon/friends.png" alt="profile">
@@ -45,11 +51,6 @@
                     <li data-title="Notifications">
                         <a href="./?page=notifications" class="view-notifications menu-view">
                             <img src="<?= PATH_IMG; ?>icon/notification.png" alt="notification">
-                        </a>
-                    </li>
-                    <li data-title="Groups">
-                        <a href="./?page=groups" class="view-groups menu-view">
-                            <img src="<?= PATH_IMG; ?>icon/group.png" alt="group">
                         </a>
                     </li>
                 </div>
