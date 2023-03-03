@@ -61,8 +61,8 @@
                             </a>
                         </li>
                         <li data-title="Account">
-                            <a href="./?page=myaccount" class="view-account menu-view">
-                                <img src="<?= PATH_IMG; ?>icon/myaccount.png" alt="setting">
+                            <a href="./?page=account" class="view-account menu-view">
+                                <img src="<?= PATH_IMG; ?>icon/account.png" alt="setting">
                             </a>
                         </li>
                         <li data-title="Settings">

@@ -193,7 +193,7 @@ html {
     flex-direction: column;
     justify-content: start;
     align-items: start;
-    row-gap: 8px;
+    row-gap: 10px;
     margin-top: 50px;
 }
 
@@ -276,6 +276,18 @@ html {
 
 .right-profile .profile-description .content{
     padding-right: 30px;
+}
+
+.right-profile .profile-description .link-to-account {
+    color: #cc6e6e;
+    font-weight: normal;
+    text-decoration: none;
+    margin-left: 50px;
+}
+
+.right-profile .profile-description .link-to-account:hover {
+    color: #e86464;
+    text-decoration: underline;
 }
 
 .right-profile .profile-description .content.empty-desc{

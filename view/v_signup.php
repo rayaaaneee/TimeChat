@@ -11,7 +11,7 @@
                 <div class="left-form">
                     <div class="input-container">
                         <div class="precise-text">
-                            <p>Username</p>
+                            <p maxlength="30">Username</p>
                             <p class="point required">*</p>
                         </div>
                         <input type="text" name="username" placeholder="Username" required>
@@ -42,7 +42,7 @@
                             <p>Description</p>
                             <p class="point notrequired">*</p>
                         </div>
-                        <textarea name="description" placeholder="Your description"></textarea>
+                        <textarea name="description" placeholder="Your description" maxlength="340"></textarea>
                     </div>
                     <div class="input-container">
                         <div class="precise-text">

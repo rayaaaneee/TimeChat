@@ -19,6 +19,7 @@ class MyProfilePresenter
         $HTML = "";
         if ($user->getDescription() == "") {
             $HTML = '<p class="content empty-desc">You have not set a description yet .</p>';
+            $HTML .= '<a href="./?page=account" class="link-to-account">• Set a description</a>';
         } else {
             $HTML = '<p class="content"> • ' . $user->getDescription() . '</p>';
         }
