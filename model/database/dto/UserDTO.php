@@ -9,12 +9,12 @@ class UserDTO extends DTO
 
     private function insertUser($user): string
     {
-        $sql = 'INSERT INTO user (username, password, description, profile_picture_path, signup_at, is_public) VALUES (:username, :password, :description, :profile_picture_path, NOW(), :is_public)';
+        $sql = 'INSERT INTO user (username, password, description, profile_picture, signup_at, is_public) VALUES (:username, :password, :description, :profile_picture, NOW(), :is_public)';
         $stmt = $this->getPDO()->prepare($sql);
         $stmt->bindValue(':username', $user->getUsername());
         $stmt->bindValue(':password', password_hash($user->getPassword(), PASSWORD_DEFAULT));
         $stmt->bindValue(':description', $user->getDescription());
-        $stmt->bindValue(':profile_picture_path', $user->getProfilePicture());
+        $stmt->bindValue(':profile_picture', $user->getProfilePicture());
         $stmt->bindValue(':is_public', $user->isPublic());
 
         try {

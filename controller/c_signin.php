@@ -11,15 +11,15 @@ if (isset($_POST['signin'])) {
     $user = new User($username, $password);
     $result = $user->signin();
 
-    if ($result) {
+    if ($result[0]) {
         if ($rememberMe) {
             /* setcookie('username', $username, time() + 365 * 24 * 3600, null, null, false, true);
             setcookie('password', $password, time() + 365 * 24 * 3600, null, null, false, true); */
         }
-        $_SESSION['user'] = $result;
+        $_SESSION['user'] = $result[1];
         Header('Location: ./');
     } else {
-        Header('Location: ./?page=signin&error');
+        Header('Location: ./?page=signin&error=' . $result[1]);
     }
 }
 
@@ -29,7 +29,11 @@ if (isset($_GET['success'])) {
     $success = 'You have successfully signed up';
 } else {
     if (isset($_GET['error'])) {
-        $error = 'Wrong username or password';
+        if ($_GET['error'] === 'username') {
+            $error = 'This user doesn\'t exist';
+        } else {
+            $error = 'The password does not match this user';
+        }
     }
 }
 

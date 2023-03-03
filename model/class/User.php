@@ -10,16 +10,20 @@ class User
     private ?int $id;
     private ?bool $isPublic;
     private string $profilePicture;
+    private string $banner;
+    private ?DateTime $signupAt;
     private UserDAO $userDAO;
     private UserDTO $userDTO;
 
-    public function __construct(string $username, string $password, string $description = null,  string $profilePicture = "default.png", bool $isPublic = null, int $id = null)
+    public function __construct(string $username, string $password, string $description = null,  string $profilePicture = "default.png", bool $isPublic = null, string $banner = 'default.png', DateTime $signupAt = null, int $id = null)
     {
         $this->username = $username;
         $this->password = $password;
         $this->description = $description;
         $this->isPublic = $isPublic;
         $this->profilePicture = $profilePicture;
+        $this->banner = $banner;
+        $this->signupAt = $signupAt;
         $this->id = $id;
         $this->userDAO = new UserDAO();
         $this->userDTO = new UserDTO();
@@ -86,6 +90,20 @@ class User
         }
     }
 
+    public function getBanner(): string
+    {
+        return $this->banner;
+    }
+
+    public function getBannerPath(): string
+    {
+        if ($this->banner == "default.png") {
+            return PATH_BANNERS . "default/" . $this->banner;
+        } else {
+            return PATH_BANNERS . $this->banner;
+        }
+    }
+
     public function getDescription(): ?string
     {
         return $this->description;
@@ -94,5 +112,20 @@ class User
     public function isPublic(): bool
     {
         return $this->isPublic;
+    }
+
+    public function getSignupAt(): DateTime
+    {
+        return $this->signupAt;
+    }
+
+    public function formatSignupAt(): string
+    {
+        return $this->signupAt->format('d/m/Y');
+    }
+
+    public function isDefaultProfilePicture(): bool
+    {
+        return $this->profilePicture == "default.png";
     }
 }

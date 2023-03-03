@@ -126,6 +126,11 @@ html {
     transition: 0.3s;
 }
 
+.search-user > input[type="text"]::placeholder {
+    opacity: 1;
+    transition: 0.3s;
+}
+
 .search-user > input[type="text"]:focus::placeholder {
     opacity: 0;
     transition: 0.3s;
@@ -192,6 +197,7 @@ html {
     list-style: none;
     text-decoration: none;
     color: #000000;
+    padding: 0 10px;
 }
 
 .menu-part-three .view-signin {
@@ -267,7 +273,6 @@ html {
 }
 
 .menu-part-three .view-signout {
-    padding: 0 10px;
     border-bottom: 3px solid #f4f4f4;
 }
 

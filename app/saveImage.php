@@ -4,7 +4,7 @@ function saveImage($username, $path)
 {
     $file = $_FILES['file'];
 
-    $_FILES['file'] = null;
+    unset($_FILES['file']);
 
     $fileName = $file['name'];
     $fileTmpName = $file['tmp_name'];
@@ -19,7 +19,8 @@ function saveImage($username, $path)
     if (in_array($fileActualExt, $allowed)) {
         if ($fileError === 0) {
             if ($fileSize < 1000000) {
-                $fileNameNew = $username . "." . $fileActualExt;
+                $date = new DateTime('now', new DateTimeZone('Europe/Paris'));
+                $fileNameNew = $username . '-' . $date->format('y-m-d') . "." . $fileActualExt;
                 $fileDestination = $path . $fileNameNew;
                 try {
                     move_uploaded_file($fileTmpName, $fileDestination);

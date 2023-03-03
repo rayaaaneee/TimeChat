@@ -15,19 +15,14 @@ function verifyPassword($password, $password2): string
 
 function verifyPseudo($username): string
 {
-    $forbiddenChars = [' ', '\'', '"', '!', '?', '.', ',', ';', ':', '/', '\\', '|', '(', ')', '[', ']', '{', '}', '+', '*', '=', '<', '>', '&', '$', '#', '@', '%', '°', '§', 'µ', '£', '€', '²', '¤', '¨', '¤', '©', '®', '™', '¢', '¬', '¼', '½', '¾', '×', '÷', '±', '≠', '≈', '≤', '≥', '∞', '�'];
-
-    $usernameChars = explode('', $username);
-
-    foreach ($usernameChars as $char) {
-        if (in_array($char, $forbiddenChars)) {
-            return "chars";
-        }
+    $regex = "/^[a-zA-Z0-9_-]{3,20}$/";
+    if (preg_match($regex, $username)) {
+        return "success";
     }
-    return "success";
+    return "chars";
 }
 
-function verify($username, $password, $password2)
+function verify($username, $password, $password2): string
 {
     $messagePseudo = verifyPseudo($username);
     $messagePassword = verifyPassword($password, $password2);

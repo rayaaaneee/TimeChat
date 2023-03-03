@@ -12,7 +12,7 @@ if (isset($_POST['signup'])) {
 
     // On vérifie si l'utilisateur a upload une image de profil, si oui on la stocke dans la variable $file, sinon on met l'image par défaut
     $file = "default.png";
-    if ($_FILES['file']['name'] != "") {
+    if (isset($_FILES['file']) && $_FILES['file']['name'] != "") {
         $file = $_FILES['file']['name'];
     }
 
@@ -23,7 +23,7 @@ if (isset($_POST['signup'])) {
     /* On vérifie qu'il n'y a pas d'erreur dans le mot de passe et dans la base de données,
     si il n'y a pas d'erreur, on crée un nouvel utilisateur et on l'insère dans la base de données , sinon on affiche un message d'erreur */
     $errorPassword = null;
-    $errorPasswordUsername = verifyPassword($password, $password2, $username);
+    $errorPasswordUsername = verify($username, $password, $password2);
     if ($errorPasswordUsername == 'success') {
         $user = new User($username, $password, $description, $file, $public);
         $messageDatabaseOrUpload = $user->signup();
@@ -67,7 +67,7 @@ if ($errorUpload) {
             $errorMessage = 'Passwords do not match';
             break;
         case 'chars':
-            $errorMessage = 'Please enter a valid username';
+            $errorMessage = 'Please enter a valid username ( only letters, numbers, underscores and dashes are allowed )';
             break;
         case 'unknown':
             $errorMessage = 'An error has occurred';
