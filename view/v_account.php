@@ -22,14 +22,14 @@
                     <span>Datas</span>
                 </a>
                 <div class="separator-bar"></div>
-                <a href="./?page=account&part=favorites" class="redirect-button">
+                <a href="./?page=account&part=favorite" class="redirect-button">
                     <img src="<?= PATH_IMG; ?>account/favorite.png" alt="notifications-logo">
                     <span>Favorites</span>
                 </a>
             </div>
         </div>
-        <div class=" content-container">
-
+        <div class="content-container">
+            <?php require_once(PATH_VIEWS . 'account/v_' . $part . '.php'); ?>
         </div>
     </div>
 </main>

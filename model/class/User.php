@@ -97,7 +97,8 @@ class User
 
     public function getBannerPath(): string
     {
-        if ($this->banner == "default.png") {
+        $files = scandir(PATH_BANNERS . "default/");
+        if (in_array($this->banner, $files)) {
             return PATH_BANNERS . "default/" . $this->banner;
         } else {
             return PATH_BANNERS . $this->banner;

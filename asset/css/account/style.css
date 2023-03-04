@@ -1,6 +1,6 @@
 .manage-account-container {
     width: 950px;
-    height: 550px;
+    height: 620px;
     padding: 15px;
     margin: auto;
     display: grid;
@@ -39,13 +39,14 @@
 .content-container {
     background: #fff;
     padding: 15px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    row-gap: 25px;
     border-radius: 0 var(--border-sides) var(--border-sides) 0;
     box-shadow: 0 10px 10px rgb(0 0 0 / 5%);
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.content-container::-webkit-scrollbar {
+    display: none;
 }
 
 .buttons-container {
@@ -69,14 +70,12 @@
     align-items: center;
     justify-items: center;
     text-decoration: none;
-    transition: 0.2s ease-in-out;
     position: relative;
 }
 
 .redirect-button:hover {
-    background: #c67f7f8d;
+    background-color: #c67f7f8d;
     cursor: pointer;
-    transition: 0.1s ease-in-out;
 }
 
 .redirect-button::before {
@@ -87,19 +86,17 @@
     width: 5px;
     height: 100%;
     background: #ffffff;
-    transition: 0.25s ease-in-out;
     opacity: 0;
     align-self: center;
     justify-self: center;
 }
 
 .redirect-button:hover::before {
-    transition: 0.1s ease-in-out;
     opacity: 1;
 }
 
 .redirect-button img {
-    width: 30px;
+    width: 22px;
     height: fit-content;
     margin-right: 5px;
 }
@@ -119,4 +116,19 @@
     background: #ffffff;
     border-radius: 10px;
     align-self: end;
+}
+
+.content-container {
+    padding-bottom: 30px;
+}
+
+.account-part:last-child {
+    padding-bottom: 40px;
+}
+
+.big-title {
+    margin-top: 12px;
+    text-align: center;
+    font-size: 35px;
+    color: #b74747;
 }

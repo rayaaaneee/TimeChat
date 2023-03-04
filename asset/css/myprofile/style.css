@@ -30,7 +30,7 @@ html {
     backdrop-filter: blur(1.5px);
     width: 32%;
     height: 100%;
-    background: #cacaca8d;
+    background: #efe6e68d;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: var(--height-banner) 1fr 40px;
@@ -45,7 +45,7 @@ html {
 
 .left-profile:before {
     content: "";
-    border-color: var(--body-background) #c6c6c6d4 transparent transparent;
+    border-color: var(--body-background) #c67f7f8d transparent transparent;
     position: absolute;
     z-index: 0;
     left: 0;
@@ -139,7 +139,7 @@ html {
     background: #fff;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 40px;
+    grid-template-rows: 1fr 50px 50px;
     grid-template-areas:
         "profile-info"
         "profile-activity"
@@ -182,7 +182,7 @@ html {
 
 .right-profile .middle-container {
     width: 100%;
-    margin-bottom: 140px;
+    margin-bottom: 120px;
     height: fit-content;
     display: flex;
     flex-direction: column;
@@ -223,6 +223,7 @@ html {
 .right-profile .profile-is-public h1 {
     font-size: 16px;
     font-weight: 100;
+    color: #6d6d6d;
 }
 
 .right-profile .profile-is-public img {
