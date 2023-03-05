@@ -21,6 +21,7 @@ define('PATH_IMG', PATH_ASSETS . 'img/');
 define('PATH_UPLOADS', PATH_IMG . 'upload/');
 define('PATH_FONTS', PATH_ASSETS . 'fonts/');
 define('PATH_PRESENTERS', PATH_MODELS . 'presenter/');
+define('PATH_LIBRARIES', PATH_APPS . 'library/');
 
 /* Uploads */
 define('PATH_PROFILE_PICTURES', PATH_UPLOADS . 'profilePicture/');

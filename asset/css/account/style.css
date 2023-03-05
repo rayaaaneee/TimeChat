@@ -73,6 +73,29 @@
     position: relative;
 }
 
+input[type="submit"], input[type="button"] {
+    width: fit-content;
+    padding: 8px 30px;
+    border: none;
+    background-color: #b74747;
+    border-radius: 15px;
+    outline: none;
+    font-size: 15px;
+    color: #fff;
+    box-shadow: 0 0 10px rgb(0 0 0 / 15%);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+input[type="submit"]:hover, input[type="button"]:hover {
+    background-color: #b747477c;
+    transition: 0.3s;
+}
+
+.redirect-button.active {
+    background-color: #e5c3c3;
+}
+
 .redirect-button:hover {
     background-color: #c67f7f8d;
     cursor: pointer;
@@ -133,3 +156,57 @@
     color: #000000;
     font-weight: 100;
 }
+/* CSS du conteneur principal */
+
+.part-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 25px;
+}
+
+.title-part {
+    font-size: 23px;
+    font-weight: 400;
+    color: #000000;
+}
+
+/* CSS du contenu du titre et de la barre */
+
+
+.account-part-title-container {
+    margin-left: 16px;
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    row-gap: 6px;
+}
+
+html {
+    --margin-left-bar : 37px;
+    --width-bar : 36%;
+}
+
+.part-separator-bar {
+    width: var(--width-bar);
+    height: 3px;
+    background-color: #b74747;
+    margin-left: var(--margin-left-bar);
+    border-radius: 10px;
+}
+
+/* CSS du titre et de l'image */
+
+.title-img-container {
+    column-gap: 15px;
+    display:grid;
+    grid-template-columns: calc(var(--width-bar) + 12px) 1fr;
+}
+
+.title-img-container img {
+    width: 25px;
+    height: 25px;
+}
+

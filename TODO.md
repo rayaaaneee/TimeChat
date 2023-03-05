@@ -14,3 +14,5 @@ SW
 ## Ajouter un systeme de noms pour les utilisateurs en plus des @
 
 ## Supprimer son compte
+
+## Pages qui ne se rechargent pas
