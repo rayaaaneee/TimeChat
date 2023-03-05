@@ -16,7 +16,7 @@ define('PATH_DTO', PATH_DATABASE . 'dto/');
 /* Assets */
 define('PATH_CSS', PATH_ASSETS . 'css/');
 define('PATH_MEDIA', PATH_ASSETS . 'media/');
-define('PATH_JS', PATH_ASSETS . 'js/');
+define('PATH_SCRIPTS', PATH_ASSETS . 'js/');
 define('PATH_IMG', PATH_ASSETS . 'img/');
 define('PATH_UPLOADS', PATH_IMG . 'upload/');
 define('PATH_FONTS', PATH_ASSETS . 'fonts/');

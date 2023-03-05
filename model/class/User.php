@@ -34,9 +34,36 @@ class User
         return $this->username;
     }
 
+    public function setUsername(string $username): void
+    {
+        $this->username = $username;
+    }
+
+    public function updateUsername(string $username): string
+    {
+        if ($this->username === $username) {
+            return "sames";
+        } else {
+            $this->username = $username;
+            $message = $this->userDTO->updateUsername($username, $this->id);
+            return $message;
+        }
+    }
+
     public function getPassword(): string
     {
         return $this->password;
+    }
+
+    public function setPassword(string $password): void
+    {
+        $this->password = $password;
+    }
+
+    public function updatePassword(string $password): void
+    {
+        $this->password = $password;
+        $this->userDTO->updatePassword($password, $this->id);
     }
 
     public function getId(): int
@@ -128,5 +155,15 @@ class User
     public function isDefaultProfilePicture(): bool
     {
         return $this->profilePicture == "default.png";
+    }
+
+    public function deleteAccount(): void
+    {
+        /* $this->userDAO->deleteAccount($this); */
+    }
+
+    public function verifyPassword(string $password): bool
+    {
+        return $this->userDAO->verifyPassword($this, $password);
     }
 }

@@ -1,9 +1,10 @@
 <head>
     <title>Sign Up</title>
     <link rel="stylesheet" href="<?= PATH_CSS; ?>signup/style.css">
-    <script src="<?= PATH_JS; ?>signup/script.js" defer></script>
+    <script src="<?= PATH_SCRIPTS; ?>signup/script.js" defer></script>
 </head>
 <main>
+    <?php require_once(PATH_VIEWS . 'error/v_error.php'); ?>
     <div class="signup-form">
         <h1>Sign Up</h1>
         <form action="./?page=signup" method="post" enctype="multipart/form-data">
@@ -30,11 +31,6 @@
                         </div>
                         <input type="password" name="password2" placeholder="Confirm password" minlength="4" required>
                     </div>
-                    <?php if ($errorMessage) : ?>
-                        <div class="error-container">
-                            <p><?= $errorMessage; ?></p>
-                        </div>
-                    <?php endif; ?>
                 </div>
                 <div class="right-form">
                     <div class="input-container">

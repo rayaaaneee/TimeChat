@@ -32,4 +32,22 @@ class UserDAO extends DAO
     {
         unset($_SESSION['user']);
     }
+
+    public function verifyPassword(User $user, string $password): bool
+    {
+        $result = false;
+
+        $sql = 'SELECT password FROM user WHERE username = :username';
+        $stmt = $this->getPDO()->prepare($sql);
+        $stmt->bindValue(':username', $user->getUsername());
+        $stmt->execute();
+        $hashPassword = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($hashPassword) {
+            if (password_verify($password, $hashPassword['password'])) {
+                $result =  true;
+            }
+        }
+        return $result;
+    }
 }

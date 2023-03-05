@@ -12,11 +12,15 @@
     color: #000000;
 }
 
+html {
+    --margin-left-bar : 37px;
+}
+
 .part-separator-bar {
-    width: 38%;
+    width: 36%;
     height: 3px;
     background-color: #b74747;
-    margin-left: 37px;
+    margin-left: var(--margin-left-bar);
     border-radius: 10px;
 }
 
@@ -72,33 +76,34 @@ input[type="submit"]:hover, input[type="button"]:hover {
 }
 
 .form-account {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    column-gap: 20px;
+}
+
+.account-text-container, .input-container {
     display: flex;
     flex-direction: column;
-    row-gap: 20px;
+    row-gap: 30px;
 }
 
-.for-flex-part {
+.account-text-container h2 {
+    height: 33px;
+    justify-content: center;
     display: flex;
-    flex-direction: row;
-    justify-content: end;
     align-items: center;
-    column-gap: 20px;
-}
-
-.for-flex-part h2 {
     font-size: 17px;
-    font-weight: 400;
-    color: #000000;
+    font-weight: 100;
 }
 
-.button-submit-container {
-    width: 100%;
-    height: fit-content;
-    display: flex;
-    flex-direction: row;
-    justify-content: end;
+.account-text-container {
+    align-items: flex-end;
+    justify-content: start;
+}
+
+.input-container {
     align-items: center;
-    column-gap: 20px;
+    justify-content: center;
 }
 
 .account-part-title-container {
@@ -110,10 +115,9 @@ input[type="submit"]:hover, input[type="button"]:hover {
     row-gap: 6px;
 }
 
-input[type="submit"] {
-    margin-right: 65px;
-}
-
-input[type="button"] {
-    margin-right: 23px;
+.warning {
+    color: #a90000;
+    font-size: 15px;
+    font-weight: 100;
+    margin-left: calc(var(--margin-left-bar) + 15px);
 }

@@ -9,7 +9,7 @@
 }
 
 .manage-account-menu-container {
-    background: #d490908d;
+    background: #e3b3b38d;
     padding: 15px;
     display: flex;
     flex-direction: column;
@@ -130,5 +130,6 @@
     margin-top: 12px;
     text-align: center;
     font-size: 35px;
-    color: #b74747;
+    color: #000000;
+    font-weight: 100;
 }

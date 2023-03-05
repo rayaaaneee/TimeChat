@@ -25,15 +25,21 @@ if (isset($_POST['signin'])) {
 
 $error = null;
 $success = null;
+$needsDisplay = false;
+$isSuccess = false;
+$returnMessage = '';
 if (isset($_GET['success'])) {
-    $success = 'You have successfully signed up';
+    $isSuccess = true;
+    $returnMessage = 'You have successfully signed up';
+    $needsDisplay = true;
 } else {
     if (isset($_GET['error'])) {
         if ($_GET['error'] === 'username') {
-            $error = 'This user doesn\'t exist';
+            $returnMessage = 'This user doesn\'t exist';
         } else {
-            $error = 'The password does not match this user';
+            $returnMessage = 'The password does not match this user';
         }
+        $needsDisplay = true;
     }
 }
 

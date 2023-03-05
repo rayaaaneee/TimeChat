@@ -1,7 +1,7 @@
 <?php
 
 require_once(PATH_APPS . 'goHomeIfConnected.php');
-require_once(PATH_APPS . 'verifySignup.php');
+require_once(PATH_APPS . 'verifyInformations.php');
 
 $user = null;
 if (isset($_POST['signup'])) {
@@ -25,6 +25,7 @@ if (isset($_POST['signup'])) {
     $errorPassword = null;
     $errorPasswordUsername = verify($username, $password, $password2);
     if ($errorPasswordUsername == 'success') {
+
         $user = new User($username, $password, $description, $file, $public);
         $messageDatabaseOrUpload = $user->signup();
         if ($messageDatabaseOrUpload == 'success') {
@@ -42,35 +43,39 @@ if (isset($_POST['signup'])) {
 // On récupère l'erreur s'il y en a une et la stocke dans la variable error
 $error = $_GET['error'] ?? null;
 $errorUpload = $_GET['upload'] ?? null;
-$errorMessage = null;
+$returnMessage = '';
+$needsDisplay = false;
+$isSuccess = false;
 if ($errorUpload) {
+    $needsDisplay = true;
     switch ($errorUpload) {
         case 'size':
-            $errorMessage = 'File too large';
+            $returnMessage = 'File too large';
             break;
         case 'type':
-            $errorMessage = 'File type not supported';
+            $returnMessage = 'File type not supported';
             break;
         case 'unknown':
-            $errorMessage = 'An error has occurred';
+            $returnMessage = 'An error has occurred';
             break;
     }
 } else if ($error) {
+    $needsDisplay = true;
     switch ($error) {
         case 'username':
-            $errorMessage = 'Username already taken';
+            $returnMessage = 'Username already taken';
             break;
         case 'length':
-            $errorMessage = 'Password must be at least 8 characters long';
+            $returnMessage = 'Password must be at least 8 characters long';
             break;
         case 'notsames':
-            $errorMessage = 'Passwords do not match';
+            $returnMessage = 'Passwords do not match';
             break;
         case 'chars':
-            $errorMessage = 'Please enter a valid username ( only letters, numbers, underscores and dashes are allowed )';
+            $returnMessage = 'Please enter a valid username ( only letters, numbers, underscores and dashes are allowed )';
             break;
         case 'unknown':
-            $errorMessage = 'An error has occurred';
+            $returnMessage = 'An error has occurred';
             break;
     }
 }

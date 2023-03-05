@@ -12,3 +12,5 @@ SW
 ## Carousel Accueil : Animation du logo clock du temps qui passe
 
 ## Ajouter un systeme de noms pour les utilisateurs en plus des @
+
+## Supprimer son compte

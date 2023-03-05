@@ -240,25 +240,3 @@ textarea:focus {
     border: 3px solid #b747477c;
     transition: 0.5s;
 }
-
-.error-container {
-    margin-top: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 220px;
-    row-gap: 10px;
-    background-color: #b747477c;
-    border-radius: 15px;
-    padding: 10px;
-    color: #fff;
-    box-shadow: 0 0 10px rgb(0 0 0 / 15%);
-}
-
-.error-container p {
-    font-size: 15px;
-    font-weight: bold;
-    color: #fff;
-    text-align: center;
-}

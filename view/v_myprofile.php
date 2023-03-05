@@ -1,6 +1,7 @@
 <head>
     <title>My Profile</title>
     <link rel="stylesheet" href="<?= PATH_CSS; ?>myprofile/style.css">
+    <script src="<?= PATH_SCRIPTS; ?>myprofile/script.js" defer></script>
 </head>
 <main>
     <div class="profile-container">
@@ -13,7 +14,7 @@
                 <div class="profile-username">
                     <div class="for-flex">
                         <h1 class="at-character">@</h1>
-                        <h1><?= $user->getUsername(); ?></h1>
+                        <h1 id="username-text"><?= $user->getUsername(); ?></h1>
                     </div>
                 </div>
             </div>
