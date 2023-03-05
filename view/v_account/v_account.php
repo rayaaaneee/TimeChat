@@ -42,8 +42,8 @@
             </div>
             <div class="input-container">
                 <input type="password" name="actual-password" placeholder="Actual password" required minlength="4">
-                <input type="password" name="new-password" placeholder="New password" required>
-                <input type="password" name="confirm-new-password" placeholder="New password" required>
+                <input type="password" name="new-password" placeholder="New password" minlength="4" required>
+                <input type="password" name="confirm-new-password" minlength="4" placeholder="New password" required>
                 <input type="submit" name="modify-password" value="Modify" class="btn-modify">
             </div>
         </form>

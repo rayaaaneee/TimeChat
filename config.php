@@ -31,6 +31,6 @@ define('PATH_GROUPS', PATH_UPLOADS . 'group/');
 const DB_USER = 'root';
 const DB_PASS = '';
 const DB_HOST = 'localhost';
-const DB_NAME = 'time_chat';
+const DB_NAME = 'timechat';
 const DB_PORT = '3306';
 const DB_CHARSET = 'utf8mb4';

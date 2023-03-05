@@ -92,6 +92,43 @@ input[type="submit"]:hover, input[type="button"]:hover {
     transition: 0.3s;
 }
 
+.checkbox-container {
+    display: flex;
+    flex-direction: row;
+    column-gap: 8px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    row-gap: 0;
+}
+
+.checkbox-container * {
+    cursor: pointer;
+}
+
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background-color: #b747477c;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    transition: all 0.2s ease-in-out;
+}
+
+input[type="checkbox"]:checked {
+    background-color: #b74747;
+    transition: all 0.3s ease-in-out;
+    background-image: url(../../img/signin/checked.png);
+    background-size: 70%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
 .redirect-button.active {
     background-color: #e5c3c3;
 }
@@ -200,7 +237,7 @@ html {
 /* CSS du titre et de l'image */
 
 .title-img-container {
-    column-gap: 15px;
+    column-gap: 12px;
     display:grid;
     grid-template-columns: calc(var(--width-bar) + 12px) 1fr;
 }

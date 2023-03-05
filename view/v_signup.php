@@ -49,7 +49,7 @@
                             <p onclick="openFile()">Choose a picture</p>
                             <img src="<?= PATH_PROFILE_PICTURES; ?>default/default.png" alt="profile-picture" draggable="false">
                         </div>
-                        <input type="file" name="file" accept="image/*" hidden>
+                        <input type="file" name="profile-picture" accept="image/*" hidden>
                     </div>
                     <div class="checkbox-container">
                         <input type="checkbox" name="public" id="public">

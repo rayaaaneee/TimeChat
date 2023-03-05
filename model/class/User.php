@@ -164,6 +164,28 @@ class User
 
     public function verifyPassword(string $password): bool
     {
-        return $this->userDAO->verifyPassword($this, $password);
+        if (password_verify($password, $this->password)) {
+            return true;
+        }
+        return false;
+    }
+
+    public function removeProfilePicture(): bool
+    {
+        $this->profilePicture = "default.png";
+        $success = $this->userDTO->updateProfilePicture($this->profilePicture, $this->id);
+        return $success;
+    }
+
+    public function updateProfile(string $description, $isPublic, $profilePicture): bool
+    {
+        if ($profilePicture != "default.png") {
+            $errorFile = saveImage($this->username, PATH_PROFILE_PICTURES);
+            if ($errorFile[0] != 1) {
+                Header("Location: ?page=account&part=profile&upload=" . $errorFile[1]);
+                exit();
+            }
+        }
+        return $this->userDTO->updateProfile($this, $description, $isPublic, $profilePicture);
     }
 }

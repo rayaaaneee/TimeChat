@@ -5,15 +5,15 @@ require_once(PATH_APPS . 'verifyInformations.php');
 
 $user = null;
 if (isset($_POST['signup'])) {
-    $username = $_POST['username'];
+    $username = htmlspecialchars($_POST['username']);
     $password = $_POST['password'];
     $password2 = $_POST['password2'];
-    $description = $_POST['description'];
+    $description = htmlspecialchars($_POST['description']);
 
     // On vérifie si l'utilisateur a upload une image de profil, si oui on la stocke dans la variable $file, sinon on met l'image par défaut
     $file = "default.png";
-    if (isset($_FILES['file']) && $_FILES['file']['name'] != "") {
-        $file = $_FILES['file']['name'];
+    if (isset($_FILES['profile-picture']) && $_FILES['profile-picture']['name'] != "") {
+        $file = $_FILES['profile-picture']['name'];
     }
 
 

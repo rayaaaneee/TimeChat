@@ -1,4 +1,4 @@
-const img = document.querySelector('.choose-img-container > img');
+const img = document.querySelector('.choose-img-container img');
 const fileInput = document.querySelector('.input-container input[type="file"]');
 
 const openFile = () => {
