@@ -9,10 +9,13 @@ class ProfileTheme
     private string $theme;
     private ?string $banner;
 
-    public function __construct(string $theme, ?string $banner)
+    public function __construct(string $theme, ?string $banner, int $userId = null)
     {
         $this->banner = $banner;
         $this->theme = $theme;
+        if ($userId != null) {
+            $this->userid = $userId;
+        }
     }
 
     public function getTheme(): string

@@ -54,6 +54,27 @@ if (isset($_POST['remove-profile-picture'])) {
     exit();
 }
 
+// Si l'utilosateur a changé son theme de profil on fait la mise a jour
+$themes = ['red', 'black', 'green', 'orange', 'violet', 'yellow'];
+
+foreach ($themes as $theme) {
+    if (isset($_POST[$theme . '-theme'])) {
+        require_once(PATH_DTO . 'ProfileThemeDTO.php');
+        require_once(PATH_CLASSES . 'ProfileTheme.php');
+
+        $profileTheme = new ProfileTheme($theme, null, $user->getId());
+        $profileThemeDTO = new ProfileThemeDTO();
+
+        $successUpdateTheme = $profileThemeDTO->updateOneWithoutBanner($profileTheme);
+        if ($successUpdateTheme) {
+            $_SESSION['user']['profile_theme']['theme'] = $theme;
+            Header('Location: ./?page=account&part=profile&update=success');
+        } else {
+            Header('Location: ./?page=account&part=profile&update=error');
+        }
+    }
+}
+
 $profilePresenter = new AccountPartProfilePresenter();
 $themeButtons = $profilePresenter->getAllThemesInSubmitButton();
 

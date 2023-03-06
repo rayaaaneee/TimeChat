@@ -26,6 +26,20 @@ class ProfileThemeDTO extends DTO
         return $stmt->execute();
     }
 
+    public function updateOneWithoutBanner(ProfileTheme $profileTheme): bool
+    {
+        $theme = $profileTheme->getTheme();
+        $userId = $profileTheme->getUserId();
+
+        $sql = "UPDATE " . self::$table . " SET theme = :theme WHERE id_user = :id_user";
+
+        $stmt = self::$db->prepare($sql);
+        $stmt->bindValue(':theme', $theme);
+        $stmt->bindValue(':id_user', $userId);
+
+        return $stmt->execute();
+    }
+
     public function insertOneWithBanner(ProfileTheme $profileTheme): bool
     {
         $theme = $profileTheme->getTheme();
