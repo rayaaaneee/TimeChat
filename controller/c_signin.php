@@ -16,7 +16,6 @@ if (isset($_POST['signin'])) {
             /* setcookie('username', $username, time() + 365 * 24 * 3600, null, null, false, true);
             setcookie('password', $password, time() + 365 * 24 * 3600, null, null, false, true); */
         }
-        $_SESSION['user'] = $result[1];
         Header('Location: ./');
     } else {
         Header('Location: ./?page=signin&error=' . $result[1]);

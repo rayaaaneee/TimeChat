@@ -39,10 +39,9 @@ class UserDAO extends DAO
 
                 if (!$userProfileTheme) {
                     return [0, 'profile_theme'];
-                } else {
-                    $_SESSION['user']['profile_theme'] = $userProfileTheme;
                 }
 
+                $_SESSION['user']['theme'] = $userProfileTheme['theme'];
                 return [1, $result];
             } else {
                 return [0, 'password', $user->getUsername()];

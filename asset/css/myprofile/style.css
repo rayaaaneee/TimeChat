@@ -30,7 +30,6 @@ html {
     backdrop-filter: blur(1.5px);
     width: 32%;
     height: 100%;
-    background: #efe6e68d;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: var(--height-banner) 1fr 40px;
@@ -45,7 +44,8 @@ html {
 
 .left-profile:before {
     content: "";
-    border-color: var(--body-background) #c67f7f8d transparent transparent;
+    border-color: var(--body-background) var(--corner-color) transparent transparent;
+    backdrop-filter: blur(1.5px);
     position: absolute;
     z-index: 0;
     left: 0;
@@ -146,7 +146,7 @@ html {
     background: #fff;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 50px 50px;
+    grid-template-rows: var(--height-banner) 1fr 50px 50px;
     grid-template-areas:
         "profile-info"
         "profile-activity"
@@ -155,6 +155,16 @@ html {
     box-shadow: 0 10px 10px rgb(0 0 0 / 5%);
     align-items: end;
     justify-content: center;
+}
+
+.right-profile .empty-top {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: 10px;
 }
 
 .right-profile * {
@@ -189,13 +199,16 @@ html {
 
 .right-profile .middle-container {
     width: 100%;
-    margin-bottom: 120px;
-    height: fit-content;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: start;
     align-items: start;
     row-gap: 10px;
+}
+
+.right-profile .middle-container > div:first-child {
+    margin-top: 20px;
 }
 
 .signed-at-container h1:last-child {

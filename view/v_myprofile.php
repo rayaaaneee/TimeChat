@@ -1,12 +1,17 @@
 <head>
     <title>My Profile</title>
-    <link rel="stylesheet" href="<?= PATH_CSS; ?>myprofile/style.css">
     <script src="<?= PATH_SCRIPTS; ?>myprofile/script.js" defer></script>
+    <style>
+        html {
+            --corner-color: <?= $user->getCornerColor(); ?>;
+        }
+    </style>
+    <link rel="stylesheet" href="<?= PATH_CSS; ?>myprofile/style.css">
 </head>
 <main>
     <div class="profile-container">
         <img class="profile-banner" src="<?= $user->getBannerPath(); ?>" alt="Banner" draggable="false">
-        <div class="left-profile">
+        <div class="left-profile" style="background-color: <?= $user->getBackgroundColor(); ?>">
             <div class="profile-picture">
                 <img src="<?= $user->getProfilePicturePath(); ?>" alt="Profile picture" draggable="false" class="<?php if ($user->isDefaultProfilePicture()) echo 'no-borders'; ?>">
             </div>
@@ -20,6 +25,9 @@
             </div>
         </div>
         <div class="right-profile">
+            <div class="empty-top">
+
+            </div>
             <div class="middle-container">
                 <div class="profile-description">
                     <div class="for-flex-title">

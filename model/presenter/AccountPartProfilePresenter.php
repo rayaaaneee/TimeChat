@@ -9,13 +9,14 @@ class AccountPartProfilePresenter
         $manageThemes = ManageThemes::getInstance();
         $themes = $manageThemes->getAllThemes();
 
-        $actualThemeName = $_SESSION['user']['profile_theme']['theme'];
+        $actualThemeName = $_SESSION['user']['theme'];
 
         $HTML = "";
         foreach ($themes as $theme) {
 
             $bannerPath = $theme->getBannerPath();
-            $themeName = strtolower($theme->getName());
+            $themeName = strtolower($theme->getTheme());
+
             $backgroundColor = $theme->getBackgroundColor();
 
             $HTML .= '<button type="submit" name="' . $themeName . '-theme" class="' . $themeName . ' ' . $this->isActiveTheme($actualThemeName, $themeName) . '">';

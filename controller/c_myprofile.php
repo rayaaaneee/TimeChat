@@ -5,6 +5,15 @@ require_once(PATH_APPS . 'goSigninIfNotConnected.php');
 require_once(PATH_PRESENTERS . 'ProfilePresenter.php');
 $display = new ProfilePresenter();
 
+require_once(PATH_CLASSES . 'ProfileTheme.php');
+require_once(PATH_CLASSES . 'ManageThemes.php');
+
+$theme = $_SESSION['user']['theme'];
+
+$manageThemes = ManageThemes::getInstance();
+$profileTheme = $manageThemes->getThemeByColor($theme);
+$user->setProfileTheme($profileTheme);
+
 require_once(PATH_VIEWS . 'header.php');
 
 require_once(PATH_VIEWS . 'myprofile.php');

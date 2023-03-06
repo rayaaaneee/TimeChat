@@ -62,12 +62,13 @@ foreach ($themes as $theme) {
         require_once(PATH_DTO . 'ProfileThemeDTO.php');
         require_once(PATH_CLASSES . 'ProfileTheme.php');
 
-        $profileTheme = new ProfileTheme($theme, null, $user->getId());
+        $profileTheme = new ProfileTheme($theme, null);
+        $profileTheme->setUserId($user->getId());
         $profileThemeDTO = new ProfileThemeDTO();
 
         $successUpdateTheme = $profileThemeDTO->updateOneWithoutBanner($profileTheme);
         if ($successUpdateTheme) {
-            $_SESSION['user']['profile_theme']['theme'] = $theme;
+            $_SESSION['user']['theme'] = $profileTheme->getTheme();
             Header('Location: ./?page=account&part=profile&update=success');
         } else {
             Header('Location: ./?page=account&part=profile&update=error');

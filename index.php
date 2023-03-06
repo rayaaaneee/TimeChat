@@ -23,11 +23,10 @@ if (isset($_SESSION['user'])) {
     $description = $user['description'];
     $profilePicturePath = $user['profile_picture'];
     $isPublic = $user['is_public'];
-    $banner = $user['banner'];
     $signupAt = new DateTime($user['signup_at']);
     $id = $user['id'];
 
-    $user = new User($username, $password, $description, $profilePicturePath, $isPublic, $banner, $signupAt, $id);
+    $user = new User($username, $password, $description, $profilePicturePath, $isPublic, $signupAt, $id);
     // Si l'utilisateur s'est déconnecté, on le déconnecte
     User::signedOut($user);
 }

@@ -1,32 +1,38 @@
 {
     "red" : {
-        "name" : "Red",
+        "name" : "red",
         "backgroundColor" : "#efe6e68d",
+        "cornerColor" : "#c67f7f8d",
         "banner" : "default.png"
     },
     "black" : {
-        "name" : "Black",
+        "name" : "black",
         "backgroundColor" : "#e6ecef8d",
+        "cornerColor" : "#a4c2bc8d",
         "banner" : "default-black.png"
     },
     "green" : {
-        "name" : "Green",
+        "name" : "green",
         "backgroundColor" : "#e6efe88d",
+        "cornerColor" : "#b4d8bf8d",
         "banner" : "default-green.png"
     },
     "orange" : {
-        "name" : "Orange",
+        "name" : "orange",
         "backgroundColor" : "#f4dbcd8d",
+        "cornerColor" : "#cda4818d",
         "banner" : "default-orange.png"
     },
     "yellow" : {
-        "name" : "Yellow",
+        "name" : "yellow",
         "backgroundColor" : "#f4f1cd8d",
+        "cornerColor" : "#b9c67f8d",
         "banner" : "default-yellow.png"
     },
     "violet" : {
-        "name" : "Violet",
+        "name" : "violet",
         "backgroundColor" : "#e3d7e78d",
+        "cornerColor" : "#7556788d",
         "banner" : "default-violet.png"
     }
 }

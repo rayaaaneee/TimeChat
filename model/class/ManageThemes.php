@@ -19,11 +19,13 @@ class ManageThemes
         foreach ($themes as $theme) {
             // On récupère les informations du thème
             $name = $theme['name'];
-            $backgroundColor = $theme['backgroundColor'];
             $bannerName = $theme['banner'];
+            $backgroundColor = $theme['backgroundColor'];
+            $cornerColor = $theme['cornerColor'];
 
             // On crée un objet Theme
-            $theme = new Theme($name, $backgroundColor, $bannerName);
+            $userId = $_SESSION['user']['id'];
+            $theme = new ProfileTheme($name, $bannerName, $backgroundColor, $cornerColor, $userId);
 
             // On ajoute le thème dans le tableau
             $this->themes[$i] = $theme;
@@ -37,13 +39,14 @@ class ManageThemes
         return $this->themes;
     }
 
-    public function getThemeByColor(string $color): array
+    public function getThemeByColor(string $color): ProfileTheme
     {
-        $themes = [];
-        if (isset($this->themes[$color])) {
-            $themes = $this->themes[$color];
+        foreach ($this->themes as $theme) {
+            if ($theme->getTheme() == $color) {
+                return $theme;
+            }
         }
-        return $themes;
+        return $this->themes[0];
     }
 
     public static function getInstance(): ManageThemes
