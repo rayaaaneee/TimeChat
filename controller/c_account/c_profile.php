@@ -4,6 +4,9 @@ require_once(PATH_APPS . 'saveImage.php');
 
 require_once(PATH_CONTROLLERS . 'account/error/initErrorMessageProfile.php');
 
+require_once(PATH_PRESENTERS . 'AccountPartProfilePresenter.php');
+
+
 function echoChecked($bool)
 {
     if ($bool) {
@@ -50,6 +53,9 @@ if (isset($_POST['remove-profile-picture'])) {
     }
     exit();
 }
+
+$profilePresenter = new AccountPartProfilePresenter();
+$themeButtons = $profilePresenter->getAllThemesInSubmitButton();
 
 $needsDisplay = isset($_GET['update']) || isset($_GET['delete']) || isset($_GET['upload']);
 $isSuccess = IsSuccessProfile();

@@ -1,5 +1,7 @@
 <head>
     <link rel="stylesheet" href="<?= PATH_CSS; ?>account/part/profile.css">
+    <link rel="stylesheet" href="<?= PATH_CSS; ?>myprofile/style.css">
+    <link rel="stylesheet" href="<?= PATH_CSS; ?>account/part/templateProfile.css">
     <script src="<?= PATH_SCRIPTS; ?>fileinput/script.js" defer></script>
     <script src="<?= PATH_SCRIPTS; ?>account/profile.js" defer></script>
 </head>
@@ -71,6 +73,18 @@
             <div class="flex-row title-img-container">
                 <h1 class="title-part">Choose profile theme</h1>
                 <img src="<?= PATH_IMG; ?>account/theme2.png" alt="modify" class="title-img" draggable="false">
+            </div>
+            <div class="part-separator-bar"></div>
+        </div>
+        <form action="./?page=account&part=profile" method="post" enctype="multipart/form-data" class="theme-form-container">
+            <div class="banner-container">
+                <?= $themeButtons; ?>
+            </div>
+        </form>
+        <div class="account-part-title-container">
+            <div class="flex-row title-img-container">
+                <h1 class="title-part">Change your banner</h1>
+                <img src="<?= PATH_IMG; ?>account/landscape.png" alt="modify" class="title-img" draggable="false">
             </div>
             <div class="part-separator-bar"></div>
         </div>

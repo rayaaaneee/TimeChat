@@ -2,8 +2,8 @@
 
 require_once(PATH_APPS . 'goSigninIfNotConnected.php');
 
-require_once(PATH_PRESENTERS . 'MyProfilePresenter.php');
-$display = new MyProfilePresenter();
+require_once(PATH_PRESENTERS . 'ProfilePresenter.php');
+$display = new ProfilePresenter();
 
 require_once(PATH_VIEWS . 'header.php');
 

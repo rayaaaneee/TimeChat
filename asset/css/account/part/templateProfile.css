@@ -1,0 +1,50 @@
+html {
+    --border-sides-profile-template: 10px;
+}
+
+.left-profile {
+    display: block;
+    z-index: 100;
+}
+
+.profile-container {
+    width: 180px;
+    height: 145px;
+    border-radius: var(--border-sides-profile-template);
+    margin-top: 0;
+}
+
+.profile-container > .profile-banner {
+    height: 55px;
+}
+
+.left-profile .profile-picture{
+    height: 185.5px;
+}
+
+.left-profile::before {
+    display: none;
+}
+
+.left-profile::before {
+    border-color: white #c67f7f8d transparent transparent;
+    border-width: 20px 30px 0px 0px;
+}
+
+.banner-container button[type="submit"] {
+    border: none;
+    background: none;
+    cursor: pointer;
+    border-radius: var(--border-sides-profile-template);
+    transition: 0.1s;
+}
+
+.banner-container button[type="submit"].active {
+    border: 3px solid #b747477c;
+}
+
+.banner-container button[type="submit"]:hover {
+    transform: scale(1.02);
+    filter: brightness(1.03);
+    transition: 0.1s;
+}

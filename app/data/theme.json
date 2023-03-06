@@ -1,0 +1,32 @@
+{
+    "red" : {
+        "name" : "Red",
+        "backgroundColor" : "#efe6e68d",
+        "banner" : "default.png"
+    },
+    "black" : {
+        "name" : "Black",
+        "backgroundColor" : "#e6ecef8d",
+        "banner" : "default-black.png"
+    },
+    "green" : {
+        "name" : "Green",
+        "backgroundColor" : "#e6efe88d",
+        "banner" : "default-green.png"
+    },
+    "orange" : {
+        "name" : "Orange",
+        "backgroundColor" : "#f4dbcd8d",
+        "banner" : "default-orange.png"
+    },
+    "yellow" : {
+        "name" : "Yellow",
+        "backgroundColor" : "#f4f1cd8d",
+        "banner" : "default-yellow.png"
+    },
+    "violet" : {
+        "name" : "Violet",
+        "backgroundColor" : "#e3d7e78d",
+        "banner" : "default-violet.png"
+    }
+}

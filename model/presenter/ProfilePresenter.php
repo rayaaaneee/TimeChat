@@ -1,6 +1,6 @@
 <?php
 
-class MyProfilePresenter
+class ProfilePresenter
 {
     public function formatUserIsPublic($user): string
     {
