@@ -3,7 +3,6 @@
 function saveImage($username, $path)
 {
     $file = $_FILES['profile-picture'];
-    var_dump($file);
 
     unset($_FILES['profile-picture']);
 
@@ -12,16 +11,18 @@ function saveImage($username, $path)
     $fileSize = $file['size'];
     $fileError = $file['error'];
 
+    $rand = rand(0, 1000);
+
     $fileExt = explode('.', $fileName);
     $fileActualExt = strtolower(end($fileExt));
 
-    $allowed = array('jpg', 'jpeg', 'png', 'gif', 'webp', 'ico');
+    $allowed = array('jpg', 'jpeg', 'png', 'gif', 'webp', 'ico', 'svg');
 
     if (in_array($fileActualExt, $allowed)) {
         if ($fileError === 0) {
-            if ($fileSize < 1000000) {
+            if ($fileSize < 2000000) {
                 $date = new DateTime('now', new DateTimeZone('Europe/Paris'));
-                $fileNameNew = $username . '-' . $date->format('m-d-y') . "." . $fileActualExt;
+                $fileNameNew = $username . '-' . $date->format('m-d-y') . "-" . $rand . "." . $fileActualExt;
                 $fileDestination = $path . $fileNameNew;
                 try {
                     move_uploaded_file($fileTmpName, $fileDestination);

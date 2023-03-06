@@ -172,20 +172,23 @@ class User
 
     public function removeProfilePicture(): bool
     {
-        $this->profilePicture = "default.png";
-        $success = $this->userDTO->updateProfilePicture($this->profilePicture, $this->id);
+        $profilePicture = "default.png";
+        $success = $this->userDTO->updateProfilePicture($profilePicture, $this);
         return $success;
     }
 
-    public function updateProfile(string $description, $isPublic, $profilePicture): bool
+    public function updateProfile(string $newDescription, bool $newIsPublic, string $newProfilePicture): bool
     {
-        if ($profilePicture != "default.png") {
+        if ($newProfilePicture != $this->profilePicture) {
             $errorFile = saveImage($this->username, PATH_PROFILE_PICTURES);
             if ($errorFile[0] != 1) {
                 Header("Location: ?page=account&part=profile&upload=" . $errorFile[1]);
                 exit();
+            } else {
+                $newProfilePicture = $errorFile[2];
             }
         }
-        return $this->userDTO->updateProfile($this, $description, $isPublic, $profilePicture);
+
+        return $this->userDTO->updateProfile($this, $newDescription, $newIsPublic, $newProfilePicture);
     }
 }

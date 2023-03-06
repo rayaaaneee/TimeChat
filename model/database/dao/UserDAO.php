@@ -2,9 +2,10 @@
 
 class UserDAO extends DAO
 {
+    private static string $table = 'user';
     public function signin(User $user): array
     {
-        $sql = 'SELECT password from user WHERE username = :username';
+        $sql = 'SELECT password from ' . self::$table . ' WHERE username = :username';
         $stmt = $this->getPDO()->prepare($sql);
         $stmt->bindValue(':username', $user->getUsername());
         $stmt->execute();
@@ -37,7 +38,7 @@ class UserDAO extends DAO
     {
         $result = false;
 
-        $sql = 'SELECT password FROM user WHERE username = :username';
+        $sql = 'SELECT password FROM ' . self::$table . ' WHERE username = :username';
         $stmt = $this->getPDO()->prepare($sql);
         $stmt->bindValue(':username', $user->getUsername());
         $stmt->execute();

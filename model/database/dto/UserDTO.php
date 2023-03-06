@@ -2,6 +2,8 @@
 
 class UserDTO extends DTO
 {
+    private static string $table = 'user';
+
     public function signup(User $user): string
     {
         return $this->insertUser($user);
@@ -9,7 +11,7 @@ class UserDTO extends DTO
 
     private function insertUser($user): string
     {
-        $sql = 'INSERT INTO user (username, password, description, profile_picture, signup_at, is_public) VALUES (:username, :password, :description, :profile_picture, NOW(), :is_public)';
+        $sql = 'INSERT INTO ' . self::$table . ' (username, password, description, profile_picture, signup_at, is_public) VALUES (:username, :password, :description, :profile_picture, NOW(), :is_public)';
         $stmt = $this->getPDO()->prepare($sql);
         $stmt->bindValue(':username', $user->getUsername());
         $stmt->bindValue(':password', password_hash($user->getPassword(), PASSWORD_DEFAULT));
@@ -37,7 +39,7 @@ class UserDTO extends DTO
 
     public function updateUsername(string $username, int $id): string
     {
-        $sql = 'UPDATE user SET username = :username WHERE id = :id';
+        $sql = 'UPDATE ' . self::$table . ' SET username = :username WHERE id = :id';
         $stmt = $this->getPDO()->prepare($sql);
         $stmt->bindValue(':username', $username);
         $stmt->bindValue(':id', $id);
@@ -63,7 +65,7 @@ class UserDTO extends DTO
 
     public function updatePassword(string $password, int $id): string
     {
-        $sql = 'UPDATE user SET password = :password WHERE id = :id';
+        $sql = 'UPDATE ' . self::$table . ' SET password = :password WHERE id = :id';
         $stmt = $this->getPDO()->prepare($sql);
         $stmt->bindValue(':password', password_hash($password, PASSWORD_DEFAULT));
         $stmt->bindValue(':id', $id);
@@ -76,37 +78,75 @@ class UserDTO extends DTO
         return 'success';
     }
 
-    public function updateProfilePicture($file, $id): bool
+    public function updateProfilePicture(string $file, User $user): bool
     {
-        $sql = 'UPDATE user SET profile_picture = :profile_picture WHERE id = :id';
+        $sql = 'UPDATE ' . self::$table . ' SET profile_picture = :profile_picture WHERE id = :id';
         $stmt = $this->getPDO()->prepare($sql);
         $stmt->bindValue(':profile_picture', $file);
-        $stmt->bindValue(':id', $id);
+        $stmt->bindValue(':id', $user->getId());
 
         try {
             $stmt->execute();
-            $_SESSION['user']['profile_picture'] = $file;
+        } catch (PDOException $e) {
+            unlink(PATH_PROFILE_PICTURES . $file);
+            return false;
+        }
+
+        unlink($user->getProfilePicturePath());
+        $_SESSION['user']['profile_picture'] = $file;
+        return true;
+    }
+
+    public function updateProfile(User $user, string $newDescription, bool $newIsPublic, string $newProfilePicture): bool
+    {
+        $sql = 'UPDATE ' . self::$table . ' SET description = :description, profile_picture = :profile_picture, is_public = :is_public WHERE id = :id';
+        $stmt = $this->getPDO()->prepare($sql);
+        $stmt->bindParam(':description', $newDescription);
+        $stmt->bindParam(':profile_picture', $newProfilePicture);
+        $stmt->bindParam(':is_public', $newIsPublic);
+        $stmt->bindParam(':id', $user->getId());
+
+        try {
+            $stmt->execute();
+        } catch (PDOException $e) {
+            unlink(PATH_PROFILE_PICTURES . $newProfilePicture);
+            return false;
+        }
+
+        $_SESSION['user']['description'] = $newDescription;
+        $_SESSION['user']['profile_picture'] = $newProfilePicture;
+        $_SESSION['user']['is_public'] = $newIsPublic;
+
+        $oldPicture = $user->getProfilePicture();
+        if (!$user->isDefaultProfilePicture() && $oldPicture !== $newProfilePicture) {
+            unlink($user->getProfilePicturePath());
+        }
+        return true;
+    }
+
+    public function updateDescription(string $description, int $id): bool
+    {
+        $sql = 'UPDATE ' . self::$table . ' SET description = :description WHERE id = :id';
+        $stmt = $this->getPDO()->prepare($sql);
+        $stmt->bindValue(':description', $description);
+        $stmt->bindValue(':id', $id);
+        try {
+            $stmt->execute();
+            $_SESSION['user']['description'] = $description;
         } catch (PDOException $e) {
             return false;
         }
         return true;
     }
 
-    public function updateProfile(User $user, string $description, bool $is_public, string $profile_picture): bool
+    public function updateIsPublic(bool $is_public, int $id): bool
     {
-        $sql = 'UPDATE user SET description = :description, profile_picture = :profile_picture, is_public = :is_public WHERE id = :id';
+        $sql = 'UPDATE ' . self::$table . ' SET is_public = :is_public WHERE id = :id';
         $stmt = $this->getPDO()->prepare($sql);
-        $stmt->bindValue(':description', $description);
-        $stmt->bindValue(':profile_picture', $profile_picture);
         $stmt->bindValue(':is_public', $is_public);
-        $stmt->bindValue(':id', $user->getId());
+        $stmt->bindValue(':id', $id);
         try {
             $stmt->execute();
-            if (!$user->isDefaultProfilePicture()) {
-                unlink($user->getProfilePicturePath());
-            }
-            $_SESSION['user']['description'] = $description;
-            $_SESSION['user']['profile_picture'] = $profile_picture;
             $_SESSION['user']['is_public'] = $is_public;
         } catch (PDOException $e) {
             return false;

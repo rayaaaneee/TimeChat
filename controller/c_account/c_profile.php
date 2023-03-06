@@ -2,6 +2,8 @@
 
 require_once(PATH_APPS . 'saveImage.php');
 
+require_once(PATH_CONTROLLERS . 'account/error/initErrorMessageProfile.php');
+
 function echoChecked($bool)
 {
     if ($bool) {
@@ -31,10 +33,11 @@ if (isset($_POST['remove-profile-picture'])) {
 } else if (isset($_POST['update-profile'])) {
     $description = $_POST['description'];
     $isPublic = isset($_POST['is-public']);
-    $hasSetProfilePicture = isset($_FILES['profile-picture']);
-    var_dump($hasSetProfilePicture);
 
-    $profilePicture = "default.png";
+    // Il a mit une photo de profil si $_FILES contient un ficheir recent (error != 4)
+    $hasSetProfilePicture = isset($_FILES['profile-picture']) && $_FILES['profile-picture']['error'] != 4;
+
+    $profilePicture = $user->getProfilePicture();
     if ($hasSetProfilePicture) {
         $profilePicture = $_FILES['profile-picture']['name'];
     }
@@ -47,5 +50,9 @@ if (isset($_POST['remove-profile-picture'])) {
     }
     exit();
 }
+
+$needsDisplay = isset($_GET['update']) || isset($_GET['delete']) || isset($_GET['upload']);
+$isSuccess = IsSuccessProfile();
+$returnMessage = initErrorMessageProfile();
 
 $isPublic = $user->isPublic();

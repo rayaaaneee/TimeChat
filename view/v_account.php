@@ -1,7 +1,6 @@
 <head>
     <title>Manage Account</title>
     <link rel="stylesheet" href="<?= PATH_CSS; ?>account/style.css">
-    <script src="js/v_account.js"></script>
 </head>
 <main>
     <div class="manage-account-container">

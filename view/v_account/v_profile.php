@@ -3,6 +3,7 @@
     <script src="<?= PATH_SCRIPTS; ?>fileinput/script.js" defer></script>
     <script src="<?= PATH_SCRIPTS; ?>account/profile.js" defer></script>
 </head>
+<?php require_once(PATH_VIEWS . 'error/v_error.php'); ?>
 <main id="second-main">
     <div class="part-container">
         <h1 class="big-title">Your profile</h1>
