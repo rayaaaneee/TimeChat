@@ -7,14 +7,21 @@ class ProfileThemeDTO extends DTO
 {
     private static string $table = 'profile_theme';
 
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
     public function insertOneWithoutBanner(ProfileTheme $profileTheme): bool
     {
         $theme = $profileTheme->getTheme();
+        $userId = $profileTheme->getUserId();
 
-        $sql = "INSERT INTO " . self::$table . " (theme) VALUES (:theme)";
+        $sql = "INSERT INTO " . self::$table . " (theme, id_user) VALUES (:theme, :id_user)";
 
-        $stmt = $this->getPDO()->prepare($sql);
+        $stmt = self::$db->prepare($sql);
         $stmt->bindValue(':theme', $theme);
+        $stmt->bindValue(':id_user', $userId);
 
         return $stmt->execute();
     }
@@ -26,7 +33,7 @@ class ProfileThemeDTO extends DTO
 
         $sql = "INSERT INTO " . self::$table . " (theme, banner) VALUES (:theme, :banner)";
 
-        $stmt = $this->getPDO()->prepare($sql);
+        $stmt = self::$db->prepare($sql);
         $stmt->bindValue(':theme', $theme);
         $stmt->bindValue(':banner', $banner);
 

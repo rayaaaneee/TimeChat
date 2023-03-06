@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : dim. 05 mars 2023 à 21:33
+-- Généré le : lun. 06 mars 2023 à 10:51
 -- Version du serveur : 8.0.31
 -- Version de PHP : 8.0.26
 
@@ -75,18 +75,25 @@ CREATE TABLE IF NOT EXISTS `message` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `profile`
+-- Structure de la table `profile_theme`
 --
 
-DROP TABLE IF EXISTS `profile`;
-CREATE TABLE IF NOT EXISTS `profile` (
-  `id` int NOT NULL AUTO_INCREMENT,
+DROP TABLE IF EXISTS `profile_theme`;
+CREATE TABLE IF NOT EXISTS `profile_theme` (
   `id_user` int NOT NULL,
-  `banner` varchar(50) NOT NULL DEFAULT 'default.png',
-  `color` varchar(30) NOT NULL,
-  PRIMARY KEY (`id`),
+  `theme` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'red',
+  `banner` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  PRIMARY KEY (`id_user`),
   UNIQUE KEY `id_user` (`id_user`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `profile_theme`
+--
+
+INSERT INTO `profile_theme` (`id_user`, `theme`, `banner`) VALUES
+(1, 'red', NULL),
+(2, 'red', NULL);
 
 -- --------------------------------------------------------
 
@@ -109,18 +116,15 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `pseudo` (`username`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Déchargement des données de la table `user`
 --
 
 INSERT INTO `user` (`id`, `username`, `password`, `description`, `profile_picture`, `banner`, `signup_at`, `is_public`, `is_connected`, `nb_friends`) VALUES
-(17, 'root', '$2y$10$3p8PcLCB6hjULj5hHhzTF.gD7QIRN7EZKBTdO3sKFskdy0VE8Xj12', 'Admin et grand crack', 'root-23-03-03.jpg', 'default.png', '2023-03-03', 0, 0, 0),
-(18, 'hippo', '$2y$10$TBYtjHtrVsfL6V7WVVUvqOmn11orScrQJtaJXXwSJui8.IYxybL5m', 'Emoji feu !!!', 'hippo-23-03-03.png', 'template.png', '2023-03-03', 1, 0, 0),
-(19, 'NapsDeMarseille', '$2y$10$TN9GPVUwwPCdPQJQTTlmiOGCKPdmRd.18B7Tl/twyP73RACNJHDOe', 'okay okay', 'NapsDeMarseille-23-03-04.jpg', 'default.png', '2023-03-04', 1, 0, 0),
-(24, 'none', '$2y$10$a5rva43nDH7.bUnDRFtmfeUIkBvlA9aiOmDhpuSrJRXRoURmS0fqG', '', 'default.png', 'default.png', '2023-03-05', 0, 0, 0),
-(26, 'grrrrbaw', '$2y$10$wZPoHSQTWvMus4090m5c8..6r0XxUop2cXCmrGC5nHFAoTIW3KK2S', '', 'default.png', 'default.png', '2023-03-05', 0, 0, 0);
+(1, 'root', '$2y$10$hwQIN/f7dtIi43hEnK9Ie.kaKAidwy.NymQAkZ6.D8Jl0K0S.cj2u', 'Admin et grand crack', 'root-03-06-23-673.jpg', 'default.png', '2023-03-06', 0, 0, 0),
+(2, 'NapsDeMarseille', '$2y$10$k1AL1NBTN5s90svoWhbPGegxhFQx/01zcW0qcqdGpeYndqPPaxs0m', 'OKAY OKAY', 'NapsDeMarseille-03-06-23-969.jpg', 'default.png', '2023-03-06', 1, 0, 0);
 
 --
 -- Contraintes pour les tables déchargées

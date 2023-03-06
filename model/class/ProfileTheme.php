@@ -5,15 +5,12 @@ require_once(PATH_DTO . 'ProfileThemeDTO.php');
 class ProfileTheme
 {
     public static string $defaultTheme = 'red';
-    private string $theme;
-    private string $banner;
     private int $userid;
-
-    private ProfileThemeDTO $profileThemeDTO;
+    private string $theme;
+    private ?string $banner;
 
     public function __construct(string $theme, ?string $banner)
     {
-        $this->profileThemeDTO = new ProfileThemeDTO();
         $this->banner = $banner;
         $this->theme = $theme;
     }

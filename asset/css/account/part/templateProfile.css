@@ -37,6 +37,7 @@ html {
     cursor: pointer;
     border-radius: var(--border-sides-profile-template);
     transition: 0.1s;
+    border-radius: 13.5px;
 }
 
 .banner-container button[type="submit"].active {

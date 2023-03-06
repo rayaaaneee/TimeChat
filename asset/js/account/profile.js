@@ -1,9 +1,10 @@
 const filename = document.querySelector('.input-container .filename');
 
 fileInput.addEventListener('change', (e) => {
+    const file = e.target.files[0];
     const extension = file.name.split('.').pop().toLowerCase();
     if (extensionsAllowed.includes(extension)) {
-    filename.innerHTML = e.target.files[0].name;
+        filename.innerHTML = file.name;
     }
 });
 

@@ -3,12 +3,12 @@
 class DTO
 {
 
-    private PDO $db;
+    public static PDO $db;
 
     public function __construct()
     {
-        $this->db = Connection::getInstance()->getPDO();
-        $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        self::$db = Connection::getInstance()->getPDO();
+        self::$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
     public function insert(string $table, array $data): bool
@@ -18,7 +18,7 @@ class DTO
         $sql .= ') VALUES (';
         $sql .= ':' . implode(', :', array_keys($data));
         $sql .= ')';
-        $stmt = $this->db->prepare($sql);
+        $stmt = self::$db->prepare($sql);
         foreach ($data as $key => $value) {
             $stmt->bindValue(':' . $key, $value);
         }
@@ -31,7 +31,7 @@ class DTO
         $sql .= implode(' = :', array_keys($data));
         $sql .= ' = :' . implode(', :', array_keys($data));
         $sql .= ' WHERE id = :id';
-        $stmt = $this->db->prepare($sql);
+        $stmt = self::$db->prepare($sql);
         foreach ($data as $key => $value) {
             $stmt->bindValue(':' . $key, $value);
         }
@@ -42,13 +42,17 @@ class DTO
     public function delete(string $table, int $id): bool
     {
         $sql = 'DELETE FROM ' . $table . ' WHERE id = :id';
-        $stmt = $this->db->prepare($sql);
+        $stmt = self::$db->prepare($sql);
         $stmt->bindValue(':id', $id);
         return $stmt->execute();
     }
 
-    public function getPDO(): PDO
+    public function getLastInsertId(string $table): int
     {
-        return $this->db;
+        $sql = 'SELECT LAST_INSERT_ID() AS id FROM ' . $table;
+        $stmt = self::$db->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['id'];
     }
 }

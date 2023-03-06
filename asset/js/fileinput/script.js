@@ -10,7 +10,6 @@ fileInput.addEventListener('change', (e) => {
     if (e.target.files.length === 0) return;
     const file = e.target.files[0];
     const extension = file.name.split('.').pop().toLowerCase();
-    console.log(extension);
     if (extensionsAllowed.includes(extension)) {
         img.src = URL.createObjectURL(e.target.files[0]);
     }
