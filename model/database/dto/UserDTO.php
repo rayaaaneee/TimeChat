@@ -1,8 +1,18 @@
 <?php
 
+require_once(PATH_CLASSES . 'ProfileTheme.php');
+require_once(PATH_DTO . 'ProfileThemeDTO.php');
+
 class UserDTO extends DTO
 {
     private static string $table = 'user';
+
+    private ProfileThemeDTO $profileThemeDTO;
+
+    public function __construct()
+    {
+        $this->profileThemeDTO = new ProfileThemeDTO();
+    }
 
     public function signup(User $user): string
     {
@@ -34,6 +44,16 @@ class UserDTO extends DTO
                 return 'unknown';
             }
         }
+
+        // On insère dans la table profile_theme le thème par défaut avec l'id de l'utilisateur
+        $id = $this->getPDO()->lastInsertId();
+        $profileTheme = new ProfileTheme(ProfileTheme::$defaultTheme, null);
+        $profileTheme->setUserId($id);
+
+        if (!$this->profileThemeDTO->insertOneWithoutBanner($profileTheme)) {
+            return 'unknown';
+        }
+
         return 'success';
     }
 
