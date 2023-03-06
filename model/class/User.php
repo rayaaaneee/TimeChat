@@ -200,4 +200,9 @@ class User
 
         return $this->userDTO->updateProfile($this, $newDescription, $newIsPublic, $newProfilePicture);
     }
+
+    public function getBanner(): string
+    {
+        return $this->profileTheme->getBanner();
+    }
 }

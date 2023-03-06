@@ -6,6 +6,7 @@ class ManageThemes
 {
     private static $instance = null;
     private array $themes = [];
+    private ProfileTheme $activeTheme;
 
     private function __construct()
     {
@@ -18,6 +19,10 @@ class ManageThemes
         $i = 0;
         foreach ($themes as $theme) {
             // On récupère les informations du thème
+            if ($theme['name'] == $_SESSION['user']['theme']) {
+                $this->activeTheme = new ProfileTheme($theme['name'], $theme['banner'], $theme['backgroundColor'], $theme['cornerColor'], $_SESSION['user']['id']);
+            }
+
             $name = $theme['name'];
             $bannerName = $theme['banner'];
             $backgroundColor = $theme['backgroundColor'];
@@ -55,5 +60,10 @@ class ManageThemes
             self::$instance = new ManageThemes();
         }
         return self::$instance;
+    }
+
+    public function getActiveTheme(): ProfileTheme
+    {
+        return $this->activeTheme;
     }
 }

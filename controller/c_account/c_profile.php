@@ -7,6 +7,7 @@ require_once(PATH_CONTROLLERS . 'account/error/initErrorMessageProfile.php');
 require_once(PATH_PRESENTERS . 'AccountPartProfilePresenter.php');
 
 
+
 function echoChecked($bool)
 {
     if ($bool) {
@@ -61,25 +62,27 @@ foreach ($themes as $theme) {
     if (isset($_POST[$theme . '-theme'])) {
         require_once(PATH_DTO . 'ProfileThemeDTO.php');
         require_once(PATH_CLASSES . 'ProfileTheme.php');
+        $profileThemeDTO = new ProfileThemeDTO();
 
         $profileTheme = new ProfileTheme($theme, null);
         $profileTheme->setUserId($user->getId());
-        $profileThemeDTO = new ProfileThemeDTO();
 
         $successUpdateTheme = $profileThemeDTO->updateOneWithoutBanner($profileTheme);
         if ($successUpdateTheme) {
             $_SESSION['user']['theme'] = $profileTheme->getTheme();
-            Header('Location: ./?page=account&part=profile&update=success');
+            Header('Location: ./?page=account&part=profile&theme=success');
         } else {
             Header('Location: ./?page=account&part=profile&update=error');
         }
+        exit();
     }
 }
 
 $profilePresenter = new AccountPartProfilePresenter();
 $themeButtons = $profilePresenter->getAllThemesInSubmitButton();
+$activeTheme = $profilePresenter->getActiveThemeInDiv();
 
-$needsDisplay = isset($_GET['update']) || isset($_GET['delete']) || isset($_GET['upload']);
+$needsDisplay = isset($_GET['update']) || isset($_GET['delete']) || isset($_GET['upload']) || isset($_GET['theme']);
 $isSuccess = IsSuccessProfile();
 $returnMessage = initErrorMessageProfile();
 

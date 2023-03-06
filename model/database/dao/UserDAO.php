@@ -72,4 +72,17 @@ class UserDAO extends DAO
         }
         return $result;
     }
+
+    public function getUserAndProfileThemeById(string $id): array
+    {
+        $sql = 'SELECT * FROM ' . self::$table . ' WHERE id = :id';
+        $stmt = self::$db->prepare($sql);
+        $stmt->bindValue(':id', $id);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        $profileTheme = $this->profileThemeDAO->getByUserId($id);
+
+        return ['user' => $result, 'theme' => $profileTheme];
+    }
 }

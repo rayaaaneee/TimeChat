@@ -4,10 +4,16 @@ require_once(PATH_CLASSES . 'ManageThemes.php');
 
 class AccountPartProfilePresenter
 {
+    private ManageThemes $manageThemes;
+
+    public function __construct()
+    {
+        $this->manageThemes = ManageThemes::getInstance();
+    }
+
     public function getAllThemesInSubmitButton(): string
     {
-        $manageThemes = ManageThemes::getInstance();
-        $themes = $manageThemes->getAllThemes();
+        $themes = $this->manageThemes->getAllThemes();
 
         $actualThemeName = $_SESSION['user']['theme'];
 
@@ -38,5 +44,22 @@ class AccountPartProfilePresenter
             return 'active';
         }
         return '';
+    }
+
+    public function getActiveThemeInDiv(): string
+    {
+        $theme = $this->manageThemes->getActiveTheme();
+
+        $HTML = '<div class="active-theme">';
+        $HTML .= '<div class="profile-container">';
+        $HTML .= '<img class="profile-banner" src="' . $theme->getBannerPath() . '" alt="Banner" draggable="false">';
+        $HTML .= '<div class="left-profile" style="background:' . $theme->getBackgroundColor() . '">';
+        $HTML .= '</div>';
+        $HTML .= '<div class="right-profile">';
+        $HTML .= '</div>';
+        $HTML .= '</div>';
+        $HTML .= '</div>';
+
+        return $HTML;
     }
 }

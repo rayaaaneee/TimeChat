@@ -88,5 +88,14 @@
             </div>
             <div class="part-separator-bar"></div>
         </div>
+        <form class="form-change-banner-container" action="./?page=account&part=profile" method="post" enctype="multipart/form-data">
+            <?= $activeTheme; ?>
+            <div class="choose-img-container">
+                <div class="text-container">
+                    <p onclick="openFile()">Choose a banner</p>
+                    <h3 class="info">(1200 x 300 recommended)</h3>
+                    <h3 class="filename"><?= $user->getBanner(); ?></p>
+                </div>
+        </form>
     </div>
 </main>

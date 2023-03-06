@@ -9,6 +9,8 @@ function IsSuccessProfile()
         $result = $_GET['delete'] === 'success';
     } else if (isset($_GET['upload'])) {
         $result = $_GET['upload'] === 'success';
+    } else if (isset($_GET['theme'])) {
+        $result = $_GET['theme'] === 'success';
     }
     return $result;
 }
@@ -41,8 +43,12 @@ function initErrorMessageProfile()
         } else if ($messageUpload === 'move') {
             $message = 'An error occured while moving your profile picture';
         }
-    } else {
-        $message = '';
+    } else if (isset($_GET['theme'])) {
+        if ($_GET['theme'] === 'success') {
+            $message = 'Your profile theme has been set to ' . $_SESSION['user']['theme'] . '';
+        } else {
+            $message = 'An error occured while updating your profile theme';
+        }
     }
     return $message;
 }
