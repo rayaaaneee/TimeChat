@@ -44,6 +44,11 @@ class ProfileTheme
         return $this->banner;
     }
 
+    public function setBanner(string $banner): void
+    {
+        $this->banner = $banner;
+    }
+
     public function getBannerPath(): string
     {
         if ($this->theme == self::$defaultTheme) {

@@ -1,10 +1,10 @@
 <?php
 
-function saveImage($username, $path)
+function saveImage($username, $path, $maxSize = 2000000)
 {
-    $file = $_FILES['profile-picture'];
+    $file = $_FILES['picture'];
 
-    unset($_FILES['profile-picture']);
+    unset($_FILES['picture']);
 
     $fileName = $file['name'];
     $fileTmpName = $file['tmp_name'];
@@ -20,7 +20,7 @@ function saveImage($username, $path)
 
     if (in_array($fileActualExt, $allowed)) {
         if ($fileError === 0) {
-            if ($fileSize < 2000000) {
+            if ($fileSize < $maxSize) {
                 $date = new DateTime('now', new DateTimeZone('Europe/Paris'));
                 $fileNameNew = $username . '-' . $date->format('m-d-y') . "-" . $rand . "." . $fileActualExt;
                 $fileDestination = $path . $fileNameNew;

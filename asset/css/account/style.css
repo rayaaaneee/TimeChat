@@ -9,7 +9,7 @@
 }
 
 .manage-account-menu-container {
-    background: #e3b3b38d;
+    background: #e3c8c88d;
     padding: 15px;
     display: flex;
     flex-direction: column;
@@ -23,7 +23,7 @@
 
 .manage-account-menu-container::before {
     content: "";
-    border-color: var(--body-background) #c67f7f8d transparent transparent;
+    border-color: var(--body-background) #ccbaba8d  transparent transparent;
     position: absolute;
     z-index: -1;
     left: 0;
@@ -92,6 +92,12 @@ input[type="submit"]:hover, input[type="button"]:hover {
     transition: 0.3s;
 }
 
+input[type="submit"]:disabled, input[type="button"]:disabled {
+    background-color: #a3a3a3;
+    cursor: default;
+    transition: 0.1s;
+}
+
 .checkbox-container {
     display: flex;
     flex-direction: row;
@@ -130,11 +136,11 @@ input[type="checkbox"]:checked {
 }
 
 .redirect-button.active {
-    background-color: #e5c3c3;
+    background-color: #e6cfcf;
 }
 
 .redirect-button:hover {
-    background-color: #c67f7f8d;
+    background-color: #d5b1b18d;
     cursor: pointer;
 }
 
@@ -239,6 +245,7 @@ html {
 .title-img-container {
     column-gap: 12px;
     display:grid;
+    align-items: center;
     grid-template-columns: calc(var(--width-bar) + 12px) 1fr;
 }
 

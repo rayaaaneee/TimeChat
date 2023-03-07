@@ -1,6 +1,6 @@
 <?php
 
-require_once(PATH_CLASSES . 'Theme.php');
+require_once(PATH_CLASSES . 'ProfileTheme.php');
 
 class ManageThemes
 {
@@ -17,11 +17,9 @@ class ManageThemes
 
         // On parcours les thèmes
         $i = 0;
+
         foreach ($themes as $theme) {
             // On récupère les informations du thème
-            if ($theme['name'] == $_SESSION['user']['theme']) {
-                $this->activeTheme = new ProfileTheme($theme['name'], $theme['banner'], $theme['backgroundColor'], $theme['cornerColor'], $_SESSION['user']['id']);
-            }
 
             $name = $theme['name'];
             $bannerName = $theme['banner'];
@@ -31,6 +29,10 @@ class ManageThemes
             // On crée un objet Theme
             $userId = $_SESSION['user']['id'];
             $theme = new ProfileTheme($name, $bannerName, $backgroundColor, $cornerColor, $userId);
+
+            if ($theme->getTheme() == $_SESSION['user']['theme']) {
+                $this->activeTheme = $theme;
+            }
 
             // On ajoute le thème dans le tableau
             $this->themes[$i] = $theme;

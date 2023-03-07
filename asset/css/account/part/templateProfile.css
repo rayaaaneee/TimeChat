@@ -47,6 +47,16 @@ html {
 
 .banner-container button[type="submit"]:hover {
     transform: scale(1.02);
+    filter: brightness(0.90);
+    transition: 0.1s;
+}
+
+.banner-container button[type="submit"]:hover {
+    transform: scale(1.02);
     filter: brightness(1.03);
     transition: 0.1s;
+}
+
+.active-theme {
+    position: relative;
 }

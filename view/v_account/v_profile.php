@@ -30,7 +30,7 @@
                         <img src="<?= PATH_IMG; ?>account/profile-picture-icon.png" alt="icon-profile-picture" draggable="false">
                         <h2>Profile picture : </h1>
                     </div>
-                    <input type="file" name="profile-picture" id="profile-picture" hidden>
+                    <input type="file" name="picture" id="profile-picture" hidden>
                     <div class="choose-img-container">
                         <div class="text-container">
                             <p onclick="openFile()">Choose a picture</p>
@@ -90,12 +90,14 @@
         </div>
         <form class="form-change-banner-container" action="./?page=account&part=profile" method="post" enctype="multipart/form-data">
             <?= $activeTheme; ?>
-            <div class="choose-img-container">
+            <div class="choose-img-container choose-img-container-banner">
                 <div class="text-container">
-                    <p onclick="openFile()">Choose a banner</p>
-                    <h3 class="info">(1200 x 300 recommended)</h3>
-                    <h3 class="filename"><?= $user->getBanner(); ?></p>
+                    <p class="browse-files-banner">Choose a banner</p>
+                    <h3 class="filename"><?= $user->getBanner(); ?></h3>
+                    <input type="submit" name="update-banner" value="Set a banner" disabled>
                 </div>
+            </div>
+            <input type="file" name="picture" id="banner-input" hidden>
         </form>
     </div>
 </main>

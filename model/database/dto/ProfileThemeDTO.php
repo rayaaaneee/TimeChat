@@ -53,4 +53,22 @@ class ProfileThemeDTO extends DTO
 
         return $stmt->execute();
     }
+
+    public function updateOneSetBanner(ProfileTheme $profileTheme): bool
+    {
+        $banner = $profileTheme->getBanner();
+        $userId = $profileTheme->getUserId();
+
+        $sql = "UPDATE " . self::$table . " SET banner = :banner WHERE id_user = :id_user";
+
+        $stmt = self::$db->prepare($sql);
+        $stmt->bindValue(':banner', $banner);
+        $stmt->bindValue(':id_user', $userId);
+
+        $res = $stmt->execute();
+        if ($res) {
+            $_SESSION['user']['banner'] = $banner;
+        }
+        return $res;
+    }
 }

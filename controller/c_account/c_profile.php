@@ -6,7 +6,9 @@ require_once(PATH_CONTROLLERS . 'account/error/initErrorMessageProfile.php');
 
 require_once(PATH_PRESENTERS . 'AccountPartProfilePresenter.php');
 
-
+$profilePresenter = new AccountPartProfilePresenter();
+$profileTheme = ManageThemes::getInstance()->getThemeByColor($_SESSION['user']['theme']);
+$user->setProfileTheme($profileTheme);
 
 function echoChecked($bool)
 {
@@ -39,11 +41,11 @@ if (isset($_POST['remove-profile-picture'])) {
     $isPublic = isset($_POST['is-public']);
 
     // Il a mit une photo de profil si $_FILES contient un ficheir recent (error != 4)
-    $hasSetProfilePicture = isset($_FILES['profile-picture']) && $_FILES['profile-picture']['error'] != 4;
+    $hasSetProfilePicture = isset($_FILES['picture']) && $_FILES['picture']['error'] != 4;
 
     $profilePicture = $user->getProfilePicture();
     if ($hasSetProfilePicture) {
-        $profilePicture = $_FILES['profile-picture']['name'];
+        $profilePicture = $_FILES['picture']['name'];
     }
 
     $successUpdate = $user->updateProfile($description, $isPublic, $profilePicture);
@@ -53,6 +55,25 @@ if (isset($_POST['remove-profile-picture'])) {
         Header('Location: ./?page=account&part=profile&update=error');
     }
     exit();
+} else if (isset($_POST['update-banner'])) {
+    $message = saveImage($user->getUsername(), PATH_BANNERS, 4000000);
+
+    if ($message[0] == 1) {
+
+        require_once(PATH_DTO . 'ProfileThemeDTO.php');
+        $profileThemeDTO = new ProfileThemeDTO();
+
+        $user->setBanner($message[2]);
+        $successUpdate = $profileThemeDTO->updateOneSetBanner($user->getProfileTheme());
+
+        if ($successUpdate) {
+            Header('Location: ./?page=account&part=profile&update=success');
+        } else {
+            Header('Location: ./?page=account&part=profile&update=error');
+        }
+    } else {
+        Header('Location: ./?page=account&part=profile&upload=' . $message[1]);
+    }
 }
 
 // Si l'utilosateur a changé son theme de profil on fait la mise a jour
@@ -78,7 +99,6 @@ foreach ($themes as $theme) {
     }
 }
 
-$profilePresenter = new AccountPartProfilePresenter();
 $themeButtons = $profilePresenter->getAllThemesInSubmitButton();
 $activeTheme = $profilePresenter->getActiveThemeInDiv();
 

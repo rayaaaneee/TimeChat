@@ -12,8 +12,8 @@ if (isset($_POST['signup'])) {
 
     // On vérifie si l'utilisateur a upload une image de profil, si oui on la stocke dans la variable $file, sinon on met l'image par défaut
     $file = "default.png";
-    if (isset($_FILES['profile-picture']) && $_FILES['profile-picture']['name'] != "") {
-        $file = $_FILES['profile-picture']['name'];
+    if (isset($_FILES['picture']) && $_FILES['picture']['name'] != "") {
+        $file = $_FILES['picture']['name'];
     }
 
 

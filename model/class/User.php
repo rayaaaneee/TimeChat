@@ -205,4 +205,9 @@ class User
     {
         return $this->profileTheme->getBanner();
     }
+
+    public function setBanner(string $banner): void
+    {
+        $this->profileTheme->setBanner($banner);
+    }
 }
