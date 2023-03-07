@@ -69,15 +69,12 @@ html {
 }
 
 .left-profile .profile-picture img {
-    margin-top: 15px;
-    align-self: flex-start;
-    justify-self: flex-start;
     width: 200px;
     height: 200px;
     border-radius: 35px;
     object-fit: cover;
-    border: 5px solid #fff;
-    box-shadow: 0 10px 10px rgb(0 0 0 / 5%);
+    /* border: 5px solid #fff; */
+    box-shadow: 0  10px 10px rgb(0 0 0 / 25%);
 }
 
 .left-profile .profile-picture .no-borders {

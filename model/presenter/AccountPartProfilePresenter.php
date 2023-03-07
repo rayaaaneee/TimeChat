@@ -20,12 +20,12 @@ class AccountPartProfilePresenter
         $HTML = "";
         foreach ($themes as $theme) {
 
-            $bannerPath = $theme->getBannerPath();
+            $bannerPath = $theme->getDefaultBannerPath();
             $themeName = strtolower($theme->getTheme());
 
             $backgroundColor = $theme->getBackgroundColor();
 
-            $HTML .= '<button type="submit" name="' . $themeName . '-theme" class="' . $themeName . ' ' . $this->isActiveTheme($actualThemeName, $themeName) . '">';
+            $HTML .= '<button type="submit" name="' . $themeName . '" class="' . $themeName . ' ' . $this->isActiveTheme($actualThemeName, $themeName) . '">';
             $HTML .= '<div class="profile-container">';
             $HTML .= '<img class="profile-banner" src="' . $bannerPath . '" alt="Banner" draggable="false">';
             $HTML .= '<div class="left-profile" style="background:' . $backgroundColor . '">';

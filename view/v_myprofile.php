@@ -10,7 +10,7 @@
 </head>
 <main>
     <div class="profile-container">
-        <img class="profile-banner" src="<?= $user->getBannerPath(); ?>" alt="Banner" draggable="false">
+        <img class="profile-banner" src="<?= $profileTheme->getBannerPath(); ?>" alt="Banner" draggable="false">
         <div class="left-profile" style="background-color: <?= $user->getBackgroundColor(); ?>">
             <div class="profile-picture">
                 <img src="<?= $user->getProfilePicturePath(); ?>" alt="Profile picture" draggable="false" class="<?php if ($user->isDefaultProfilePicture()) echo 'no-borders'; ?>">

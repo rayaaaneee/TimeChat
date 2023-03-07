@@ -8,6 +8,7 @@ require_once(PATH_PRESENTERS . 'AccountPartProfilePresenter.php');
 
 $profilePresenter = new AccountPartProfilePresenter();
 $profileTheme = ManageThemes::getInstance()->getThemeByColor($_SESSION['user']['theme']);
+$profileTheme->setBanner($_SESSION['user']['banner']);
 $user->setProfileTheme($profileTheme);
 
 function echoChecked($bool)
@@ -107,3 +108,5 @@ $isSuccess = IsSuccessProfile();
 $returnMessage = initErrorMessageProfile();
 
 $isPublic = $user->isPublic();
+
+$messageChooseProfilePicture = $user->isDefaultProfilePicture() ? 'Set a profile picture' : 'Set a new profile picture';

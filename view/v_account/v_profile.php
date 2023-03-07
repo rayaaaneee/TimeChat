@@ -33,7 +33,7 @@
                     <input type="file" name="picture" id="profile-picture" hidden>
                     <div class="choose-img-container">
                         <div class="text-container">
-                            <p onclick="openFile()">Choose a picture</p>
+                            <p onclick="openFile()"><?= $messageChooseProfilePicture; ?></p>
                             <h3 class="filename"><?= $user->getProfilePicture(); ?></p>
                         </div>
                         <div class="img-container">

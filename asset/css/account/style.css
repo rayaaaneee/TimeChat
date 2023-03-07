@@ -9,7 +9,7 @@
 }
 
 .manage-account-menu-container {
-    background: #e3c8c88d;
+    background: #b55353;
     padding: 15px;
     display: flex;
     flex-direction: column;
@@ -23,7 +23,7 @@
 
 .manage-account-menu-container::before {
     content: "";
-    border-color: var(--body-background) #ccbaba8d  transparent transparent;
+    border-color: var(--body-background) #9332328d  transparent transparent;
     position: absolute;
     z-index: -1;
     left: 0;
@@ -134,13 +134,16 @@ input[type="checkbox"]:checked {
     background-repeat: no-repeat;
     background-position: center;
 }
+html {
+    --dakr-red-color : #9140408d;
+}
 
 .redirect-button.active {
-    background-color: #e6cfcf;
+    background-color: var(--dakr-red-color);
 }
 
 .redirect-button:hover {
-    background-color: #d5b1b18d;
+    background-color: var(--dakr-red-color);
     cursor: pointer;
 }
 

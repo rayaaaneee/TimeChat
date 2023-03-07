@@ -39,10 +39,14 @@ html {
     transition: 0.1s;
     border-radius: 13.5px;
 }
+html {
+    --margin-left-templates : 15px;
+}
 
 .banner-container button[type="submit"].active {
     border: 3px solid #00000057;
     filter: brightness(0.85);
+    margin-left: var(--margin-left-templates);
 }
 
 .banner-container button[type="submit"]:hover {
@@ -59,4 +63,5 @@ html {
 
 .active-theme {
     position: relative;
+    margin-left: calc(var(--margin-left-templates) + 5px);
 }
