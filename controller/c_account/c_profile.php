@@ -81,7 +81,7 @@ if (isset($_POST['remove-profile-picture'])) {
 $themes = ['red', 'black', 'green', 'orange', 'violet', 'yellow'];
 
 foreach ($themes as $theme) {
-    if (isset($_POST[$theme . '-theme'])) {
+    if (isset($_POST[$theme])) {
         require_once(PATH_DTO . 'ProfileThemeDTO.php');
         require_once(PATH_CLASSES . 'ProfileTheme.php');
         $profileThemeDTO = new ProfileThemeDTO();

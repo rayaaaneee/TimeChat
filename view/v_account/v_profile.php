@@ -71,7 +71,7 @@
         </form>
         <div class="account-part-title-container">
             <div class="flex-row title-img-container">
-                <h1 class="title-part">Choose profile theme</h1>
+                <h1 class="title-part">Choose your profile theme</h1>
                 <img src="<?= PATH_IMG; ?>account/theme2.png" alt="modify" class="title-img" draggable="false">
             </div>
             <div class="part-separator-bar"></div>
