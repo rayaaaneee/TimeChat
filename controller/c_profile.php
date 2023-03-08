@@ -20,18 +20,21 @@ if (isset($_GET['user']) && $_GET['user'] != null) {
     $userTab = $UserDAO->getUserAndProfileThemeById($_GET['user']);
 
     if ($userTab != null) {
-        $profileUser = $userTab['user'];
-        $profileTheme = $userTab['theme'];
-        $theme = $profileTheme['theme'];
-        $banner = $profileTheme['banner'];
+        $profileUserTab = $userTab['user'];
+        $profileUserTheme = $userTab['theme'];
+        $themeName = $profileUserTheme['theme'];
+        $banner = $profileUserTheme['banner'];
 
         // On transforme le tableau en objet User
-        $profileUser = new User($profileUser['username'], $profileUser['password'], $profileUser['description'], $profileUser['profile_picture'], $profileUser['is_public'], new DateTime($profileUser['signup_at']), $profileUser['id']);
+        $profileUser = new User($profileUserTab['username'], $profileUserTab['password'], $profileUserTab['description'], $profileUserTab['profile_picture'], $profileUserTab['is_public'], new DateTime($profileUserTab['signup_at']), $profileUserTab['id']);
 
         // On ajoute le theme de profil
         $ManageThemes = ManageThemes::getInstance();
-        $profileTheme = $ManageThemes->getThemeByColor($theme);
+        $profileTheme = $ManageThemes->getThemeByColor($themeName);
         $profileUser->setProfileTheme($profileTheme);
+        if ($banner) {
+            $profileUser->setBanner($banner);
+        }
     }
 } else {
     header('Location: ./');

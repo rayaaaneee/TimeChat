@@ -84,6 +84,11 @@ class UserDAO extends DAO
 
         $profileTheme = $this->profileThemeDAO->getByUserId($id);
 
-        return ['user' => $result, 'theme' => $profileTheme];
+        $userAndProfileTheme = [
+            'user' => $result,
+            'theme' => $profileTheme
+        ];
+
+        return $userAndProfileTheme;
     }
 }
