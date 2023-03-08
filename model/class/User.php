@@ -116,6 +116,11 @@ class User
         }
     }
 
+    public function getProfilePictureExtension(): string
+    {
+        return pathinfo(PATH_PROFILE_PICTURES . $this->profilePicture, PATHINFO_EXTENSION);
+    }
+
     public function getBannerPath(): string
     {
         return $this->profileTheme->getBannerPath();

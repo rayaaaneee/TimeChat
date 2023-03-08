@@ -50,6 +50,15 @@ class ProfileTheme
         return $this->banner;
     }
 
+    public function getBannerThemeFile(): string
+    {
+        $tmp = explode('.', $this->banner);
+        if ($this->theme == self::$defaultTheme) {
+            return $this->banner;
+        }
+        return $tmp[0] . '-' . strtolower($this->theme) . '.' . $tmp[1];
+    }
+
     public function setBanner(string $banner): void
     {
         $this->banner = $banner;
@@ -57,14 +66,14 @@ class ProfileTheme
 
     public function getBannerPath(): string
     {
+        var_dump($this->banner);
+        var_dump(self::$defaultBanner);
         if ($this->banner != self::$defaultBanner) {
+            var_dump("L'utilisateur a une banniere personnalisée");
             return PATH_BANNERS . $this->banner;
         } else {
-            if ($this->theme == self::$defaultTheme) {
-                return PATH_BANNERS . 'default/default.png';
-            } else {
-                return PATH_BANNERS . 'default/default-' . strtolower($this->theme) . '.png';
-            }
+            var_dump("L'utilisateur na pas de banniere personnalisée");
+            return $this->getDefaultBannerPath();
         }
     }
 

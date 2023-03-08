@@ -109,11 +109,9 @@ class UserDTO extends DTO
         try {
             $stmt->execute();
         } catch (PDOException $e) {
-            unlink(PATH_PROFILE_PICTURES . $file);
             return false;
         }
 
-        unlink($user->getProfilePicturePath());
         $_SESSION['user']['profile_picture'] = $file;
         return true;
     }

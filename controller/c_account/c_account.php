@@ -1,6 +1,9 @@
 <?php
 
 require_once(PATH_APPS . 'verifyInformations.php');
+require_once(PATH_DTO . 'UserDTO.php');
+
+require_once(PATH_APPS . 'renameProfilePicture.php');
 
 if (isset($_POST['modify-username'])) {
 
@@ -16,6 +19,23 @@ if (isset($_POST['modify-username'])) {
 
             $messageUpdate = $user->updateUsername($username);
             if ($messageUpdate === "success") {
+
+                if (!$user->isDefaultProfilePicture()) {
+                    $userDTO = new UserDTO();
+
+                    $profilePictureExtension = $user->getProfilePictureExtension();
+
+                    $profilePictureName = $user->getProfilePicture();
+                    $newProfilePictureName = renameProfilePicture($profilePictureName, $username, $profilePictureExtension);
+
+                    var_dump($_SESSION);
+
+                    $_SESSION['user']['profile_picture'] = $newProfilePictureName; // On met à jour la variable de session
+
+                    if (!$userDTO->updateProfilePicture($newProfilePictureName, $user)) {
+                        Header("Location: ./?page=account&errusername=already");
+                    }
+                }
                 Header("Location: ./?page=account&success=username");
             } else if ($messageUpdate === "sames") {
                 Header("Location: ./?page=account&errusername=sames");
