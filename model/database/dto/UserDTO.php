@@ -111,7 +111,6 @@ class UserDTO extends DTO
         } catch (PDOException $e) {
             return false;
         }
-
         $_SESSION['user']['profile_picture'] = $file;
         return true;
     }

@@ -94,7 +94,12 @@
                 <div class="text-container">
                     <p class="browse-files-banner">Choose a banner</p>
                     <h3 class="filename"><?= $user->getBanner(); ?></h3>
-                    <input type="submit" name="update-banner" value="Set a banner" disabled>
+                    <div class="button-submit-container">
+                        <input type="submit" name="update-banner" value="Set a banner" disabled>
+                        <?php if ($profileTheme->hasBanner()) : ?>
+                            <button type="submit" name="remove-banner" title="Remove my banner"></button>
+                        <?php endif; ?>
+                    </div>
                 </div>
             </div>
             <input type="file" name="picture" id="banner-input" hidden>

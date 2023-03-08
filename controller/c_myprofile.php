@@ -14,7 +14,7 @@ $manageThemes = ManageThemes::getInstance();
 $profileTheme = $manageThemes->getThemeByColor($theme);
 $user->setProfileTheme($profileTheme);
 
-if ($_SESSION['user']['banner'] != ProfileTheme::$defaultBanner) {
+if ($_SESSION['user']['banner']) {
     $profileTheme->setBanner($_SESSION['user']['banner']);
 }
 

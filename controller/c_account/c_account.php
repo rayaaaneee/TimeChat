@@ -3,8 +3,6 @@
 require_once(PATH_APPS . 'verifyInformations.php');
 require_once(PATH_DTO . 'UserDTO.php');
 
-require_once(PATH_APPS . 'renameProfilePicture.php');
-
 if (isset($_POST['modify-username'])) {
 
     $username = $_POST['username'];
@@ -21,16 +19,12 @@ if (isset($_POST['modify-username'])) {
             if ($messageUpdate === "success") {
 
                 if (!$user->isDefaultProfilePicture()) {
+                    require_once(PATH_APPS . 'renamePicture.php');
+
                     $userDTO = new UserDTO();
 
-                    $profilePictureExtension = $user->getProfilePictureExtension();
-
                     $profilePictureName = $user->getProfilePicture();
-                    $newProfilePictureName = renameProfilePicture($profilePictureName, $username, $profilePictureExtension);
-
-                    var_dump($_SESSION);
-
-                    $_SESSION['user']['profile_picture'] = $newProfilePictureName; // On met à jour la variable de session
+                    $newProfilePictureName = renamePicture($profilePictureName, PATH_PROFILE_PICTURES, $username);
 
                     if (!$userDTO->updateProfilePicture($newProfilePictureName, $user)) {
                         Header("Location: ./?page=account&errusername=already");
@@ -47,6 +41,21 @@ if (isset($_POST['modify-username'])) {
         }
     } else {
         Header("Location: ./?page=account&errusername=chars");
+    }
+
+    // Si l'utilisateur a un banner, on la renomme
+    if ($_SESSION['user']['banner'] != null) {
+        require_once(PATH_DTO . 'ProfileThemeDTO.php');
+        require_once(PATH_APPS . 'renamePicture.php');
+
+        $bannerName = $_SESSION['user']['banner'];
+        $newBannerName = renamePicture($bannerName, PATH_BANNERS, $username);
+
+        $profileThemeDTO = new ProfileThemeDTO();
+        $id = $user->getId();
+        if (!$profileThemeDTO->updateOneSetBannerByBannerName($newBannerName, $id)) {
+            Header("Location: ./?page=account&errusername=already");
+        }
     }
 } else if (isset($_POST['modify-password'])) {
     $newPassword = $_POST['new-password'];

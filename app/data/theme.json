@@ -6,10 +6,10 @@
         "banner" : "default.png"
     },
     "black" : {
-        "name" : "black",
+        "name" : "blue",
         "backgroundColor" : "#e6ecef8d",
         "cornerColor" : "#a4c2bc8d",
-        "banner" : "default-black.png"
+        "banner" : "default-blue.png"
     },
     "green" : {
         "name" : "green",

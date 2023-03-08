@@ -6,6 +6,7 @@ class ManageThemes
 {
     private static $instance = null;
     private array $themes = [];
+    private array $bannersName = [];
     private ProfileTheme $activeTheme;
 
     private function __construct()
@@ -23,6 +24,7 @@ class ManageThemes
 
             $name = $theme['name'];
             $bannerName = $theme['banner'];
+            $this->bannersName[] = $bannerName;
             $backgroundColor = $theme['backgroundColor'];
             $cornerColor = $theme['cornerColor'];
 
@@ -46,6 +48,15 @@ class ManageThemes
         return $this->themes;
     }
 
+    public function getAllThemesName(): array
+    {
+        $themesName = [];
+        foreach ($this->themes as $theme) {
+            $themesName[] = $theme->getTheme();
+        }
+        return $themesName;
+    }
+
     public function getThemeByColor(string $color): ProfileTheme
     {
         foreach ($this->themes as $theme) {
@@ -67,5 +78,10 @@ class ManageThemes
     public function getActiveTheme(): ProfileTheme
     {
         return $this->activeTheme;
+    }
+
+    public function getAllBanners(): array
+    {
+        return $this->bannersName;
     }
 }

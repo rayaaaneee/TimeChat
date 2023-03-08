@@ -8,7 +8,9 @@ require_once(PATH_PRESENTERS . 'AccountPartProfilePresenter.php');
 
 $profilePresenter = new AccountPartProfilePresenter();
 $profileTheme = ManageThemes::getInstance()->getThemeByColor($_SESSION['user']['theme']);
-$profileTheme->setBanner($_SESSION['user']['banner']);
+if ($_SESSION['user']['banner'] != null) {
+    $profileTheme->setBanner($_SESSION['user']['banner']);
+}
 $user->setProfileTheme($profileTheme);
 
 function echoChecked($bool)
@@ -30,8 +32,11 @@ function echoPublic($bool)
 /* Il y a deux case a traiter, si il a update son profil, ou si il a supprimé sa photo
 de profil */
 if (isset($_POST['remove-profile-picture'])) {
+    $oldProfilePicture = $user->getProfilePicture();
     $succesRemove = $user->removeProfilePicture();
+
     if ($succesRemove) {
+        unlink(PATH_PROFILE_PICTURES . $oldProfilePicture);
         Header('Location: ./?page=account&part=profile&delete=success');
     } else {
         Header('Location: ./?page=account&part=profile&delete=error');
@@ -75,10 +80,21 @@ if (isset($_POST['remove-profile-picture'])) {
     } else {
         Header('Location: ./?page=account&part=profile&upload=' . $message[1]);
     }
+} else if (isset($_POST['remove-banner'])) {
+    require_once(PATH_DTO . 'ProfileThemeDTO.php');
+
+    $profileThemeDTO = new ProfileThemeDTO();
+    $successUpdate = $profileThemeDTO->updateOneRemoveBanner($user->getId());
+
+    if ($successUpdate) {
+        Header('Location: ./?page=account&part=profile&rmbanner=success');
+    } else {
+        Header('Location: ./?page=account&part=profile&rmbanner=error');
+    }
 }
 
 // Si l'utilosateur a changé son theme de profil on fait la mise a jour
-$themes = ['red', 'black', 'green', 'orange', 'violet', 'yellow'];
+$themes = ManageThemes::getInstance()->getAllThemesName();
 
 foreach ($themes as $theme) {
     if (isset($_POST[$theme])) {

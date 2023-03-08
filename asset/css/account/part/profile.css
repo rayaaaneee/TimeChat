@@ -96,10 +96,9 @@ textarea:focus {
 
 .choose-img-container button[type="submit"] {
     width: fit-content;
-    backdrop-filter: blur(3px);
     padding: 19px;
     border: none;
-    background-color: #b7474770;
+    background-color: #b747479b;
     border-radius: 50%;
     outline: none;
     font-size: 15px;
@@ -322,4 +321,48 @@ textarea:focus {
     height: fit-content;
     align-items: center;
     justify-content: space-evenly;
+}
+
+.active-theme-container {
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    height: fit-content;
+    align-items: start;
+    justify-content: center;
+}
+
+.form-change-banner-container button[type="submit"] {
+    width: fit-content;
+    padding: 19px;
+    border: none;
+    background-color: #b7474770;
+    border-radius: 50%;
+    outline: none;
+    font-size: 15px;
+    color: #fff;
+    box-shadow: 0 0 10px rgb(0 0 0 / 15%);
+    cursor: pointer;
+    transition: 0.3s;
+    background-image: url(../../../img/account/delete.png);
+    background-size: 70%;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+}
+
+.form-change-banner-container button[type="submit"]:hover {
+    background-color: #b747477c;
+    background-size: 75%;
+    transition: 0.3s;
+    filter: invert(0.15);
+}
+
+.form-change-banner-container .button-submit-container {
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
+    align-items: center;
+    justify-content: center;
 }

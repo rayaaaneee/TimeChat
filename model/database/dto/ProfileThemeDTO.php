@@ -67,8 +67,44 @@ class ProfileThemeDTO extends DTO
 
         $res = $stmt->execute();
         if ($res) {
+            unlink(PATH_BANNERS . $_SESSION['user']['banner']);
             $_SESSION['user']['banner'] = $banner;
         }
+        return $res;
+    }
+
+    public function updateOneRemoveBanner(string $userId): bool
+    {
+
+        $sql = "UPDATE " . self::$table . " SET banner = NULL WHERE id_user = :id_user";
+
+        $stmt = self::$db->prepare($sql);
+        $stmt->bindValue(':id_user', $userId);
+
+        $res = $stmt->execute();
+
+        if ($res) {
+            unlink(PATH_BANNERS . $_SESSION['user']['banner']);
+            $_SESSION['user']['banner'] = null;
+        }
+
+        return $res;
+    }
+
+    public function updateOneSetBannerByBannerName(string $bannerName, string $userId): bool
+    {
+        $sql = "UPDATE " . self::$table . " SET banner = :banner WHERE id_user = :id_user";
+
+        $stmt = self::$db->prepare($sql);
+        $stmt->bindValue(':banner', $bannerName);
+        $stmt->bindValue(':id_user', $userId);
+
+        $res = $stmt->execute();
+
+        if ($res) {
+            $_SESSION['user']['banner'] = $bannerName;
+        }
+
         return $res;
     }
 }

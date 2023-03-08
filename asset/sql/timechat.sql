@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : lun. 06 mars 2023 à 10:51
+-- Généré le : mer. 08 mars 2023 à 21:11
 -- Version du serveur : 8.0.31
--- Version de PHP : 8.0.26
+-- Version de PHP : 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -57,6 +57,34 @@ CREATE TABLE IF NOT EXISTS `friend_request` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `groups`
+--
+
+DROP TABLE IF EXISTS `groups`;
+CREATE TABLE IF NOT EXISTS `groups` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `id_user_admin` int NOT NULL,
+  `name` int NOT NULL,
+  `created_at` date NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `group_members`
+--
+
+DROP TABLE IF EXISTS `group_members`;
+CREATE TABLE IF NOT EXISTS `group_members` (
+  `id_group` int NOT NULL,
+  `id_user` int NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `message`
 --
 
@@ -92,8 +120,7 @@ CREATE TABLE IF NOT EXISTS `profile_theme` (
 --
 
 INSERT INTO `profile_theme` (`id_user`, `theme`, `banner`) VALUES
-(1, 'red', NULL),
-(2, 'red', NULL);
+(23, 'red', 'root-03-08-23-453.png');
 
 -- --------------------------------------------------------
 
@@ -108,7 +135,6 @@ CREATE TABLE IF NOT EXISTS `user` (
   `password` text NOT NULL,
   `description` varchar(300) NOT NULL,
   `profile_picture` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT 'default.png',
-  `banner` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT 'default.png',
   `signup_at` date NOT NULL,
   `is_public` tinyint(1) NOT NULL,
   `is_connected` tinyint(1) NOT NULL DEFAULT '0',
@@ -116,15 +142,14 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `pseudo` (`username`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Déchargement des données de la table `user`
 --
 
-INSERT INTO `user` (`id`, `username`, `password`, `description`, `profile_picture`, `banner`, `signup_at`, `is_public`, `is_connected`, `nb_friends`) VALUES
-(1, 'root', '$2y$10$hwQIN/f7dtIi43hEnK9Ie.kaKAidwy.NymQAkZ6.D8Jl0K0S.cj2u', 'Admin et grand crack', 'root-03-06-23-673.jpg', 'default.png', '2023-03-06', 0, 0, 0),
-(2, 'NapsDeMarseille', '$2y$10$k1AL1NBTN5s90svoWhbPGegxhFQx/01zcW0qcqdGpeYndqPPaxs0m', 'OKAY OKAY', 'NapsDeMarseille-03-06-23-969.jpg', 'default.png', '2023-03-06', 1, 0, 0);
+INSERT INTO `user` (`id`, `username`, `password`, `description`, `profile_picture`, `signup_at`, `is_public`, `is_connected`, `nb_friends`) VALUES
+(23, 'root', '$2y$10$066wQu5H0yYg5NNrQc//Y.yfIhIPeQX7m.qf5lZSsTxXnhjey.X06', 'Admin et grand crack de cette génération', 'root-03-08-23-70.jpg', '2023-03-08', 0, 0, 0);
 
 --
 -- Contraintes pour les tables déchargées

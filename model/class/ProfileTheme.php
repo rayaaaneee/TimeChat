@@ -4,7 +4,7 @@ require_once(PATH_DTO . 'ProfileThemeDTO.php');
 
 class ProfileTheme
 {
-    public static $defaultBanner = 'default.png';
+    public static $defaultBanner = "default.png";
     public static string $defaultTheme = 'red';
 
     private int $userid;
@@ -27,7 +27,13 @@ class ProfileTheme
 
     public function hasBanner(): bool
     {
-        return $this->banner != null;
+        $themes = ManageThemes::getInstance()->getAllBanners();
+        foreach ($themes as $theme) {
+            if ($theme == $this->banner) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public function getBackgroundColor(): string
@@ -66,13 +72,9 @@ class ProfileTheme
 
     public function getBannerPath(): string
     {
-        var_dump($this->banner);
-        var_dump(self::$defaultBanner);
-        if ($this->banner != self::$defaultBanner) {
-            var_dump("L'utilisateur a une banniere personnalisée");
+        if ($this->hasBanner()) {
             return PATH_BANNERS . $this->banner;
         } else {
-            var_dump("L'utilisateur na pas de banniere personnalisée");
             return $this->getDefaultBannerPath();
         }
     }
