@@ -13,8 +13,10 @@ require_once(PATH_CLASSES . 'User.php');
 require_once(PATH_DAO . 'UserDAO.php');
 require_once(PATH_DTO . 'UserDTO.php');
 
+
 // Si l'utilisateur est connecté, on le connecte
 $user = null;
+$friendRequestManager = null;
 if (isset($_SESSION['user'])) {
 
     $user = $_SESSION['user'];
@@ -27,6 +29,7 @@ if (isset($_SESSION['user'])) {
     $id = $user['id'];
 
     $user = new User($username, $password, $description, $profilePicturePath, $isPublic, $signupAt, $id);
+
     // Si l'utilisateur s'est déconnecté, on le déconnecte
     User::signedOut($user);
 }

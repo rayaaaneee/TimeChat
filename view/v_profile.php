@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="<?= PATH_CSS; ?>myprofile/style.css">
     <link rel="stylesheet" href="<?= PATH_CSS; ?>profile/style.css">
 </head>
+<?php require_once(PATH_VIEWS_PARTS . 'error.php'); ?>
 <main>
     <div class="profile-container">
         <img class="profile-banner" src="<?= $profileUser->getBannerPath(); ?>" alt="Banner" draggable="false">
@@ -24,6 +25,23 @@
                     </div>
                 </div>
             </div>
+            <?php if ($hasSendFriendRequest) : ?>
+                    <form action="./?page=profile&user=<?= $profileUser->getId(); ?>" method="post" class="add-friend">
+                        <div class="input-submit-add-friend-container">
+                            <input type="hidden" name="action" value="remove-friend-request">
+                            <input type="submit" title="Remove your friend request" value="" class="add-friend">
+                        </div>
+                        <p>Friend request sent</p>
+                    </form>
+                <?php else : ?>
+                    <form action="./?page=profile&user=<?= $profileUser->getId(); ?>" method="post" class="add-friend">
+                        <div class="input-submit-add-friend-container">
+                            <input type="hidden" name="action" value="add-friend">
+                            <input type="submit" title="Add @<?= $profileUser->getUsername(); ?> as friend" value="" class="add-friend">
+                        </div>
+                        <p>You are not not friends</p>
+                    </form>
+            <?php endif; ?>
         </div>
         <div class="right-profile <?= $privacy; ?>">
             <div class="empty-top"></div>

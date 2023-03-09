@@ -1,3 +1,7 @@
+/* .left-profile {
+    grid-template-rows: var(--height-banner) 1fr 40px 40px;
+} */
+
 .right-profile.public {
     grid-template-rows: var(--height-banner) 1fr 50px;
 }
@@ -8,6 +12,54 @@
 
 html {
     --lock-img-width : 60px;
+}
+
+.left-profile .add-friend input[type="submit"] {
+    width: 40px;
+    height: 40px;
+    background-image: url(../../img/page/profile/add-friend-black.png);
+    background-size: 30px 30px;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    background-color: transparent;
+    margin-left: 20px;
+    cursor: pointer;
+    transition: 0.15s;
+    border-radius: 50%;
+    padding: 1px;
+}
+
+.left-profile .add-friend input[type="submit"]:hover {
+    padding: 3px;
+    background-color: #dfbcae;
+    transition: 0.15s;
+}
+
+.left-profile .add-friend {
+    background-color: rgb(255 249 246);
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    border-radius: 0 0 0 10px;
+}
+.left-profile .input-submit-add-friend-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.left-profile .add-friend p {
+    font-size: 16px;
+    font-weight: 400;
+    font-family: 'Poppins', sans-serif;
+    color: #000000;
 }
 
 .right-profile.private .middle {

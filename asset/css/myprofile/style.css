@@ -32,7 +32,7 @@ html {
     height: 100%;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: var(--height-banner) 1fr 40px;
+    grid-template-rows: var(--height-banner) 1fr 70px;
     justify-content: start;
     align-items: center;
     border-radius: 10px 0 0 10px;

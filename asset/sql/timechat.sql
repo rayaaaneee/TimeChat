@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mer. 08 mars 2023 à 21:11
+-- Généré le : jeu. 09 mars 2023 à 22:49
 -- Version du serveur : 8.0.31
 -- Version de PHP : 8.2.0
 
@@ -44,14 +44,10 @@ CREATE TABLE IF NOT EXISTS `friends` (
 
 DROP TABLE IF EXISTS `friend_request`;
 CREATE TABLE IF NOT EXISTS `friend_request` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `id_user_sender` int NOT NULL,
-  `id_user_receiver` int NOT NULL,
-  `accepted` tinyint(1) NOT NULL,
-  `datetime` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id_user_receiver` (`id_user_receiver`),
-  KEY `id_user_sender` (`id_user_sender`)
+  `sender_id` int NOT NULL,
+  `receiver_id` int NOT NULL,
+  `date` datetime NOT NULL,
+  PRIMARY KEY (`sender_id`,`receiver_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
@@ -120,7 +116,9 @@ CREATE TABLE IF NOT EXISTS `profile_theme` (
 --
 
 INSERT INTO `profile_theme` (`id_user`, `theme`, `banner`) VALUES
-(23, 'red', 'root-03-08-23-453.png');
+(26, 'violet', 'HoudaKadous-03-09-23-992.jpg'),
+(25, 'violet', 'NapsDeMarseille-03-09-23-75.jpg'),
+(24, 'orange', 'root-03-09-23-108.png');
 
 -- --------------------------------------------------------
 
@@ -142,14 +140,16 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `pseudo` (`username`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Déchargement des données de la table `user`
 --
 
 INSERT INTO `user` (`id`, `username`, `password`, `description`, `profile_picture`, `signup_at`, `is_public`, `is_connected`, `nb_friends`) VALUES
-(23, 'root', '$2y$10$066wQu5H0yYg5NNrQc//Y.yfIhIPeQX7m.qf5lZSsTxXnhjey.X06', 'Admin et grand crack de cette génération', 'root-03-08-23-70.jpg', '2023-03-08', 0, 0, 0);
+(24, 'root', '$2y$10$lVaO2ImYJN16KrxhS6bQHeRFa1IrihtW.kyAil4Sed5Any8afanyy', 'Admin et grand crack de cette génération', 'root-03-09-23-52.jpg', '2023-03-08', 0, 0, 0),
+(25, 'NapsDeMarseille', '$2y$10$YoR2QsdnRwPz0.P6uoKtiuUHZKe9hgMLB2alTWbUEHsBCzLIQVPhe', 'Okay okay c\'est naps khapta vers le port GAMBERGEE okay', 'NapsDeMarseille-03-09-23-808.jpg', '2023-03-08', 0, 0, 0),
+(26, 'Houda', '$2y$10$nNSgdvf1zsko33Exe85zFusAQ/Sxutw2flcKZZP0.5GwSCPHfj2sy', 'Bonsoir', 'HoudaKadous-03-09-23-900.png', '2023-03-09', 1, 0, 0);
 
 --
 -- Contraintes pour les tables déchargées
@@ -160,13 +160,6 @@ INSERT INTO `user` (`id`, `username`, `password`, `description`, `profile_pictur
 --
 ALTER TABLE `friends`
   ADD CONSTRAINT `friends_ibfk_1` FOREIGN KEY (`id_user_1`) REFERENCES `user` (`id`);
-
---
--- Contraintes pour la table `friend_request`
---
-ALTER TABLE `friend_request`
-  ADD CONSTRAINT `friend_request_ibfk_1` FOREIGN KEY (`id_user_receiver`) REFERENCES `user` (`id`),
-  ADD CONSTRAINT `friend_request_ibfk_2` FOREIGN KEY (`id_user_sender`) REFERENCES `user` (`id`);
 
 --
 -- Contraintes pour la table `message`

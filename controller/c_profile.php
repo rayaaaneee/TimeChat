@@ -44,6 +44,52 @@ if (isset($_GET['user']) && $_GET['user'] != null) {
     header('Location: ./');
     exit();
 }
+
+$needsDisplay = false;
+$isSuccess = false;
+$returnMessage = "";
+if (isset($_POST['action']) && $_POST['action'] == 'add-friend') {
+    require_once(PATH_CLASSES . 'FriendRequest.php');
+    require_once(PATH_DTO . 'FriendRequestDTO.php');
+
+    $FriendRequest = new FriendRequest($profileUser->getId());
+
+    $FriendRequestDTO = new FriendRequestDTO();
+    $bool = $FriendRequestDTO->insertFriendRequest($FriendRequest);
+    $needsDisplay = true;
+    if ($bool) {
+        $isSuccess = true;
+        $returnMessage = "Friend request sent";
+    } else {
+        $returnMessage = "Friend request already sent";
+    }
+} else if (isset($_POST['action']) && $_POST['action'] == 'remove-friend-request') {
+    require_once(PATH_CLASSES . 'FriendRequest.php');
+    require_once(PATH_DTO . 'FriendRequestDTO.php');
+    $friendRequest = new FriendRequest($profileUser->getId(), $user->getId());
+    $FriendRequestDTO = new FriendRequestDTO();
+
+    $bool = $FriendRequestDTO->removeFriendRequest($friendRequest);
+    $needsDisplay = true;
+    if ($bool) {
+        $isSuccess = true;
+        $returnMessage = "Friend request to @" . $profileUser->getUsername() . " removed";
+    } else {
+        $returnMessage = "An error occured";
+    }
+}
+
+require_once(PATH_DAO . 'FriendRequestDAO.php');
+require_once(PATH_CLASSES . 'FriendRequestManager.php');
+
+$friendRequestDAO = new FriendRequestDAO();
+$friendRequests = $friendRequestDAO->getAllFriendRequestsBySender($user->getId());
+$friendRequestManager = new FriendRequestManager($friendRequests);
+
+$hasSendFriendRequest = $friendRequestManager->hasSendFriendRequest($profileUser->getId());
+
+$isFriend = null;
+
 require_once(PATH_VIEWS_PARTS . 'header.php');
 
 require_once(PATH_VIEWS . 'profile.php');
