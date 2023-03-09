@@ -119,10 +119,12 @@ foreach ($themes as $theme) {
 $themeButtons = $profilePresenter->getAllThemesInSubmitButton();
 $activeTheme = $profilePresenter->getActiveThemeInDiv();
 
-$needsDisplay = isset($_GET['update']) || isset($_GET['delete']) || isset($_GET['upload']) || isset($_GET['theme']);
+$needsDisplay = isset($_GET['update']) || isset($_GET['delete']) || isset($_GET['upload']) || isset($_GET['theme']) || isset($_GET['rmbanner']);
 $isSuccess = IsSuccessProfile();
 $returnMessage = initErrorMessageProfile();
 
 $isPublic = $user->isPublic();
 
 $messageChooseProfilePicture = $user->isDefaultProfilePicture() ? 'Set a profile picture' : 'Set a new profile picture';
+
+$messageChooseBanner = $profileTheme->hasBanner() ? 'Set a new banner'  : 'Set a banner';

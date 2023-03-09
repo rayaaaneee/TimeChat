@@ -11,6 +11,8 @@ function IsSuccessProfile()
         $result = $_GET['upload'] === 'success';
     } else if (isset($_GET['theme'])) {
         $result = $_GET['theme'] === 'success';
+    } else if (isset($_GET['rmbanner'])) {
+        $result = $_GET['rmbanner'] === 'success';
     }
     return $result;
 }
@@ -48,6 +50,12 @@ function initErrorMessageProfile()
             $message = 'Your profile theme has been set to ' . $_SESSION['user']['theme'] . '';
         } else {
             $message = 'An error occured while updating your profile theme';
+        }
+    } else if (isset($_GET['rmbanner'])) {
+        if ($_GET['rmbanner'] === 'success') {
+            $message = 'Your profile banner has been deleted';
+        } else {
+            $message = 'An error occured while deleting your profile banner';
         }
     }
     return $message;

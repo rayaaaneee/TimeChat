@@ -23,6 +23,7 @@ define('PATH_FONTS', PATH_ASSETS . 'fonts/');
 define('PATH_PRESENTERS', PATH_MODELS . 'presenter/');
 define('PATH_LIBRARIES', PATH_APPS . 'library/');
 define('PATH_DATAS', PATH_APPS . 'data/');
+define('PATH_JSON', PATH_DATAS . 'json/');
 
 /* Uploads */
 define('PATH_PROFILE_PICTURES', PATH_UPLOADS . 'profilePicture/');

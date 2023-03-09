@@ -3,4 +3,14 @@
 </head>
 <div class="part-container">
     <h1 class="big-title">Your datas</h1>
+    <div class="account-part-title-container">
+        <div class="flex-row title-img-container">
+            <h1 class="title-part">Generate my datas</h1>
+            <img src="<?= PATH_IMG; ?>account/mini-data.png" alt="modify" class="title-img" draggable="false">
+        </div>
+        <div class="part-separator-bar"></div>
+        <form action="./?page=account&part=data" class="generate-datas" method="post">
+            <button type="submit" name="generate">Generate my datas</button>
+        </form>
+    </div>
 </div>

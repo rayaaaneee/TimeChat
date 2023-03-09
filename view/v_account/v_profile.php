@@ -92,7 +92,7 @@
             <?= $activeTheme; ?>
             <div class="choose-img-container choose-img-container-banner">
                 <div class="text-container">
-                    <p class="browse-files-banner">Choose a banner</p>
+                    <p class="browse-files-banner"><?= $messageChooseBanner; ?></p>
                     <h3 class="filename"><?= $user->getBanner(); ?></h3>
                     <div class="button-submit-container">
                         <input type="submit" name="update-banner" value="Set a banner" disabled>
