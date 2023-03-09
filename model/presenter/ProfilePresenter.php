@@ -2,7 +2,7 @@
 
 class ProfilePresenter
 {
-    public function formatUserIsPublic($user): string
+    public function formatUserIsPublicMyProfile($user): string
     {
         if ($user->isPublic()) {
             $tmp = "public";
@@ -23,6 +23,14 @@ class ProfilePresenter
         } else {
             $HTML = '<p class="content"> • ' . $user->getDescription() . '</p>';
         }
+        return $HTML;
+    }
+
+    public function formatUserIsPrivate(): string
+    {
+        $HTML = "";
+        $HTML = '<img src="' . PATH_IMG_PAGES . 'myprofile/private.png" alt="info-icon" draggable="false">';
+        $HTML .= '<h1>Your profile is private</h1>';
         return $HTML;
     }
 }

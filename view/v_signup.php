@@ -4,7 +4,7 @@
     <script src="<?= PATH_SCRIPTS; ?>fileinput/script.js" defer></script>
 </head>
 <main>
-    <?php require_once(PATH_VIEWS . 'error/v_error.php'); ?>
+    <?php require_once(PATH_VIEWS_PARTS . 'error.php'); ?>
     <div class="signup-form">
         <h1>Sign Up</h1>
         <form action="./?page=signup" method="post" enctype="multipart/form-data">

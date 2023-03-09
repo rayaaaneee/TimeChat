@@ -25,31 +25,39 @@
                 </div>
             </div>
         </div>
-        <div class="right-profile">
-            <div class="empty-top">
-
-            </div>
-            <div class="middle-container">
-                <div class="profile-description">
-                    <div class="for-flex-title">
-                        <h1 class="title">Description</h1>
-                        <div class="horizontal-bar"></div>
-                        <img src="<?= PATH_IMG_PAGES; ?>myprofile/description.png" alt="description" class="img-desc" draggable="false">
+        <div class="right-profile <?= $privacy; ?>">
+            <div class="empty-top"></div>
+            <?php if ($profileUser->isPublic()) : ?>
+                <div class="middle-container">
+                    <div class="profile-description">
+                        <div class="for-flex-title">
+                            <h1 class="title">Description</h1>
+                            <div class="horizontal-bar"></div>
+                            <img src="<?= PATH_IMG_PAGES; ?>myprofile/description.png" alt="description" class="img-desc" draggable="false">
+                        </div>
+                        <p class="content"><?= $display->printDescription($profileUser); ?></p>
                     </div>
-                    <p class="content"><?= $display->printDescription($profileUser); ?></p>
-                </div>
-                <div class="profile-nb-friends">
-                    <div class="for-flex-title">
-                        <h1 class="title">Friends</h1>
-                        <div class="horizontal-bar"></div>
-                        <img src="<?= PATH_IMG_PAGES; ?>myprofile/friends.png" alt="friends" class="img-friends" draggable="false">
+                    <div class="profile-nb-friends">
+                        <div class="for-flex-title">
+                            <h1 class="title">Friends</h1>
+                            <div class="horizontal-bar"></div>
+                            <img src="<?= PATH_IMG_PAGES; ?>myprofile/friends.png" alt="friends" class="img-friends" draggable="false">
+                        </div>
+                        <p class="content">0</p>
                     </div>
-                    <p class="content">0</p>
                 </div>
-            </div>
-            <div class="profile-is-public">
-                <?= $display->formatUserIsPublic($profileUser); ?>
-            </div>
+            <?php else : ?>
+                <div class="middle">
+                    <div class="print-user-private">
+                        <img src="<?= PATH_IMG_PAGES; ?>profile/lock-tmp.png" alt="lock">
+                        <div class="private-text-container">
+                            <h1>This profile is private</h1>
+                            <h2>Add <?= $profileUser->getUsername(); ?> as a friend to see his profile</h2>
+                        </div>
+                        <div class="background" style="background-color: <?= $profileTheme->getBackgroundLock(); ?>"></div>
+                    </div>
+                </div>
+            <?php endif; ?>
             <div class="signed-at-container">
                 <img src="<?= PATH_IMG_PAGES; ?>myprofile/calendar.png" alt="" draggable="false">
                 <h1>Signed up since</h1>

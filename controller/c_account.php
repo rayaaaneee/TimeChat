@@ -19,8 +19,8 @@ if (!in_array($part, $parts)) {
 
 require_once(PATH_CONTROLLERS . "account/c_" . $part . '.php');
 
-require_once(PATH_VIEWS . 'header.php');
+require_once(PATH_VIEWS_PARTS . 'header.php');
 
 require_once(PATH_VIEWS . 'account.php');
 
-require_once(PATH_VIEWS . 'footer.php');
+require_once(PATH_VIEWS_PARTS . 'footer.php');

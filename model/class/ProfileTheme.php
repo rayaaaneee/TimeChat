@@ -12,13 +12,15 @@ class ProfileTheme
     private ?string $banner;
     private ?string $backgroundColor;
     private ?string $cornerColor;
+    private ?string $backgroundLock;
 
-    public function __construct(string $theme, ?string $banner, string $backgroundColor = null, string $cornerColor = null, ?int $userId = null)
+    public function __construct(string $theme, ?string $banner = null, string $backgroundColor = null, string $cornerColor = null, string $backgroundLock = null, ?int $userId = null)
     {
         $this->theme = $theme;
         $this->banner = $banner;
         $this->backgroundColor = $backgroundColor;
         $this->cornerColor = $cornerColor;
+        $this->backgroundLock = $backgroundLock;
 
         if ($userId != null) {
             $this->userid = $userId;
@@ -96,5 +98,10 @@ class ProfileTheme
     public function setUserId(int $userId): void
     {
         $this->userid = $userId;
+    }
+
+    public function getBackgroundLock(): ?string
+    {
+        return $this->backgroundLock;
     }
 }

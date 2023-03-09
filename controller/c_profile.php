@@ -9,7 +9,9 @@ require_once(PATH_CLASSES . 'ManageThemes.php');
 require_once(PATH_PRESENTERS . 'ProfilePresenter.php');
 $display = new ProfilePresenter();
 
+$profileTheme = null;
 $profileUser = null;
+$privacy = "";
 
 if (isset($_GET['user']) && $_GET['user'] != null) {
     if ($_GET['user'] == $_SESSION['user']['id']) {
@@ -35,13 +37,15 @@ if (isset($_GET['user']) && $_GET['user'] != null) {
         if ($banner) {
             $profileUser->setBanner($banner);
         }
+
+        $privacy = $profileUser->isPublic() ? "public" : "private";
     }
 } else {
     header('Location: ./');
     exit();
 }
-require_once(PATH_VIEWS . 'header.php');
+require_once(PATH_VIEWS_PARTS . 'header.php');
 
 require_once(PATH_VIEWS . 'profile.php');
 
-require_once(PATH_VIEWS . 'footer.php');
+require_once(PATH_VIEWS_PARTS . 'footer.php');

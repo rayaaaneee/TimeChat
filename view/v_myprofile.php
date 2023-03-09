@@ -47,7 +47,7 @@
                 </div>
             </div>
             <div class="profile-is-public">
-                <?= $display->formatUserIsPublic($user); ?>
+                <?= $display->formatUserIsPublicMyProfile($user); ?>
             </div>
             <div class="signed-at-container">
                 <img src="<?= PATH_IMG_PAGES; ?>myprofile/calendar.png" alt="" draggable="false">

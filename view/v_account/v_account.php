@@ -1,7 +1,7 @@
 <head>
     <link rel="stylesheet" href="<?= PATH_CSS; ?>account/part/account.css">
 </head>
-<?php require_once(PATH_VIEWS . 'error/v_error.php'); ?>
+<?php require_once(PATH_VIEWS_PARTS . 'error.php'); ?>
 <div class="part-container">
     <h1 class="big-title">Your account</h1>
     <div class="account-part">

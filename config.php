@@ -12,6 +12,7 @@ define('PATH_CLASSES', PATH_MODELS . 'class/');
 define('PATH_DATABASE', PATH_MODELS . 'database/');
 define('PATH_DAO', PATH_DATABASE . 'dao/');
 define('PATH_DTO', PATH_DATABASE . 'dto/');
+define('PATH_VIEWS_PARTS', PATH_VIEWS . 'part/v_');
 
 /* Assets */
 define('PATH_CSS', PATH_ASSETS . 'css/');

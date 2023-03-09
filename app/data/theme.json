@@ -1,38 +1,44 @@
 {
     "red" : {
         "name" : "red",
-        "backgroundColor" : "#efe6e68d",
-        "cornerColor" : "#c67f7f8d",
-        "banner" : "default.png"
+        "background-color" : "#efe6e68d",
+        "corner-color" : "#c67f7f8d",
+        "banner" : "default.png",
+        "background-lock" : "rgb(207 182 182)"
     },
-    "black" : {
+    "blue" : {
         "name" : "blue",
-        "backgroundColor" : "#e6ecef8d",
-        "cornerColor" : "#a4c2bc8d",
-        "banner" : "default-blue.png"
+        "background-color" : "#e6ecef8d",
+        "corner-color" : "#a4c2bc8d",
+        "banner" : "default-blue.png",
+        "background-lock" : "rgb(145 168 181)"
     },
     "green" : {
         "name" : "green",
-        "backgroundColor" : "#e6efe88d",
-        "cornerColor" : "#b4d8bf8d",
-        "banner" : "default-green.png"
+        "background-color" : "#e6efe88d",
+        "corner-color" : "#b4d8bf8d",
+        "banner" : "default-green.png",
+        "background-lock" : "rgb(168 196 172)"
     },
     "orange" : {
         "name" : "orange",
-        "backgroundColor" : "#f4dbcd8d",
-        "cornerColor" : "#cda4818d",
-        "banner" : "default-orange.png"
+        "background-color" : "#f4dbcd8d",
+        "corner-color" : "#cda4818d",
+        "banner" : "default-orange.png",
+        "background-lock" : "rgb(212 189 174)"
     },
     "yellow" : {
         "name" : "yellow",
-        "backgroundColor" : "#f4f1cd8d",
-        "cornerColor" : "#b9c67f8d",
-        "banner" : "default-yellow.png"
+        "background-color" : "#f4f1cd8d",
+        "corner-color" : "#b9c67f8d",
+        "banner" : "default-yellow.png",
+        "background-lock" : "rgb(193 192 145)"
     },
     "violet" : {
         "name" : "violet",
-        "backgroundColor" : "#e3d7e78d",
-        "cornerColor" : "#7556788d",
-        "banner" : "default-violet.png"
+        "background-color" : "#e3d7e78d",
+        "corner-color" : "#7556788d",
+        "banner" : "default-violet.png",
+        "background-lock" : "rgb(146 118 148)"
     }
 }

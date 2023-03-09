@@ -25,12 +25,13 @@ class ManageThemes
             $name = $theme['name'];
             $bannerName = $theme['banner'];
             $this->bannersName[] = $bannerName;
-            $backgroundColor = $theme['backgroundColor'];
-            $cornerColor = $theme['cornerColor'];
+            $backgroundColor = $theme['background-color'];
+            $cornerColor = $theme['corner-color'];
+            $backgroundLock = $theme['background-lock'];
 
             // On crée un objet Theme
             $userId = $_SESSION['user']['id'];
-            $theme = new ProfileTheme($name, $bannerName, $backgroundColor, $cornerColor, $userId);
+            $theme = new ProfileTheme($name, $bannerName, $backgroundColor, $cornerColor, $backgroundLock, $userId);
 
             if ($theme->getTheme() == $_SESSION['user']['theme']) {
                 $this->activeTheme = $theme;

@@ -102,7 +102,7 @@ foreach ($themes as $theme) {
         require_once(PATH_CLASSES . 'ProfileTheme.php');
         $profileThemeDTO = new ProfileThemeDTO();
 
-        $profileTheme = new ProfileTheme($theme, null);
+        $profileTheme = new ProfileTheme($theme);
         $profileTheme->setUserId($user->getId());
 
         $successUpdateTheme = $profileThemeDTO->updateOneWithoutBanner($profileTheme);

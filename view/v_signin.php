@@ -3,10 +3,9 @@
     <link rel="stylesheet" href="<?= PATH_CSS; ?>signin/style.css">
 </head>
 <main>
-    <?php require_once(PATH_VIEWS . 'error/v_error.php'); ?>
+    <?php require_once(PATH_VIEWS_PARTS . 'error.php'); ?>
     <div class="signin-container">
         <div class="carousel-container">
-            <?php require_once(PATH_VIEWS . 'error/v_error.php'); ?>
         </div>
         <div class="signin-form-container">
             <h1>Sign In to TimeChat</h1>
