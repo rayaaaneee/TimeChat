@@ -7,22 +7,22 @@
         <div class="manage-account-menu-container">
             <div class="buttons-container">
                 <a href="./?page=account" class="redirect-button <?= getClassPage("account", $part); ?>">
-                    <img src="<?= PATH_IMG; ?>account/account.png" alt="account-logo">
+                    <img src="<?= PATH_IMG_PAGES; ?>account/account.png" alt="account-logo">
                     <span>Account</span>
                 </a>
                 <div class="separator-bar"></div>
                 <a href="./?page=account&part=profile" class="redirect-button <?= getClassPage("profile", $part); ?>">
-                    <img src="<?= PATH_IMG; ?>account/profile.png" alt="profile-logo">
+                    <img src="<?= PATH_IMG_PAGES; ?>account/profile.png" alt="profile-logo">
                     <span>Profile</span>
                 </a>
                 <div class="separator-bar"></div>
                 <a href="./?page=account&part=data" class="redirect-button <?= getClassPage("data", $part); ?>">
-                    <img src="<?= PATH_IMG; ?>account/data.png" alt="notifications-logo">
+                    <img src="<?= PATH_IMG_PAGES; ?>account/data.png" alt="notifications-logo">
                     <span>Datas</span>
                 </a>
                 <div class="separator-bar"></div>
                 <a href="./?page=account&part=favorite" class="redirect-button <?= getClassPage("favorite", $part); ?>">
-                    <img src="<?= PATH_IMG; ?>account/favorite.png" alt="notifications-logo">
+                    <img src="<?= PATH_IMG_PAGES; ?>account/favorite.png" alt="notifications-logo">
                     <span>Favorites</span>
                 </a>
             </div>

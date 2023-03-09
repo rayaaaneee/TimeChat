@@ -108,7 +108,7 @@ textarea:focus {
     transition: 0.3s;
     position: absolute;
     right: 0;
-    background-image: url(../../../img/account/delete.png);
+    background-image: url(../../../img/page/account/delete.png);
     background-size: 70%;
     background-repeat: no-repeat;
     background-position: center;
@@ -309,9 +309,83 @@ textarea:focus {
     overflow-y: hidden;
     gap: 25px;
     padding: 15px 0;
+    align-items: center;
+    z-index: 100;
 }
 
-.banner-container::-webkit-scrollbar {
+.banner-container .banners {
+    width: fit-content;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    gap: 25px;
+    padding: 15px 0;
+    align-items: center;
+    scroll-behavior: smooth;
+    z-index: 100;
+}
+
+.banner-container .button-scroll {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.3s;
+    z-index: 101;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url(../../../img/page/account/arrow.png);
+}
+
+@keyframes fadeOut{
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes fadeIn{
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.banner-container .button-scroll.hidden {
+    animation: fadeOut 0.15s forwards ease-in-out;
+    cursor: default;
+}
+
+.banner-container .button-scroll.display {
+    animation: fadeIn 0.15s forwards ease-in-out;
+}
+
+.banner-container .button-scroll:hover {
+    background-image: url(../../../img/page/account/arrowred.png);
+    transition: 0.3s;
+}
+
+.banner-container .button-scroll:first-child {
+    left: 0;
+    transform: rotate(180deg) translateX(15px);
+}
+
+.banner-container .button-scroll:last-child {
+    right: 0;
+    transform: translateX(15px);
+}
+
+.banner-container .banners::-webkit-scrollbar {
     display: none;
 }
 
@@ -345,7 +419,7 @@ textarea:focus {
     box-shadow: 0 0 10px rgb(0 0 0 / 15%);
     cursor: pointer;
     transition: 0.3s;
-    background-image: url(../../../img/account/delete.png);
+    background-image: url(../../../img/page/account/delete.png);
     background-size: 70%;
     background-repeat: no-repeat;
     background-position: center;
@@ -365,4 +439,15 @@ textarea:focus {
     column-gap: 10px;
     align-items: center;
     justify-content: center;
+}
+
+.choose-img-container-banner input[type="submit"], .profile-form-container > input[type="submit"] {
+    padding: 10px 30px;
+    padding-left: 50px;
+    background-image: url(../../../img/page/account/upload-on-cloud-white.png);
+    background-repeat: no-repeat;
+    background-position: 23px 50%;
+    background-size: 20px;
+    font-size: 17px;
+    border-radius: 20px;
 }

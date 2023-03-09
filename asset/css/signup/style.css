@@ -162,7 +162,7 @@ input[type="checkbox"] {
 .signup-form input[type="checkbox"]:checked {
     background-color: #b74747;
     transition: all 0.3s ease-in-out;
-    background-image: url(../../img/signin/checked.png);
+    background-image: url(../../img/page/signin/checked.png);
     background-size: 70%;
     background-repeat: no-repeat;
     background-position: center;

@@ -19,7 +19,7 @@ if ($needsDisplay) {
                 <div class="bar bar2"></div>
             </div>
         </div>
-        <img src="<?= PATH_IMG . 'account/' . $tmp . '.png' ?>" alt="<?= $tmp; ?>" draggable="false">
+        <img src="<?= PATH_IMG_PAGES . 'account/' . $tmp . '.png' ?>" alt="<?= $tmp; ?>" draggable="false">
         <div class="<?= $tmp; ?>-message">
             <p><?= $returnMessage; ?></p>
         </div>

@@ -21,9 +21,9 @@ inputPrivacy.addEventListener('change', (e) => {
 
     /* On change l'image en fonction de l'état du checkbox */
     if (e.target.checked) {
-        imageTop.src = './asset/img/account/public-top.png';
+        imageTop.src = './asset/img/page/account/public-top.png';
     } else {
-        imageTop.src = './asset/img/account/private-top.png';
+        imageTop.src = './asset/img/page/account/private-top.png';
     }
 });
 
@@ -53,4 +53,55 @@ fileInputBanner.addEventListener('change', (e) => {
 
 changeImgText.addEventListener('click', () => {
     fileInputBanner.click();
+});
+
+/* On scroll dans banner-container en X si l'utilisateur clique sur les fleches */
+
+const formContainer = document.querySelector('.theme-form-container');
+const bannerContainer = formContainer.querySelector('.banners');
+/* Recuperer la largeur du container de la banniere en comptant le scrollable */
+const bannerContainerWidth = bannerContainer.scrollWidth - bannerContainer.clientWidth;
+const arrows = {
+    "left" : formContainer.querySelector('.button-scroll-left'),
+    "right" : formContainer.querySelector('.button-scroll-right')
+};
+var bannerContainerScrollX = 0;
+const scrollGap = bannerContainerWidth / 2;
+
+function displayOrHideArrows() {
+    if (bannerContainerScrollX === 0) {
+        arrows.right.classList.remove('display');
+        arrows.right.classList.add('hidden');
+    } else {
+        arrows.right.classList.remove('hidden');
+        arrows.right.classList.add('display');
+    }
+
+    if (bannerContainerScrollX === bannerContainerWidth) {
+        arrows.left.classList.remove('display');
+        arrows.left.classList.add('hidden');
+    } else {
+        arrows.left.classList.remove('hidden');
+        arrows.left.classList.add('display');
+    }
+}
+
+arrows.left.addEventListener('click', () => {
+    if (bannerContainerScrollX + scrollGap > bannerContainerWidth) {
+        bannerContainerScrollX = bannerContainerWidth;
+    } else {
+        bannerContainerScrollX += scrollGap;
+    }
+    bannerContainer.scroll(bannerContainerScrollX, 0);
+    displayOrHideArrows();
+});
+
+arrows.right.addEventListener('click', () => {
+    if (bannerContainerScrollX - scrollGap < 0) {
+        bannerContainerScrollX = 0;
+    } else {
+        bannerContainerScrollX -= scrollGap;
+    }
+    bannerContainer.scroll(bannerContainerScrollX, 0);
+    displayOrHideArrows();
 });

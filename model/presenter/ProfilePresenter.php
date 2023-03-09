@@ -9,7 +9,7 @@ class ProfilePresenter
         } else {
             $tmp = "private";
         }
-        $HTML = '<img src="' . PATH_IMG . 'myprofile/' . $tmp . '" alt="info-icon" draggable="false">';
+        $HTML = '<img src="' . PATH_IMG_PAGES . 'myprofile/' . $tmp . '" alt="info-icon" draggable="false">';
         $HTML .= '<h1>Your profile is ' . $tmp . '</h1>';
         return $HTML;
     }

@@ -19,6 +19,7 @@ define('PATH_MEDIA', PATH_ASSETS . 'media/');
 define('PATH_SCRIPTS', PATH_ASSETS . 'js/');
 define('PATH_IMG', PATH_ASSETS . 'img/');
 define('PATH_UPLOADS', PATH_IMG . 'upload/');
+define('PATH_IMG_PAGES', PATH_IMG . 'page/');
 define('PATH_FONTS', PATH_ASSETS . 'fonts/');
 define('PATH_PRESENTERS', PATH_MODELS . 'presenter/');
 define('PATH_LIBRARIES', PATH_APPS . 'library/');

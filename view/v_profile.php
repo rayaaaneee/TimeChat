@@ -7,6 +7,7 @@
         }
     </style>
     <link rel="stylesheet" href="<?= PATH_CSS; ?>myprofile/style.css">
+    <link rel="stylesheet" href="<?= PATH_CSS; ?>profile/style.css">
 </head>
 <main>
     <div class="profile-container">
@@ -33,7 +34,7 @@
                     <div class="for-flex-title">
                         <h1 class="title">Description</h1>
                         <div class="horizontal-bar"></div>
-                        <img src="<?= PATH_IMG; ?>myprofile/description.png" alt="description" class="img-desc" draggable="false">
+                        <img src="<?= PATH_IMG_PAGES; ?>myprofile/description.png" alt="description" class="img-desc" draggable="false">
                     </div>
                     <p class="content"><?= $display->printDescription($profileUser); ?></p>
                 </div>
@@ -41,7 +42,7 @@
                     <div class="for-flex-title">
                         <h1 class="title">Friends</h1>
                         <div class="horizontal-bar"></div>
-                        <img src="<?= PATH_IMG; ?>myprofile/friends.png" alt="friends" class="img-friends" draggable="false">
+                        <img src="<?= PATH_IMG_PAGES; ?>myprofile/friends.png" alt="friends" class="img-friends" draggable="false">
                     </div>
                     <p class="content">0</p>
                 </div>
@@ -50,7 +51,7 @@
                 <?= $display->formatUserIsPublic($profileUser); ?>
             </div>
             <div class="signed-at-container">
-                <img src="<?= PATH_IMG; ?>myprofile/calendar.png" alt="" draggable="false">
+                <img src="<?= PATH_IMG_PAGES; ?>myprofile/calendar.png" alt="" draggable="false">
                 <h1>Signed up since</h1>
                 <h1><?= $profileUser->formatSignupAt(); ?></h1>
             </div>

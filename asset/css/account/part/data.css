@@ -1,0 +1,34 @@
+.generate-datas {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.generate-datas input[type="submit"] {
+    width: fit-content;
+    height: 40px;
+    border: none;
+    border-radius: 15px;
+    background-color: #b74747;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 7px 30px;
+    padding-left: 60px;
+    background-image: url(../../../img/page/account/download-from-cloud-white.png);
+    background-repeat: no-repeat;
+    background-position: 22px 50%;
+    background-size: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.generate-datas input[type="submit"]:hover {
+    background-color: #b747477c;
+    transition: all 0.3s ease;
+}

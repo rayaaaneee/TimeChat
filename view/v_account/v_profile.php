@@ -12,14 +12,14 @@
         <div class="account-part-title-container">
             <div class="flex-row title-img-container">
                 <h1 class="title-part">Modify your profile</h1>
-                <img src="<?= PATH_IMG; ?>account/modify.png" alt="modify" class="title-img" draggable="false">
+                <img src="<?= PATH_IMG_PAGES; ?>account/modify.png" alt="modify" class="title-img" draggable="false">
             </div>
             <div class="part-separator-bar"></div>
         </div>
         <form action="./?page=account&part=profile" method="post" enctype="multipart/form-data" class="profile-form-container">
             <div class="description-container">
                 <div class="title-container description-title-container">
-                    <img src="<?= PATH_IMG; ?>account/description.png" alt="icon description" draggable="false">
+                    <img src="<?= PATH_IMG_PAGES; ?>account/description.png" alt="icon description" draggable="false">
                     <h2>Description : </h1>
                 </div>
                 <textarea name="description" placeholder="Write your description"><?= $user->getDescription(); ?></textarea>
@@ -27,7 +27,7 @@
             <div class="input-container">
                 <div class="profile-picture-container">
                     <div class="title-container pp-title-container">
-                        <img src="<?= PATH_IMG; ?>account/profile-picture-icon.png" alt="icon-profile-picture" draggable="false">
+                        <img src="<?= PATH_IMG_PAGES; ?>account/profile-picture-icon.png" alt="icon-profile-picture" draggable="false">
                         <h2>Profile picture : </h1>
                     </div>
                     <input type="file" name="picture" id="profile-picture" hidden>
@@ -39,8 +39,8 @@
                         <div class="img-container">
                             <img src="<?= $user->getProfilePicturePath(); ?>" alt="profile-picture" draggable="false">
                             <div class="privacy-animation-container">
-                                <img src="<?= PATH_IMG; ?>account/public-top.png" alt="privacy" class="image-top" draggable="false">
-                                <img class="image-bottom" src="<?= PATH_IMG; ?>account/private-bottom.png" alt="privacy" draggable="false">
+                                <img src="<?= PATH_IMG_PAGES; ?>account/public-top.png" alt="privacy" class="image-top" draggable="false">
+                                <img class="image-bottom" src="<?= PATH_IMG_PAGES; ?>account/private-bottom.png" alt="privacy" draggable="false">
                             </div>
                             <?php if (!$user->isDefaultProfilePicture()) : ?>
                                 <button type="submit" name="remove-profile-picture" title="Remove my profile picture"></button>
@@ -52,12 +52,12 @@
             </div>
             <div class="privacy-container">
                 <div class="title-container privacy-title-container">
-                    <img src="<?= PATH_IMG; ?>account/earth.png" alt="icon-profile-picture" draggable="false">
+                    <img src="<?= PATH_IMG_PAGES; ?>account/earth.png" alt="icon-profile-picture" draggable="false">
                     <h2>Your privacy : </h1>
                 </div>
                 <div class="privacy-input-container">
                     <div class="text-privacy-container">
-                        <img src="<?= PATH_IMG; ?>account/info-red.png" alt="privacy" draggable="false">
+                        <img src="<?= PATH_IMG_PAGES; ?>account/info-red.png" alt="privacy" draggable="false">
                         <p>Your account is currently <?= echoPublic($isPublic); ?>
                         </p>
                     </div>
@@ -71,20 +71,24 @@
         </form>
         <div class="account-part-title-container">
             <div class="flex-row title-img-container">
-                <h1 class="title-part">Choose your profile theme</h1>
-                <img src="<?= PATH_IMG; ?>account/theme2.png" alt="modify" class="title-img" draggable="false">
+                <h1 class="title-part">Choose your theme</h1>
+                <img src="<?= PATH_IMG_PAGES; ?>account/theme2.png" alt="modify" class="title-img" draggable="false">
             </div>
             <div class="part-separator-bar"></div>
         </div>
         <form action="./?page=account&part=profile" method="post" enctype="multipart/form-data" class="theme-form-container">
             <div class="banner-container">
-                <?= $themeButtons; ?>
+                <div class="button-scroll-right button-scroll hidden"></div>
+                <div class="banners">
+                    <?= $themeButtons; ?>
+                </div>
+                <div class="button-scroll-left button-scroll"></div>
             </div>
         </form>
         <div class="account-part-title-container">
             <div class="flex-row title-img-container">
                 <h1 class="title-part">Change your banner</h1>
-                <img src="<?= PATH_IMG; ?>account/landscape.png" alt="modify" class="title-img" draggable="false">
+                <img src="<?= PATH_IMG_PAGES; ?>account/landscape.png" alt="modify" class="title-img" draggable="false">
             </div>
             <div class="part-separator-bar"></div>
         </div>

@@ -46,7 +46,6 @@ html {
 .banner-container button[type="submit"].active {
     border: 3px solid #00000057;
     filter: brightness(0.85);
-    margin-left: var(--margin-left-templates);
 }
 
 .banner-container button[type="submit"]:hover {
@@ -61,7 +60,18 @@ html {
     transition: 0.1s;
 }
 
+html {
+    --margin-left-right-templates : 45px;
+}
+
+.banners button[type="submit"]:first-child {
+    margin-left : var(--margin-left-right-templates);
+}
+
+.banners button[type="submit"]:last-child {
+    margin-right : var(--margin-left-right-templates);
+}
+
 .active-theme {
     position: relative;
-    margin-left: calc(var(--margin-left-templates) + 5px);
 }

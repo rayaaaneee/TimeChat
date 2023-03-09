@@ -8,7 +8,7 @@
         <div class="account-part-title-container">
             <div class="flex-row title-img-container">
                 <h1 class="title-part">Modify your username</h1>
-                <img src="<?= PATH_IMG; ?>account/modify.png" alt="modify" class="title-img" draggable="false">
+                <img src="<?= PATH_IMG_PAGES; ?>account/modify.png" alt="modify" class="title-img" draggable="false">
             </div>
             <div class="part-separator-bar"></div>
         </div>
@@ -29,7 +29,7 @@
         <div class="account-part-title-container">
             <div class="flex-row title-img-container">
                 <h1 class="title-part">Modify your password</h1>
-                <img src="<?= PATH_IMG; ?>account/modify.png" alt="modify" class="title-img" draggable="false">
+                <img src="<?= PATH_IMG_PAGES; ?>account/modify.png" alt="modify" class="title-img" draggable="false">
             </div>
             <div class="part-separator-bar"></div>
         </div>
@@ -52,7 +52,7 @@
         <div class="account-part-title-container">
             <div class="flex-row title-img-container">
                 <h1 class="title-part">Delete your account</h1>
-                <img src="<?= PATH_IMG; ?>account/delete.png" alt="delete" class="title-img" draggable="false">
+                <img src="<?= PATH_IMG_PAGES; ?>account/delete.png" alt="delete" class="title-img" draggable="false">
             </div>
             <div class="part-separator-bar"></div>
         </div>
