@@ -17,6 +17,7 @@ require_once(PATH_DTO . 'UserDTO.php');
 // Si l'utilisateur est connecté, on le connecte
 $user = null;
 $friendRequestManager = null;
+$nbNotifications = 0;
 if (isset($_SESSION['user'])) {
 
     $user = $_SESSION['user'];
@@ -29,6 +30,12 @@ if (isset($_SESSION['user'])) {
     $id = $user['id'];
 
     $user = new User($username, $password, $description, $profilePicturePath, $isPublic, $signupAt, $id);
+
+    // On recupere a chaque refraichissement de page le nombre de $notifications
+    require_once(PATH_DAO . 'NotificationDAO.php');
+    $NotificationDAO = new NotificationDAO();
+
+    $nbNotifications = $NotificationDAO->getCountNotificationsByUserReceiverId($user->getId());
 
     // Si l'utilisateur s'est déconnecté, on le déconnecte
     User::signedOut($user);

@@ -100,7 +100,7 @@ if ($errorUpload) {
 
 $hasError = $error || $errorUpload;
 
-require_once(PATH_VIEWS_PARTS . 'header.php');
+require_once(PATH_CONTROLLERS . 'header.php');
 
 require_once(PATH_VIEWS . 'signup.php');
 

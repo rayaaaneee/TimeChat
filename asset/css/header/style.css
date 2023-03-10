@@ -55,6 +55,26 @@ html {
     cursor: pointer;
 }
 
+.menu-view.active::before {
+    content: attr(number);
+    position: absolute;
+    background-color: #b74747bf;
+    backdrop-filter: blur(2px);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    top: 5px;
+    right: 5px;
+    width: 40%;
+    height: 40%;
+    border-radius: 50%;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+}
+
 .menu-view > img {
     width: 55%;
 }

@@ -12,6 +12,7 @@ class UserDTO extends DTO
     public function __construct()
     {
         $this->profileThemeDTO = new ProfileThemeDTO();
+        parent::__construct();
     }
 
     public function signup(User $user): string

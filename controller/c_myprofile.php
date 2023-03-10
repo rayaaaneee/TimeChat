@@ -18,7 +18,7 @@ if ($_SESSION['user']['banner']) {
     $profileTheme->setBanner($_SESSION['user']['banner']);
 }
 
-require_once(PATH_VIEWS_PARTS . 'header.php');
+require_once(PATH_CONTROLLERS . 'header.php');
 
 require_once(PATH_VIEWS . 'myprofile.php');
 

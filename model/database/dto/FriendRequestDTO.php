@@ -6,6 +6,11 @@ class FriendRequestDTO extends DTO
 {
     public static string $table = 'friend_request';
 
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
     public function insertFriendRequest(FriendRequest $friendRequest): bool
     {
         $data = [

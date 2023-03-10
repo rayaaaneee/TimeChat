@@ -4,6 +4,13 @@ require_once(PATH_DATABASE . 'DTO.php');
 
 class MessageDTO extends DTO
 {
+    private static string $table = 'message';
+
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
     public function insertMessage(string $message, int $userId, int $chatId): bool
     {
         $data = [

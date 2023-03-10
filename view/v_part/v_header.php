@@ -49,7 +49,7 @@
                         </a>
                     </li>
                     <li data-title="Notifications">
-                        <a href="./?page=notifications" class="view-notifications menu-view">
+                        <a href="./?page=notifications" class="view-notifications menu-view <?= getClass($displayCircleNotifications); ?>" number="<?= $nbNotifications; ?>">
                             <img src="<?= PATH_IMG; ?>icon/notification.png" alt="notification">
                         </a>
                     </li>

@@ -15,6 +15,7 @@ define('PATH_DTO', PATH_DATABASE . 'dto/');
 define('PATH_VIEWS_PARTS', PATH_VIEWS . 'part/v_');
 
 /* Assets */
+define('PATH_ENUMS', PATH_CLASSES . 'enum/');
 define('PATH_CSS', PATH_ASSETS . 'css/');
 define('PATH_MEDIA', PATH_ASSETS . 'media/');
 define('PATH_SCRIPTS', PATH_ASSETS . 'js/');

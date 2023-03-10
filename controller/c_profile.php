@@ -61,6 +61,20 @@ if (isset($_POST['action']) && $_POST['action'] == 'add-friend') {
     if ($bool) {
         $isSuccess = true;
         $returnMessage = "Friend request sent to @" . $profileUser->getUsername();
+
+        /* On s'occupe maintenant de l'envoi de la notification à l'utilisateur */
+        require_once(PATH_CLASSES . 'Notification.php');
+        require_once(PATH_DTO . 'NotificationDTO.php');
+
+        $notification = new Notification($user->getId(), $profileUser->getId(), NotificationType::FRIEND_REQUEST);
+
+        $NotificationDTO = new NotificationDTO();
+        $successSendNotification = $NotificationDTO->insertOne($notification);
+        if ($successSendNotification) {
+            $returnMessage .= " and notification sent";
+        } else {
+            $returnMessage .= " but notification not sent";
+        }
     } else {
         $returnMessage = "Friend request already sent to @" . $profileUser->getUsername();
     }
@@ -73,8 +87,21 @@ if (isset($_POST['action']) && $_POST['action'] == 'add-friend') {
     $message = $FriendRequestDTO->removeFriendRequest($friendRequest);
     $needsDisplay = true;
     if ($message == "success") {
+
+        require_once(PATH_CLASSES . 'Notification.php');
+        require_once(PATH_DTO . 'NotificationDTO.php');
+        // On s'occupe maintenant de l'envoi de la notification à l'utilisateur
+        $notification = new Notification($user->getId(), $profileUser->getId(), NotificationType::FRIEND_REQUEST);
+
         $isSuccess = true;
         $returnMessage = "Friend request to @" . $profileUser->getUsername() . " removed";
+        $NotificationDTO = new NotificationDTO();
+        $successSendNotification = $NotificationDTO->removeOne($notification);
+        if ($successSendNotification) {
+            $returnMessage .= " and notification unsent";
+        } else {
+            $returnMessage .= " but notification not unsent";
+        }
     } else if ($message == "not-found") {
         $returnMessage = "You haven't send a friend request to @" . $profileUser->getUsername() . "";
     } else {
@@ -96,7 +123,7 @@ if ($hasSendFriendRequest) {
 
 $isFriend = null;
 
-require_once(PATH_VIEWS_PARTS . 'header.php');
+require_once(PATH_CONTROLLERS . 'header.php');
 
 require_once(PATH_VIEWS . 'profile.php');
 
