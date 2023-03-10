@@ -33,6 +33,7 @@ if (isset($_GET['user']) && $_GET['user'] != null) {
         // On ajoute le theme de profil
         $ManageThemes = ManageThemes::getInstance();
         $profileTheme = $ManageThemes->getThemeByColor($themeName);
+
         $profileUser->setProfileTheme($profileTheme);
         if ($banner) {
             $profileUser->setBanner($banner);

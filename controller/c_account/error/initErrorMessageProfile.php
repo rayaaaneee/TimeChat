@@ -48,6 +48,8 @@ function initErrorMessageProfile()
     } else if (isset($_GET['theme'])) {
         if ($_GET['theme'] === 'success') {
             $message = 'Your profile theme has been set to ' . $_SESSION['user']['theme'] . '';
+        } else if ($_GET['theme'] === 'sames') {
+            $message = 'You already have this theme';
         } else {
             $message = 'An error occured while updating your profile theme';
         }

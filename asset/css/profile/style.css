@@ -31,12 +31,12 @@ html {
 
 .left-profile .form-friend input[type="submit"]:hover {
     padding: 3px;
-    background-color: #dfbcae;
+    background-color: var(--friend-button-background-color);
     transition: 0.15s;
 }
 
 .left-profile .form-friend {
-    background-color: rgb(255 249 246);
+    background-color: var(--friend-form-background-color);
     display: grid;
     grid-template-columns: 80px 1fr;
     align-items: center;

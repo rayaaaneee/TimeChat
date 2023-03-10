@@ -231,4 +231,19 @@ class User
     {
         $this->qrcode = $qrcode;
     }
+
+    public function getBackgroundLeftBottom(): string
+    {
+        return $this->profileTheme->getBackgroundLeftBottom();
+    }
+
+    public function getColorButtonFriend(): string
+    {
+        return $this->profileTheme->getColorButtonFriend();
+    }
+
+    public function getTheme(): string
+    {
+        return $this->profileTheme->getTheme();
+    }
 }

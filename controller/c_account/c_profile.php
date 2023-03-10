@@ -98,6 +98,10 @@ $themes = ManageThemes::getInstance()->getAllThemesName();
 
 foreach ($themes as $theme) {
     if (isset($_POST[$theme])) {
+        if ($theme == $user->getTheme()) {
+            Header('Location: ./?page=account&part=profile&theme=sames');
+            exit();
+        }
         require_once(PATH_DTO . 'ProfileThemeDTO.php');
         require_once(PATH_CLASSES . 'ProfileTheme.php');
         $profileThemeDTO = new ProfileThemeDTO();

@@ -5,7 +5,8 @@
         "corner-color" : "#c67f7f8d",
         "banner" : "default.png",
         "background-lock" : "rgb(207 182 182)",
-        "background-left-bottom" : "rgb(221 171 182 / 21%)"
+        "background-left-bottom" : "rgb(221 171 182 / 21%)",
+        "button-friend-hover" : "#dfaeae"
     },
     "blue" : {
         "name" : "blue",
@@ -13,7 +14,8 @@
         "corner-color" : "#a4c2bc8d",
         "banner" : "default-blue.png",
         "background-lock" : "rgb(145 168 181)",
-        "background-left-bottom" : "rgb(172 194 196 / 33%)"
+        "background-left-bottom" : "rgb(172 194 196 / 33%)",
+        "button-friend-hover" : "#aec5df"
     },
     "green" : {
         "name" : "green",
@@ -21,7 +23,8 @@
         "corner-color" : "#b4d8bf8d",
         "banner" : "default-green.png",
         "background-lock" : "rgb(168 196 172)",
-        "background-left-bottom" : "rgb(191 218 201 / 38%)"
+        "background-left-bottom" : "rgb(191 218 201 / 38%)",
+        "button-friend-hover" : "#aedfbdc4"
     },
     "orange" : {
         "name" : "orange",
@@ -29,7 +32,8 @@
         "corner-color" : "#cda4818d",
         "banner" : "default-orange.png",
         "background-lock" : "rgb(212 189 174)",
-        "background-left-bottom" : "rgb(255 249 246)"
+        "background-left-bottom" : "rgb(255 249 246)",
+        "button-friend-hover" : "#dfbfae"
     },
     "yellow" : {
         "name" : "yellow",
@@ -37,7 +41,8 @@
         "corner-color" : "#b9c67f8d",
         "banner" : "default-yellow.png",
         "background-lock" : "rgb(193 192 145)",
-        "background-left-bottom" : "rgb(227 221 188 / 52%)"
+        "background-left-bottom" : "rgb(227 221 188 / 52%)",
+        "button-friend-hover" : "#dcd49d"
     },
     "violet" : {
         "name" : "violet",
@@ -45,6 +50,25 @@
         "corner-color" : "#7556788d",
         "banner" : "default-violet.png",
         "background-lock" : "rgb(146 118 148)",
-        "background-left-bottom" : "rgb(170 103 190 / 11%)"
+        "background-left-bottom" : "rgb(170 103 190 / 11%)",
+        "button-friend-hover" : "#a995b4"
+    },
+    "black" : {
+        "name" : "black",
+        "background-color" : "#e3d7e78d",
+        "corner-color" : "#7556788d",
+        "banner" : "default-violet.png",
+        "background-lock" : "rgb(146 118 148)",
+        "background-left-bottom" : "rgb(170 103 190 / 11%)",
+        "button-friend-hover" : "#a995b4"
+    },
+    "white" : {
+        "name" : "white",
+        "background-color" : "#e3d7e78d",
+        "corner-color" : "#7556788d",
+        "banner" : "default-violet.png",
+        "background-lock" : "rgb(146 118 148)",
+        "background-left-bottom" : "rgb(170 103 190 / 11%)",
+        "button-friend-hover" : "#a995b4"
     }
 }

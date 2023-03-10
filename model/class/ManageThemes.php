@@ -28,10 +28,12 @@ class ManageThemes
             $backgroundColor = $theme['background-color'];
             $cornerColor = $theme['corner-color'];
             $backgroundLock = $theme['background-lock'];
+            $backgroundLeftBottom = $theme['background-left-bottom'];
+            $colorButtonFriend = $theme['button-friend-hover'];
 
             // On crée un objet Theme
             $userId = $_SESSION['user']['id'];
-            $theme = new ProfileTheme($name, $bannerName, $backgroundColor, $cornerColor, $backgroundLock, $userId);
+            $theme = new ProfileTheme($name, $bannerName, $backgroundColor, $cornerColor, $backgroundLock, $backgroundLeftBottom, $colorButtonFriend, $userId);
 
             if ($theme->getTheme() == $_SESSION['user']['theme']) {
                 $this->activeTheme = $theme;

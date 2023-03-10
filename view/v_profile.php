@@ -3,7 +3,9 @@
     <script src="<?= PATH_SCRIPTS; ?>myprofile/script.js" defer></script>
     <style>
         html {
-            --corner-color: <?= $profileUser->getCornerColor(); ?>
+            --corner-color: <?= $profileUser->getCornerColor(); ?>;
+            --friend-button-background-color: <?= $profileUser->getColorButtonFriend(); ?>;
+            --friend-form-background-color: <?= $profileUser->getBackgroundLeftBottom(); ?>;
         }
     </style>
     <link rel="stylesheet" href="<?= PATH_CSS; ?>myprofile/style.css">
@@ -26,8 +28,8 @@
                 </div>
             </div>
             <?php if ($hasSendFriendRequest) : ?>
-                <form action="./?page=profile&user=<?= $profileUser->getId(); ?>" method="post" class="remove-friend-request form-friend">
-                    <div class="input-submit-add-friend-container">
+                <form action="./?page=profile&user=<?= $profileUser->getId(); ?>" method="post" class="remove-friend-request form-friend" background-color="<?= $profileUser->getBackgroundLeftBottom(); ?>">
+                    <div class=" input-submit-add-friend-container">
                         <input type="hidden" name="action" value="remove-friend-request">
                         <input type="submit" title="Remove your friend request" value="" class="remove-friend-request-button button-friend">
                     </div>
@@ -37,12 +39,12 @@
                     </div>
                 </form>
             <?php else : ?>
-                <form action="./?page=profile&user=<?= $profileUser->getId(); ?>" method="post" class="add-friend form-friend">
+                <form action="./?page=profile&user=<?= $profileUser->getId(); ?>" method="post" class="add-friend form-friend" background-color="<?= $profileUser->getBackgroundLeftBottom(); ?>">
                     <div class="input-submit-add-friend-container">
                         <input type="hidden" name="action" value="add-friend">
                         <input type="submit" title="Add @<?= $profileUser->getUsername(); ?> as friend" value="" class="add-friend-button button-friend">
                     </div>
-                    <p>You are not not friends</p>
+                    <p>You are not friends</p>
                 </form>
             <?php endif; ?>
         </div>
