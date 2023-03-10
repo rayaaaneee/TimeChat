@@ -1,4 +1,13 @@
 {
+    "white" : {
+        "name" : "white",
+        "background-color" : "#f8f8f88d",
+        "corner-color" : "#e4e1e48d",
+        "banner" : "default-white.png",
+        "background-lock" : "rgb(205 205 205)",
+        "background-left-bottom" : "rgb(128 128 128 / 11%)",
+        "button-friend-hover" : "#cfcfcf"
+    },
     "red" : {
         "name" : "red",
         "background-color" : "#efe6e68d",
@@ -16,6 +25,15 @@
         "background-lock" : "rgb(145 168 181)",
         "background-left-bottom" : "rgb(172 194 196 / 33%)",
         "button-friend-hover" : "#aec5df"
+    },
+    "violet" : {
+        "name" : "violet",
+        "background-color" : "#e3d7e78d",
+        "corner-color" : "#7556788d",
+        "banner" : "default-violet.png",
+        "background-lock" : "rgb(146 118 148)",
+        "background-left-bottom" : "rgb(170 103 190 / 11%)",
+        "button-friend-hover" : "#a995b4"
     },
     "green" : {
         "name" : "green",
@@ -44,31 +62,13 @@
         "background-left-bottom" : "rgb(227 221 188 / 52%)",
         "button-friend-hover" : "#dcd49d"
     },
-    "violet" : {
-        "name" : "violet",
-        "background-color" : "#e3d7e78d",
-        "corner-color" : "#7556788d",
-        "banner" : "default-violet.png",
-        "background-lock" : "rgb(146 118 148)",
-        "background-left-bottom" : "rgb(170 103 190 / 11%)",
-        "button-friend-hover" : "#a995b4"
-    },
     "black" : {
         "name" : "black",
-        "background-color" : "#e3d7e78d",
-        "corner-color" : "#7556788d",
-        "banner" : "default-violet.png",
-        "background-lock" : "rgb(146 118 148)",
-        "background-left-bottom" : "rgb(170 103 190 / 11%)",
-        "button-friend-hover" : "#a995b4"
-    },
-    "white" : {
-        "name" : "white",
-        "background-color" : "#e3d7e78d",
-        "corner-color" : "#7556788d",
-        "banner" : "default-violet.png",
-        "background-lock" : "rgb(146 118 148)",
-        "background-left-bottom" : "rgb(170 103 190 / 11%)",
-        "button-friend-hover" : "#a995b4"
+        "background-color" : "#0000008d",
+        "corner-color" : "#2e2b2e8d",
+        "banner" : "default-black.png",
+        "background-lock" : "rgb(48 48 48)",
+        "background-left-bottom" : "rgb(218 218 218)",
+        "button-friend-hover" : "#636363"
     }
 }
