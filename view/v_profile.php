@@ -31,7 +31,10 @@
                         <input type="hidden" name="action" value="remove-friend-request">
                         <input type="submit" title="Remove your friend request" value="" class="remove-friend-request-button button-friend">
                     </div>
-                    <p>Friend request sent</p>
+                    <div class="informations-friend-request-container">
+                        <p>Friend request sent</p>
+                        <h5>Since <?= $friendRequest->getDate()->format('d/m \a\t H:i'); ?></h5>
+                    </div>
                 </form>
             <?php else : ?>
                 <form action="./?page=profile&user=<?= $profileUser->getId(); ?>" method="post" class="add-friend form-friend">

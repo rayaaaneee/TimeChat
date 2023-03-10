@@ -5,6 +5,7 @@ require_once(PATH_CLASSES . "FriendRequest.php");
 class FriendRequestManager
 {
     private array $friendRequests = [];
+    private FriendRequest $friendRequest;
 
     public function __construct($friendsRequests)
     {
@@ -17,6 +18,7 @@ class FriendRequestManager
         foreach ($this->friendRequests as $friendRequest) {
             if ($friendRequest->getReceiverId() == $id) {
                 $result = $friendRequest;
+                $this->friendRequest = $friendRequest;
             }
         }
         return $result;
@@ -30,5 +32,10 @@ class FriendRequestManager
         } else {
             return false;
         }
+    }
+
+    public function getFriendRequest(): FriendRequest
+    {
+        return $this->friendRequest;
     }
 }

@@ -59,9 +59,9 @@ if (isset($_POST['action']) && $_POST['action'] == 'add-friend') {
     $needsDisplay = true;
     if ($bool) {
         $isSuccess = true;
-        $returnMessage = "Friend request sent";
+        $returnMessage = "Friend request sent to @" . $profileUser->getUsername();
     } else {
-        $returnMessage = "Friend request already sent";
+        $returnMessage = "Friend request already sent to @" . $profileUser->getUsername();
     }
 } else if (isset($_POST['action']) && $_POST['action'] == 'remove-friend-request') {
     require_once(PATH_CLASSES . 'FriendRequest.php');
@@ -86,9 +86,13 @@ require_once(PATH_CLASSES . 'FriendRequestManager.php');
 
 $friendRequestDAO = new FriendRequestDAO();
 $friendRequests = $friendRequestDAO->getAllFriendRequestsBySender($user->getId());
-$friendRequestManager = new FriendRequestManager($friendRequests);
 
+$friendRequestManager = new FriendRequestManager($friendRequests);
 $hasSendFriendRequest = $friendRequestManager->hasSendFriendRequest($profileUser->getId());
+if ($hasSendFriendRequest) {
+    $friendRequest = $friendRequestManager->getFriendRequest();
+}
+
 $isFriend = null;
 
 require_once(PATH_VIEWS_PARTS . 'header.php');
