@@ -1,5 +1,5 @@
 <head>
-    <title>Sign in</title>
+    <title>Sign in - TimeChat</title>
     <link rel="stylesheet" href="<?= PATH_CSS; ?>signin/style.css">
 </head>
 <main>

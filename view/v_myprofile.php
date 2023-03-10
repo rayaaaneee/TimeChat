@@ -1,5 +1,5 @@
 <head>
-    <title>My Profile</title>
+    <title>My Profile - TimeChat</title>
     <script src="<?= PATH_SCRIPTS; ?>myprofile/script.js" defer></script>
     <style>
         html {

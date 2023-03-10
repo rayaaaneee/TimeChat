@@ -19,7 +19,7 @@ class UserDTO extends DTO
         return $this->insertUser($user);
     }
 
-    private function insertUser($user): string
+    private function insertUser(User $user): string
     {
         $sql = 'INSERT INTO ' . self::$table . ' (username, password, description, profile_picture, signup_at, is_public) VALUES (:username, :password, :description, :profile_picture, NOW(), :is_public)';
         $stmt = self::$db->prepare($sql);
@@ -52,10 +52,26 @@ class UserDTO extends DTO
         $profileTheme = new ProfileTheme(ProfileTheme::$defaultTheme, null);
         $profileTheme->setUserId($id);
 
+        $user->setId($id);
+
         if (!$this->profileThemeDTO->insertOneWithoutBanner($profileTheme)) {
             return 'unknown';
         }
         return 'success';
+    }
+
+    public function updateQRCode(User $user): bool
+    {
+        $sql = 'UPDATE ' . self::$table . ' SET qrcode = :qrcode WHERE id = :id';
+        $stmt = self::$db->prepare($sql);
+        $stmt->bindValue(':qrcode', $user->getQRCode());
+        $stmt->bindValue(':id', $user->getId());
+        try {
+            $stmt->execute();
+        } catch (PDOException $e) {
+            return false;
+        }
+        return true;
     }
 
     public function updateUsername(string $username, int $id): string

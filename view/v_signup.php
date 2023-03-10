@@ -1,5 +1,5 @@
 <head>
-    <title>Sign Up</title>
+    <title>Sign Up - TimeChat</title>
     <link rel="stylesheet" href="<?= PATH_CSS; ?>signup/style.css">
     <script src="<?= PATH_SCRIPTS; ?>fileinput/script.js" defer></script>
 </head>

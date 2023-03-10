@@ -14,10 +14,9 @@ html {
     --lock-img-width : 60px;
 }
 
-.left-profile .add-friend input[type="submit"] {
+.left-profile .form-friend input[type="submit"] {
     width: 40px;
     height: 40px;
-    background-image: url(../../img/page/profile/add-friend-black.png);
     background-size: 30px 30px;
     background-repeat: no-repeat;
     background-position: center;
@@ -30,13 +29,13 @@ html {
     padding: 1px;
 }
 
-.left-profile .add-friend input[type="submit"]:hover {
+.left-profile .form-friend input[type="submit"]:hover {
     padding: 3px;
     background-color: #dfbcae;
     transition: 0.15s;
 }
 
-.left-profile .add-friend {
+.left-profile .form-friend {
     background-color: rgb(255 249 246);
     display: grid;
     grid-template-columns: 80px 1fr;
@@ -46,6 +45,31 @@ html {
     width: 100%;
     border-radius: 0 0 0 10px;
 }
+
+.left-profile .button-friend {
+    transition: 0.15s;
+}
+
+.left-profile .button-friend:hover {
+    transition: 0.15s;
+}
+
+.left-profile .add-friend-button {
+    background-image: url(../../img/page/profile/add-friend-black.png);
+}
+
+.left-profile .remove-friend-request-button {
+    background-image: url(../../img/page/profile/remove-friend-request-black.png);
+}
+
+.left-profile .add-friend-button:hover {
+    background-image: url(../../img/page/profile/add-friend-black-hover.png);
+}
+
+.left-profile .remove-friend-request-button:hover {
+    background-image: url(../../img/page/profile/remove-friend-request-black-hover.png);
+}
+
 .left-profile .input-submit-add-friend-container {
     display: flex;
     flex-direction: row;
@@ -55,7 +79,7 @@ html {
     width: 100%;
 }
 
-.left-profile .add-friend p {
+.left-profile .form-friend p {
     font-size: 16px;
     font-weight: 400;
     font-family: 'Poppins', sans-serif;

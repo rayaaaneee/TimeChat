@@ -24,12 +24,21 @@ class FriendRequestDTO extends DTO
         return $result;
     }
 
-    public function removeFriendRequest(FriendRequest $friendRequest): bool
+    public function removeFriendRequest(FriendRequest $friendRequest): string
     {
         $sql = "DELETE FROM " . self::$table . " WHERE sender_id = :sender_id AND receiver_id = :receiver_id";
         $stmt = self::$db->prepare($sql);
         $stmt->bindValue(':sender_id', $friendRequest->getSenderId());
         $stmt->bindValue(':receiver_id', $friendRequest->getReceiverId());
-        return $stmt->execute();
+        try {
+            $stmt->execute();
+        } catch (PDOException $e) {
+            return "unknown";
+        }
+        if ($stmt->rowCount() > 0) {
+            return "success";
+        } else {
+            return "not-found";
+        }
     }
 }

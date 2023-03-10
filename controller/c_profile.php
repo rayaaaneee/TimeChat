@@ -69,13 +69,15 @@ if (isset($_POST['action']) && $_POST['action'] == 'add-friend') {
     $friendRequest = new FriendRequest($profileUser->getId(), $user->getId());
     $FriendRequestDTO = new FriendRequestDTO();
 
-    $bool = $FriendRequestDTO->removeFriendRequest($friendRequest);
+    $message = $FriendRequestDTO->removeFriendRequest($friendRequest);
     $needsDisplay = true;
-    if ($bool) {
+    if ($message == "success") {
         $isSuccess = true;
         $returnMessage = "Friend request to @" . $profileUser->getUsername() . " removed";
+    } else if ($message == "not-found") {
+        $returnMessage = "You haven't send a friend request to @" . $profileUser->getUsername() . "";
     } else {
-        $returnMessage = "An error occured";
+        $returnMessage = "Unknown error";
     }
 }
 
@@ -87,7 +89,6 @@ $friendRequests = $friendRequestDAO->getAllFriendRequestsBySender($user->getId()
 $friendRequestManager = new FriendRequestManager($friendRequests);
 
 $hasSendFriendRequest = $friendRequestManager->hasSendFriendRequest($profileUser->getId());
-
 $isFriend = null;
 
 require_once(PATH_VIEWS_PARTS . 'header.php');

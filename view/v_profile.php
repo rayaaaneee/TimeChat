@@ -1,5 +1,5 @@
 <head>
-    <title>@<?= $profileUser->getUsername(); ?></title>
+    <title>@<?= $profileUser->getUsername(); ?> - TimeChat</title>
     <script src="<?= PATH_SCRIPTS; ?>myprofile/script.js" defer></script>
     <style>
         html {
@@ -26,21 +26,21 @@
                 </div>
             </div>
             <?php if ($hasSendFriendRequest) : ?>
-                    <form action="./?page=profile&user=<?= $profileUser->getId(); ?>" method="post" class="add-friend">
-                        <div class="input-submit-add-friend-container">
-                            <input type="hidden" name="action" value="remove-friend-request">
-                            <input type="submit" title="Remove your friend request" value="" class="add-friend">
-                        </div>
-                        <p>Friend request sent</p>
-                    </form>
-                <?php else : ?>
-                    <form action="./?page=profile&user=<?= $profileUser->getId(); ?>" method="post" class="add-friend">
-                        <div class="input-submit-add-friend-container">
-                            <input type="hidden" name="action" value="add-friend">
-                            <input type="submit" title="Add @<?= $profileUser->getUsername(); ?> as friend" value="" class="add-friend">
-                        </div>
-                        <p>You are not not friends</p>
-                    </form>
+                <form action="./?page=profile&user=<?= $profileUser->getId(); ?>" method="post" class="remove-friend-request form-friend">
+                    <div class="input-submit-add-friend-container">
+                        <input type="hidden" name="action" value="remove-friend-request">
+                        <input type="submit" title="Remove your friend request" value="" class="remove-friend-request-button button-friend">
+                    </div>
+                    <p>Friend request sent</p>
+                </form>
+            <?php else : ?>
+                <form action="./?page=profile&user=<?= $profileUser->getId(); ?>" method="post" class="add-friend form-friend">
+                    <div class="input-submit-add-friend-container">
+                        <input type="hidden" name="action" value="add-friend">
+                        <input type="submit" title="Add @<?= $profileUser->getUsername(); ?> as friend" value="" class="add-friend-button button-friend">
+                    </div>
+                    <p>You are not not friends</p>
+                </form>
             <?php endif; ?>
         </div>
         <div class="right-profile <?= $privacy; ?>">

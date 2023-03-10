@@ -10,6 +10,7 @@ class User
     private ?int $id;
     private ?bool $isPublic;
     private string $profilePicture;
+    private ?string $qrcode = null;
     private ProfileTheme $profileTheme;
     private ?DateTime $signupAt;
     private UserDAO $userDAO;
@@ -68,6 +69,11 @@ class User
     public function getId(): int
     {
         return $this->id;
+    }
+
+    public function setId(int $id): void
+    {
+        $this->id = $id;
     }
 
     public function signin(): ?array
@@ -214,5 +220,15 @@ class User
     public function setBanner(string $banner): void
     {
         $this->profileTheme->setBanner($banner);
+    }
+
+    public function getQRCode(): ?string
+    {
+        return $this->qrcode;
+    }
+
+    public function setQRCode(string $qrcode): void
+    {
+        $this->qrcode = $qrcode;
     }
 }

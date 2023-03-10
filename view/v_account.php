@@ -1,5 +1,5 @@
 <head>
-    <title>Manage Account</title>
+    <title>Manage Account - TimeChat</title>
     <link rel="stylesheet" href="<?= PATH_CSS; ?>account/style.css">
 </head>
 <main>

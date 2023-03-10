@@ -28,9 +28,27 @@ if (isset($_POST['signup'])) {
 
         $user = new User($username, $password, $description, $file, $public);
         $messageDatabaseOrUpload = $user->signup();
+
         if ($messageDatabaseOrUpload == 'success') {
-            Header('Location: ./?page=signin&success');
+
+            // On crée un QRCode a l'utilisateur si il n'y a pas d'erreur dans la base de données puis on update le QRCode dans la base de données
+            require_once(PATH_CLASSES . 'QRCodeGenerator.php');
+            require_once(PATH_DTO . 'UserDTO.php');
+
+            $QRCodeGenerator = new QRCodeGenerator($user->getId());
+            $qrcodeFilename = $QRCodeGenerator->generateQRCode();
+            $user->setQRCode($qrcodeFilename);
+
+            $userDTO = new UserDTO();
+
+            if ($userDTO->updateQRCode($user)) {
+                Header('Location: ./?page=signin&success');
+            } else {
+                unlink(PATH_QRCODES . $qrcodeFilename);
+                Header('Location: ./?page=signup&error=unknown');
+            }
         } else {
+            unlink(PATH_QRCODES . $qrcodeFilename);
             Header('Location: ./?page=signup&error=' . $messageDatabaseOrUpload);
         }
         exit();
