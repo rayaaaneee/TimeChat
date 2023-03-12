@@ -77,4 +77,16 @@ class NotificationDTO extends DTO
 
         return $notifications;
     }
+
+    public static function setNotificationAsRead(int $id): bool
+    {
+        $sql = "UPDATE " . self::$table . " SET is_read = 1 WHERE id = :id";
+
+        $stmt = self::$db->prepare($sql);
+        $stmt->bindValue(':id', $id);
+
+        $res = $stmt->execute();
+        $count = $stmt->rowCount();
+        return $res && $count > 0;
+    }
 }

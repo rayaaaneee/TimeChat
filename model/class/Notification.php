@@ -10,6 +10,7 @@ class Notification
     private \DateTime $date;
     private ?int $id = null;
     private User $userSender;
+    private bool $isRead = false;
 
     public function __construct(int $idUserSender, int $idUserReceiver, ?int $type = null, \DateTime $date = new \DateTime("now", new \DateTimeZone("Europe/Paris")), ?int $id = null)
     {
@@ -24,6 +25,11 @@ class Notification
         if ($id != null) {
             $this->id = $id;
         }
+    }
+
+    public function setIsRead(bool $isRead)
+    {
+        $this->isRead = $isRead;
     }
 
     public function getIdUserSender(): int
@@ -64,9 +70,9 @@ class Notification
     public function getTextDate(): string
     {
 
-        $now = new \DateTime();
+        $now = new \DateTime("now", new \DateTimeZone("Europe/Paris"));
 
-        $diff = $now->diff($this->date);
+        $diff = $this->date->diff($now);
 
         $result = '';
         if ($diff->y > 0) {
@@ -76,13 +82,18 @@ class Notification
         } else if ($diff->d > 0) {
             $result = $diff->d . ' day' . ($diff->d > 1 ? 's' : '');
         } else if ($diff->h > 0) {
-            $result = $diff->h . ' hours' . ($diff->h > 1 ? 's' : '');
-        } else if ($diff->i > 0) {
-            $result = $diff->i . ' minute' . ($diff->i > 1 ? 's' : '');
+            $result = $diff->h . ' hour' . ($diff->h > 1 ? 's' : '');
+        } else if (59 - $diff->i > 0) {
+            $result = 59 - $diff->i . ' minute' . (59 - $diff->i > 1 ? 's' : '');
         } else {
-            return 'À l\'instant';
+            return 'just now';
         }
 
         return $result . ' ago';
+    }
+
+    public function isRead(): bool
+    {
+        return $this->isRead;
     }
 }

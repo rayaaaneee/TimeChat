@@ -135,11 +135,14 @@ class UserDTO extends DTO
     public function updateProfile(User $user, string $newDescription, bool $newIsPublic, string $newProfilePicture): bool
     {
         $sql = 'UPDATE ' . self::$table . ' SET description = :description, profile_picture = :profile_picture, is_public = :is_public WHERE id = :id';
+
+        $id = $user->getId();
+
         $stmt = self::$db->prepare($sql);
         $stmt->bindParam(':description', $newDescription);
         $stmt->bindParam(':profile_picture', $newProfilePicture);
         $stmt->bindParam(':is_public', $newIsPublic);
-        $stmt->bindParam(':id', $user->getId());
+        $stmt->bindParam(':id', $id);
 
         try {
             $stmt->execute();

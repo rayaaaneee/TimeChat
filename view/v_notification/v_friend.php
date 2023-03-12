@@ -10,7 +10,9 @@
         <?php if ($notification->getType() == NotificationType::FRIEND_REQUEST) : ?>
             <div class="friend-request-notification notification">
                 <div class="is-new">
-                    <div class="red-point"></div>
+                    <?php if (!$notification->isRead()) : ?>
+                        <div class="red-point"></div>
+                    <?php endif; ?>
                 </div>
                 <div class="profile-picture-container">
                     <a href="./?page=profile&user=<?= $notification->getUserSender()->getId(); ?>">
@@ -19,13 +21,21 @@
                 </div>
                 <div class="user-informations">
                     <div class="flex-row">
-                        <p class="username">@<?= $notification->getUserSender()->getUsername(); ?></p>
+                        <a href="./?page=profile&user=<?= $notification->getUserSender()->getId(); ?>">
+                            <p class="username">@<?= $notification->getUserSender()->getUsername(); ?></p>
+                        </a>
                         <p class="name">sent you a friend request</p>
                     </div>
                     <?php if ($notification->getUserSender()->isPublic()) : ?>
-                        <p class="public">This user is public</p>
+                        <div class="flex-row public-user">
+                            <img src="<?= PATH_IMG_PAGES; ?>notification/public.png" alt="Public" draggable="false">
+                            <p class="public">This user is public</p>
+                        </div>
                     <?php else : ?>
-                        <p class="private">This user is private</p>
+                        <div class="flex-row private-user">
+                            <img src="<?= PATH_IMG_PAGES; ?>notification/private.png" alt="Private" draggable="false">
+                            <p class="private">This user is private</p>
+                        </div>
                     <?php endif; ?>
                     <p class="date"><?= $notification->getTextDate() ?></p>
                 </div>

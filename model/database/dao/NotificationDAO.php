@@ -26,6 +26,7 @@ class NotificationDAO extends DAO
 
         while ($row = $stmt->fetch()) {
             $notification = new Notification($row['id_user_sender'], $row['id_user_receiver'], $row['type'], new \DateTime($row['date']), $row['id']);
+            $notification->setIsRead($row['is_read']);
 
             $notifications[] = $notification;
         }

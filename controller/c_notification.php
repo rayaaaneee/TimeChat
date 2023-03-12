@@ -22,6 +22,7 @@ if ($nbNotifications > 0) {
 }
 
 require_once(PATH_DAO . 'NotificationDAO.php');
+require_once(PATH_DTO . 'NotificationDTO.php');
 require_once(PATH_CLASSES . 'ManageNotifications.php');
 
 
@@ -32,6 +33,11 @@ $notificationsMessages = $manageNotifications->getNotificationsByTypes(Notificat
 $nbNotificationsMessages = count($notificationsMessages);
 
 $notificationsFriends = $manageNotifications->getNotificationsByTypes(NotificationType::FRIENDS);
+foreach ($notificationsFriends as $notification) {
+    if ($notification->getType() == NotificationType::FRIEND_REQUEST) {
+        NotificationDTO::setNotificationAsRead($notification->getId());
+    }
+}
 $nbNotificationsFriends = count($notificationsFriends);
 
 $notificationsGroups = $manageNotifications->getNotificationsByTypes(NotificationType::GROUPS);
