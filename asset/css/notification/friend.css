@@ -32,6 +32,11 @@
     align-items: center;
     justify-content: center;
     border: none;
+    transition: 0.2s ease-in-out;
+}
+
+.accept-decline-request-form button:hover {
+    transition: 0.2s ease-in-out;
 }
 
 .accept-decline-request-form img {

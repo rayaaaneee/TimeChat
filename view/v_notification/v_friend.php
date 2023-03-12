@@ -31,10 +31,10 @@
                 </div>
                 <form action="./?page=notification&part=friend" method="post" class="accept-decline-request-form">
                     <button type="submit" name="accept-request" class="accept-request" title="Accept friend request">
-                        <img src="<?= PATH_IMG_PAGES; ?>notification/accept.png" alt="Accept">
+                        <img src="<?= PATH_IMG_PAGES; ?>notification/accept.png" alt="Accept" draggable="false">
                     </button>
                     <button type="submit" name="decline-request" class="decline-request" title="Decline friend request">
-                        <img src="<?= PATH_IMG_PAGES; ?>notification/decline.png" alt="Decline">
+                        <img src="<?= PATH_IMG_PAGES; ?>notification/decline.png" alt="Decline" draggable="false">
                     </button>
                 </form>
             </div>

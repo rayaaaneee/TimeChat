@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : ven. 10 mars 2023 à 01:46
+-- Généré le : dim. 12 mars 2023 à 04:18
 -- Version du serveur : 8.0.31
 -- Version de PHP : 8.2.0
 
@@ -48,6 +48,15 @@ CREATE TABLE IF NOT EXISTS `friend_request` (
   `date` datetime NOT NULL,
   PRIMARY KEY (`sender_id`,`receiver_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+--
+-- Déchargement des données de la table `friend_request`
+--
+
+INSERT INTO `friend_request` (`sender_id`, `receiver_id`, `date`) VALUES
+(4, 0, '2023-03-12 02:26:43'),
+(5, 4, '2023-03-10 10:10:49'),
+(6, 4, '2023-03-10 10:10:27');
 
 -- --------------------------------------------------------
 
@@ -103,12 +112,23 @@ CREATE TABLE IF NOT EXISTS `message` (
 
 DROP TABLE IF EXISTS `notification`;
 CREATE TABLE IF NOT EXISTS `notification` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `id_user_sender` int NOT NULL,
   `id_user_receiver` int NOT NULL,
-  `type` varchar(30) NOT NULL,
-  `viewed` tinyint(1) NOT NULL DEFAULT '0',
-  `date` datetime NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `type` int NOT NULL,
+  `date` datetime NOT NULL,
+  `is_viewed` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id_user_sender`,`id_user_receiver`,`type`),
+  UNIQUE KEY `id` (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `notification`
+--
+
+INSERT INTO `notification` (`id`, `id_user_sender`, `id_user_receiver`, `type`, `date`, `is_viewed`) VALUES
+(1, 6, 4, 1, '2023-03-10 10:10:27', 0),
+(2, 5, 4, 1, '2023-03-10 10:10:49', 0);
 
 -- --------------------------------------------------------
 
@@ -130,7 +150,10 @@ CREATE TABLE IF NOT EXISTS `profile_theme` (
 --
 
 INSERT INTO `profile_theme` (`id_user`, `theme`, `banner`) VALUES
-(3, 'red', 'root-03-10-23-796.jpg');
+(6, 'white', NULL),
+(5, 'white', NULL),
+(3, 'violet', 'root-03-10-23-796.jpg'),
+(4, 'white', 'NapsDeMarseille-03-11-23-426.jpg');
 
 -- --------------------------------------------------------
 
@@ -153,14 +176,17 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `pseudo` (`username`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Déchargement des données de la table `user`
 --
 
 INSERT INTO `user` (`id`, `username`, `password`, `description`, `profile_picture`, `signup_at`, `is_public`, `is_connected`, `nb_friends`, `qrcode`) VALUES
-(3, 'root', '$2y$10$8tCOiWueqsx.Lf/dUz6pcOjgpzwhGtXat3.6sbXP4ThhwHH.lUUqe', 'Admin et grand crack de cette génération', 'root-03-10-23-898.jpg', '2023-03-10', 0, 0, 0, '3-640a8b3a259b4.png');
+(3, 'root', '$2y$10$8tCOiWueqsx.Lf/dUz6pcOjgpzwhGtXat3.6sbXP4ThhwHH.lUUqe', 'Admin et grand crack de cette génération', 'root-03-10-23-898.jpg', '2023-03-10', 0, 0, 0, '3-640a8b3a259b4.png'),
+(4, 'NapsDeMarseille', '$2y$10$scMr6.Vi9jXDo2JfHKFl6Op.aUv.c0jo33xwSn7dhRXs9y5.RdRh.', 'OKAY OKAY c&#039;est naps khapta vers le port okay gamberge', 'NapsDeMarseille-03-10-23-398.jpg', '2023-03-10', 1, 0, 0, '4-640a8cd1aa15f.png'),
+(5, 'none', '$2y$10$elfaeZNVt0x6QdVqZhDZ1.tANI2hI8pAFJbDp3xhYXLMN4naH0ocG', '', 'none-03-10-23-548.jpg', '2023-03-10', 0, 0, 0, '5-640aa7ded6cdf.png'),
+(6, 'hippo', '$2y$10$XYkXNEZ0Gm/bVMMbGxYzyegeifoeJWCPvF1VNsjX.J1ftanE5u5.S', '', 'hippo-03-10-23-121.png', '2023-03-10', 0, 0, 0, '6-640aabea34634.png');
 
 --
 -- Contraintes pour les tables déchargées
