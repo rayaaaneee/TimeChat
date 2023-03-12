@@ -12,7 +12,7 @@ $display = new ProfilePresenter();
 $profileTheme = null;
 $profileUser = null;
 $privacy = "";
-
+$isUnknown = false;
 if (isset($_GET['user']) && $_GET['user'] != null) {
     if ($_GET['user'] == $_SESSION['user']['id']) {
         header('Location: ./?page=myprofile');
@@ -21,7 +21,7 @@ if (isset($_GET['user']) && $_GET['user'] != null) {
     $UserDAO = new UserDAO();
     $userTab = $UserDAO->getUserAndProfileThemeById($_GET['user']);
 
-    if ($userTab != null) {
+    if ($userTab['user']) {
         $profileUserTab = $userTab['user'];
         $profileUserTheme = $userTab['theme'];
         $themeName = $profileUserTheme['theme'];
@@ -40,6 +40,17 @@ if (isset($_GET['user']) && $_GET['user'] != null) {
         }
 
         $privacy = $profileUser->isPublic() ? "public" : "private";
+    } else {
+        $isUnknown = true;
+        $profileUser = User::getUnknownUser();
+
+        $ManageThemes = ManageThemes::getInstance();
+
+        $profileTheme = $ManageThemes->getThemeByColor(ProfileTheme::$defaultTheme);
+
+        $profileUser->setProfileTheme($profileTheme);
+
+        $privacy = "public";
     }
 } else {
     header('Location: ./');

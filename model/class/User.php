@@ -5,7 +5,7 @@ class User
 {
 
     private string $username;
-    private string $password;
+    private ?string $password;
     private ?string $description;
     private ?int $id;
     private ?bool $isPublic;
@@ -16,7 +16,7 @@ class User
     private UserDAO $userDAO;
     private UserDTO $userDTO;
 
-    public function __construct(string $username, string $password, string $description = null,  string $profilePicture = "default.png", bool $isPublic = null, DateTime $signupAt = null, int $id = null)
+    public function __construct(string $username, ?string $password, string $description = null,  string $profilePicture = "default.png", bool $isPublic = null, DateTime $signupAt = null, int $id = null)
     {
         $this->username = $username;
         $this->password = $password;
@@ -245,5 +245,10 @@ class User
     public function getTheme(): string
     {
         return $this->profileTheme->getTheme();
+    }
+
+    public static function getUnknownUser(): User
+    {
+        return new User("Unknown", "Unknown", null, "default/unknown.png", true, new DateTime(), 0);
     }
 }

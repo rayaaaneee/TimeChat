@@ -39,17 +39,17 @@
                         </a>
                     </li>
                     <li data-title="Groups">
-                        <a href="./?page=groups" class="view-groups menu-view">
+                        <a href="./?page=group" class="view-groups menu-view">
                             <img src="<?= PATH_IMG; ?>icon/group.png" alt="group">
                         </a>
                     </li>
                     <li data-title="Friends">
-                        <a href="./?page=friends" class="view-account menu-view">
+                        <a href="./?page=friend" class="view-account menu-view">
                             <img src="<?= PATH_IMG; ?>icon/friends.png" alt="profile">
                         </a>
                     </li>
                     <li data-title="Notifications">
-                        <a href="./?page=notifications" class="view-notifications menu-view <?= getClass($displayCircleNotifications); ?>" number="<?= $nbNotifications; ?>">
+                        <a href="./?page=notification" class="view-notifications menu-view <?= getClass($displayCircleNotifications); ?>" number="<?= $nbNotifications; ?>">
                             <img src="<?= PATH_IMG; ?>icon/notification.png" alt="notification">
                         </a>
                     </li>

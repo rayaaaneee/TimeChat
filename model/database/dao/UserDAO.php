@@ -91,4 +91,26 @@ class UserDAO extends DAO
 
         return $userAndProfileTheme;
     }
+
+    public static function getUsersByIds(array $ids): array
+    {
+        $users = array();
+        $sql = 'SELECT * FROM ' . self::$table . ' WHERE id IN (' . implode(',', $ids) . ')';
+        $stmt = self::$db->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        // On garde l'ordre des ids du tableau fourni en paramètre
+        foreach ($ids as $id) {
+            foreach ($result as $user) {
+                if ($user['id'] == $id) {
+                    $tmp_user = new User($user['username'], null, null, $user['profile_picture'], $user['is_public']);
+                    $tmp_user->setId($user['id']);
+                    $users[] = $tmp_user;
+                }
+            }
+        }
+
+        return $users;
+    }
 }

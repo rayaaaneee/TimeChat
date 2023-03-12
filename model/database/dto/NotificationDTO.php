@@ -17,7 +17,7 @@ class NotificationDTO extends DTO
         $data = [
             'id_user_sender' => $notification->getIdUserSender(),
             'id_user_receiver' => $notification->getIdUserReceiver(),
-            'type' => $notification->getNotificationType(),
+            'type' => $notification->getType(),
             'date' => $notification->getDate()->format('Y-m-d H:i:s')
         ];
 
@@ -31,7 +31,7 @@ class NotificationDTO extends DTO
         $stmt = self::$db->prepare($sql);
         $stmt->bindValue(':id_user_sender', $notification->getIdUserSender());
         $stmt->bindValue(':id_user_receiver', $notification->getIdUserReceiver());
-        $stmt->bindValue(':type', $notification->getNotificationType());
+        $stmt->bindValue(':type', $notification->getType());
 
         $res = $stmt->execute();
         $count = $stmt->rowCount();

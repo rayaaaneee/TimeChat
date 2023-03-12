@@ -18,6 +18,10 @@ class ProfileThemeDAO extends DAO
         $stmt->bindValue(':id_user', $userId);
         $stmt->execute();
         $stmt = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $stmt;
+        if ($stmt) {
+            return $stmt;
+        } else {
+            return [];
+        }
     }
 }

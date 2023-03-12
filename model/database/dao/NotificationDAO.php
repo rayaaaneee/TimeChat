@@ -13,9 +13,9 @@ class NotificationDAO extends DAO
         parent::__construct();
     }
 
-    public function getNotificationsByUserReceiverId(int $idUserReceiver): array
+    public static function getNotificationsByUserReceiverId(int $idUserReceiver): array
     {
-        $sql = "SELECT * FROM " . self::$table . " WHERE id_user_receiver = :id_user_receiver";
+        $sql = "SELECT * FROM " . self::$table . " WHERE id_user_receiver = :id_user_receiver ORDER BY date DESC";
 
         $stmt = self::$db->prepare($sql);
         $stmt->bindValue(':id_user_receiver', $idUserReceiver);
@@ -25,7 +25,7 @@ class NotificationDAO extends DAO
         $notifications = [];
 
         while ($row = $stmt->fetch()) {
-            $notification = new Notification($row['id_user_sender'], $row['id_user_receiver'], $row['type'], new \DateTime($row['date']));
+            $notification = new Notification($row['id_user_sender'], $row['id_user_receiver'], $row['type'], new \DateTime($row['date']), $row['id']);
 
             $notifications[] = $notification;
         }
