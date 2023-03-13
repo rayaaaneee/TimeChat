@@ -35,7 +35,7 @@ if (isset($_SESSION['user'])) {
     require_once(PATH_DAO . 'NotificationDAO.php');
     $NotificationDAO = new NotificationDAO();
 
-    $nbNotifications = $NotificationDAO->getCountNotificationsByUserReceiverId($user->getId());
+    $nbNotifications = $NotificationDAO->getCountNotificationsByUserReceiverIdNotViewed($user->getId());
 
     // Si l'utilisateur s'est déconnecté, on le déconnecte
     User::signedOut($user);

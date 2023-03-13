@@ -93,9 +93,8 @@ if (isset($_POST['action']) && $_POST['action'] == 'add-friend') {
     require_once(PATH_CLASSES . 'FriendRequest.php');
     require_once(PATH_DTO . 'FriendRequestDTO.php');
     $friendRequest = new FriendRequest($profileUser->getId(), $user->getId());
-    $FriendRequestDTO = new FriendRequestDTO();
 
-    $message = $FriendRequestDTO->removeFriendRequest($friendRequest);
+    $message = FriendRequestDTO::removeOne($friendRequest);
     $needsDisplay = true;
     if ($message == "success") {
 

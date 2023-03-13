@@ -26,7 +26,7 @@ class NotificationDAO extends DAO
 
         while ($row = $stmt->fetch()) {
             $notification = new Notification($row['id_user_sender'], $row['id_user_receiver'], $row['type'], new \DateTime($row['date']), $row['id']);
-            $notification->setIsRead($row['is_read']);
+            $notification->setIsViewed($row['is_viewed']);
 
             $notifications[] = $notification;
         }
@@ -34,9 +34,9 @@ class NotificationDAO extends DAO
         return $notifications;
     }
 
-    public function getCountNotificationsByUserReceiverId(int $idUserReceiver): int
+    public function getCountNotificationsByUserReceiverIdNotViewed(int $idUserReceiver): int
     {
-        $sql = "SELECT COUNT(*) FROM " . self::$table . " WHERE id_user_receiver = :id_user_receiver";
+        $sql = "SELECT COUNT(*) FROM " . self::$table . " WHERE id_user_receiver = :id_user_receiver AND is_viewed = false";
 
         $stmt = self::$db->prepare($sql);
         $stmt->bindValue(':id_user_receiver', $idUserReceiver);

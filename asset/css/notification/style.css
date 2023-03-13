@@ -160,7 +160,7 @@ main > div:first-child {
     display: grid;
     align-items: center;
     justify-content: start;
-    column-gap: 10px;
+    column-gap: 15px;
     border-radius: var(--border-sides);
 }
 

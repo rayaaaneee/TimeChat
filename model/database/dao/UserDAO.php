@@ -1,6 +1,7 @@
 <?php
 
 require_once(PATH_DAO . 'ProfileThemeDAO.php');
+require_once(PATH_DAO . 'FriendRelationDAO.php');
 class UserDAO extends DAO
 {
     private static string $table = 'user';
@@ -43,6 +44,12 @@ class UserDAO extends DAO
 
                 $_SESSION['user']['theme'] = $userProfileTheme['theme'];
                 $_SESSION['user']['banner'] = $userProfileTheme['banner'];
+
+                $user = new User($result['username'], $result['password'], $result['description'], $result['profile_picture'], $result['is_public'], new DateTime($result['signup_at']), $result['id']);
+
+                $friends = FriendRelationDAO::getFriends($user);
+
+                $_SESSION['user']['friends'] = $friends;
                 return [1, $result];
             } else {
                 return [0, 'password', $user->getUsername()];

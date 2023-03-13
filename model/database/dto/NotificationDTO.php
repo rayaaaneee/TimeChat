@@ -24,7 +24,7 @@ class NotificationDTO extends DTO
         return $this->insert(self::$table, $data);
     }
 
-    public function removeOne(Notification $notification): bool
+    public static function removeOne(Notification $notification): bool
     {
         $sql = "DELETE FROM " . self::$table . " WHERE id_user_sender = :id_user_sender AND id_user_receiver = :id_user_receiver AND type = :type";
 
@@ -80,7 +80,7 @@ class NotificationDTO extends DTO
 
     public static function setNotificationAsRead(int $id): bool
     {
-        $sql = "UPDATE " . self::$table . " SET is_read = 1 WHERE id = :id";
+        $sql = "UPDATE " . self::$table . " SET is_viewed = 1 WHERE id = :id";
 
         $stmt = self::$db->prepare($sql);
         $stmt->bindValue(':id', $id);

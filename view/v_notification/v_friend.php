@@ -8,12 +8,12 @@
             <div class="separator-bar"></div>
         <?php endif; ?>
         <?php if ($notification->getType() == NotificationType::FRIEND_REQUEST) : ?>
-            <div class="friend-request-notification notification">
-                <div class="is-new">
-                    <?php if (!$notification->isRead()) : ?>
+            <div class="friend-request-notification notification <?php if ($notification->isViewed()) echo "viewed"; ?>">
+                <?php if (!$notification->isViewed()) : ?>
+                    <div class="is-new">
                         <div class="red-point"></div>
-                    <?php endif; ?>
-                </div>
+                    </div>
+                <?php endif; ?>
                 <div class="profile-picture-container">
                     <a href="./?page=profile&user=<?= $notification->getUserSender()->getId(); ?>">
                         <img src="<?= $notification->getUserSender()->getProfilePicturePath(); ?>" alt="Profile picture" draggable="false">
@@ -40,6 +40,7 @@
                     <p class="date"><?= $notification->getTextDate() ?></p>
                 </div>
                 <form action="./?page=notification&part=friend" method="post" class="accept-decline-request-form">
+                    <input type="hidden" name="id_friend" value="<?= $notification->getUserSender()->getId(); ?>">
                     <button type="submit" name="accept-request" class="accept-request" title="Accept friend request">
                         <img src="<?= PATH_IMG_PAGES; ?>notification/accept.png" alt="Accept" draggable="false">
                     </button>

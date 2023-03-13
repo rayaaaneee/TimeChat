@@ -10,7 +10,7 @@ class Notification
     private \DateTime $date;
     private ?int $id = null;
     private User $userSender;
-    private bool $isRead = false;
+    private bool $isViewed = false;
 
     public function __construct(int $idUserSender, int $idUserReceiver, ?int $type = null, \DateTime $date = new \DateTime("now", new \DateTimeZone("Europe/Paris")), ?int $id = null)
     {
@@ -27,9 +27,9 @@ class Notification
         }
     }
 
-    public function setIsRead(bool $isRead)
+    public function setIsViewed(bool $isViewed)
     {
-        $this->isRead = $isRead;
+        $this->isViewed = $isViewed;
     }
 
     public function getIdUserSender(): int
@@ -92,8 +92,8 @@ class Notification
         return $result . ' ago';
     }
 
-    public function isRead(): bool
+    public function isViewed(): bool
     {
-        return $this->isRead;
+        return $this->isViewed;
     }
 }

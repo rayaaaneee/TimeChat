@@ -29,7 +29,7 @@ class FriendRequestDTO extends DTO
         return $result;
     }
 
-    public function removeFriendRequest(FriendRequest $friendRequest): string
+    public static function removeOne(FriendRequest $friendRequest): string
     {
         $sql = "DELETE FROM " . self::$table . " WHERE sender_id = :sender_id AND receiver_id = :receiver_id";
         $stmt = self::$db->prepare($sql);
@@ -44,6 +44,28 @@ class FriendRequestDTO extends DTO
             return "success";
         } else {
             return "not-found";
+        }
+    }
+
+    public static function removeOneByIdSenderAndIdReceiver(FriendRequest $friendRequest): bool
+    {
+        $sql = "DELETE FROM " . self::$table . " WHERE sender_id = :sender_id AND receiver_id = :receiver_id";
+        $stmt = self::$db->prepare($sql);
+
+        $sender = $friendRequest->getSenderId();
+        $receiver = $friendRequest->getReceiverId();
+
+        $stmt->bindValue(':sender_id', $sender);
+        $stmt->bindValue(':receiver_id', $receiver);
+        try {
+            $stmt->execute();
+        } catch (PDOException $e) {
+            return false;
+        }
+        if ($stmt->rowCount() > 0) {
+            return true;
+        } else {
+            return false;
         }
     }
 }
