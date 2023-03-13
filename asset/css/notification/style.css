@@ -182,7 +182,7 @@ main > div:first-child {
     width: 70px;
     height: 70px;
     object-fit: cover;
-    border-radius: 30%;
+    border-radius: 50%;
 }
 
 .notifications-container .separator-bar {

@@ -7,16 +7,15 @@
 }
 
 .notifications-container .friend-request-notification {
-    grid-template-columns: 7px 1fr 3fr 1fr;
+    grid-template-columns: 7px 1fr 3fr auto;
 }
 
 .accept-decline-request-form {
     width: 100%;
     height: fit-content;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 20px;
     margin-top: 10px;
 }
 
@@ -41,7 +40,6 @@
 
 .accept-decline-request-form button:hover {
     transition: 0.2s ease-in-out;
-    padding: 20px;
 }
 
 .accept-decline-request-form img {
@@ -50,11 +48,11 @@
 }
 
 .accept-decline-request-form .accept-request:hover {
-    background-color: #78b747;
+    background-color: #78b7476b;
 }
 
 .accept-decline-request-form .decline-request:hover {
-    background-color: #b74747;
+    background-color: #b7474767;
 }
 
 .user-informations {
