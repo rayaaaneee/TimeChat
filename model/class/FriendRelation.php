@@ -3,16 +3,27 @@
 class FriendRelation
 {
     private int $id;
+    /* User 1 is the user with the lowest id */
     private int $idUser1;
+    /* User 2 is the user with the highest id */
     private int $idUser2;
 
-    public function __construct(int $idUser1, int $idUser2, int $id = null)
+    public function __construct(array $ids, int $id = null)
     {
-        $this->idUser1 = $idUser1;
-        $this->idUser2 = $idUser2;
-
         if ($id != null) {
             $this->id = $id;
+        }
+
+        if (count($ids) == 2) {
+            if ($ids[0] < $ids[1]) {
+                $this->idUser1 = $ids[0];
+                $this->idUser2 = $ids[1];
+            } else {
+                $this->idUser1 = $ids[1];
+                $this->idUser2 = $ids[0];
+            }
+        } else {
+            throw new Exception("FriendRelation: Invalid number of ids");
         }
     }
 

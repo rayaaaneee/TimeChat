@@ -61,77 +61,46 @@ $needsDisplay = false;
 $isSuccess = false;
 $returnMessage = "";
 if (isset($_POST['action']) && $_POST['action'] == 'add-friend') {
-    require_once(PATH_CLASSES . 'FriendRequest.php');
-    require_once(PATH_DTO . 'FriendRequestDTO.php');
 
-    $FriendRequest = new FriendRequest($profileUser->getId());
-
-    $FriendRequestDTO = new FriendRequestDTO();
-    $bool = $FriendRequestDTO->insertFriendRequest($FriendRequest);
     $needsDisplay = true;
-    if ($bool) {
-        $isSuccess = true;
+
+    /* On s'occupe maintenant de l'envoi de la notification à l'utilisateur */
+    require_once(PATH_CLASSES . 'Notification.php');
+    require_once(PATH_DTO . 'NotificationDTO.php');
+
+    $notification = new Notification($user->getId(), $profileUser->getId(), NotificationType::FRIEND_REQUEST);
+
+    $NotificationDTO = new NotificationDTO();
+    $isSuccess = $NotificationDTO->insertOne($notification);
+
+    if ($isSuccess) {
         $returnMessage = "Friend request sent to @" . $profileUser->getUsername();
-
-        /* On s'occupe maintenant de l'envoi de la notification à l'utilisateur */
-        require_once(PATH_CLASSES . 'Notification.php');
-        require_once(PATH_DTO . 'NotificationDTO.php');
-
-        $notification = new Notification($user->getId(), $profileUser->getId(), NotificationType::FRIEND_REQUEST);
-
-        $NotificationDTO = new NotificationDTO();
-        $successSendNotification = $NotificationDTO->insertOne($notification);
-        if ($successSendNotification) {
-            $returnMessage .= " and notification sent";
-        } else {
-            $returnMessage .= " but notification not sent";
-        }
     } else {
         $returnMessage = "Friend request already sent to @" . $profileUser->getUsername();
     }
 } else if (isset($_POST['action']) && $_POST['action'] == 'remove-friend-request') {
-    require_once(PATH_CLASSES . 'FriendRequest.php');
-    require_once(PATH_DTO . 'FriendRequestDTO.php');
-    $friendRequest = new FriendRequest($profileUser->getId(), $user->getId());
 
-    $message = FriendRequestDTO::removeOne($friendRequest);
     $needsDisplay = true;
-    if ($message == "success") {
 
-        require_once(PATH_CLASSES . 'Notification.php');
-        require_once(PATH_DTO . 'NotificationDTO.php');
-        // On s'occupe maintenant de l'envoi de la notification à l'utilisateur
-        $notification = new Notification($user->getId(), $profileUser->getId(), NotificationType::FRIEND_REQUEST);
+    require_once(PATH_CLASSES . 'Notification.php');
+    require_once(PATH_DTO . 'NotificationDTO.php');
+    // On s'occupe maintenant de l'envoi de la notification à l'utilisateur
+    $notification = new Notification($user->getId(), $profileUser->getId(), NotificationType::FRIEND_REQUEST);
 
-        $isSuccess = true;
+    $NotificationDTO = new NotificationDTO();
+    $isSuccess = $NotificationDTO->removeOne($notification);
+
+    if ($isSuccess) {
         $returnMessage = "Friend request to @" . $profileUser->getUsername() . " removed";
-        $NotificationDTO = new NotificationDTO();
-        $successSendNotification = $NotificationDTO->removeOne($notification);
-        if ($successSendNotification) {
-            $returnMessage .= " and notification unsent";
-        } else {
-            $returnMessage .= " but notification not unsent";
-        }
-    } else if ($message == "not-found") {
-        $returnMessage = "You haven't send a friend request to @" . $profileUser->getUsername() . "";
+        $isSuccess = true;
     } else {
-        $returnMessage = "Unknown error";
+        $returnMessage = "Error while removing friend request to @" . $profileUser->getUsername();
     }
 }
 
-require_once(PATH_DAO . 'FriendRequestDAO.php');
-require_once(PATH_CLASSES . 'FriendRequestManager.php');
-
-$friendRequestDAO = new FriendRequestDAO();
-$friendRequests = $friendRequestDAO->getAllFriendRequestsBySender($user->getId());
-
-$friendRequestManager = new FriendRequestManager($friendRequests);
-$hasSendFriendRequest = $friendRequestManager->hasSendFriendRequest($profileUser->getId());
-if ($hasSendFriendRequest) {
-    $friendRequest = $friendRequestManager->getFriendRequest();
-}
-
 $isFriend = null;
+
+$hasSendFriendRequest = false;
 
 require_once(PATH_CONTROLLERS . 'header.php');
 

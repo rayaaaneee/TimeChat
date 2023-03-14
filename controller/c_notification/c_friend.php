@@ -8,18 +8,15 @@ if (isset($_POST['accept-request'])) {
     foreach ($notificationsFriends as $notification) {
         if ($notification->getIdUserSender() == $_POST['id_friend']) {
 
-            require_once(PATH_CLASSES . 'FriendRequest.php');
-            require_once(PATH_DTO . 'FriendRequestDTO.php');
             require_once(PATH_CLASSES . 'FriendRelation.php');
             require_once(PATH_DTO . 'FriendRelationDTO.php');
+            require_once(PATH_DTO . 'NotificationDTO.php');
 
             NotificationDTO::removeOne($notification);
 
-            $friendRequestToRemove = new FriendRequest($user->getId(), $notification->getIdUserSender());
-            $isSuccess = FriendRequestDTO::removeOneByIdSenderAndIdReceiver($friendRequestToRemove);
-
             if ($isSuccess) {
-                $friendRelation = new FriendRelation($user->getId(), $notification->getIdUserSender());
+                $ids = [$user->getId(), $notification->getIdUserSender()];
+                $friendRelation = new FriendRelation($ids);
                 $isSuccess = FriendRelationDTO::insertOne($friendRelation);
 
                 if ($isSuccess) {
@@ -34,7 +31,7 @@ if (isset($_POST['accept-request'])) {
                 break;
             }
 
-            $friendRelation = new FriendRelation($user->getId(), $notification->getIdUserSender());
+            $friendRelation = new FriendRelation([$user->getId(), $notification->getIdUserSender()]);
 
             array_splice($notificationsFriends, array_search($notification, $notificationsFriends), 1);
             $nbNotificationsFriends--;
