@@ -7,6 +7,9 @@
 // $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
 SW
 
+phprouter/main: Secure router with XSS and CSRF
+https://github.com/phprouter/main
+
 ## Modifier app/verifyPassword.php et changer la valeur de minLength en 8
 
 ## Carousel Accueil : Animation du logo clock du temps qui passe
